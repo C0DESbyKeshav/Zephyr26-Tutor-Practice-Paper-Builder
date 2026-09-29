@@ -2,6 +2,7 @@ import type { Student, Topic, Paper, Question, Result, SyncQueueItem, UndoAction
 import { INITIAL_STUDENTS, INITIAL_TOPICS, INITIAL_PAPERS, INITIAL_QUESTIONS } from './seedData';
 import { AnalyticsEngine } from '../services/analyticsEngine';
 import { gradingUndoStack } from '../services/undoStack';
+import { AIPaperGenerator } from '../services/aiGenerator';
 
 const STORAGE_VERSION = 'v2';
 const STORAGE_KEYS = {
@@ -144,6 +145,33 @@ class LocalDatabase {
 
   public getResultsForPaper(paperId: string): Result[] {
     return Array.from(this.results.values()).filter(r => r.paper_id === paperId);
+  }
+
+  public getResultsForStudent(studentId: string): Result[] {
+    return Array.from(this.results.values()).filter(r => r.student_id === studentId);
+  }
+
+  public getStudentHistory(studentId: string): {
+    paper: Paper;
+    results: Result[];
+    completionDate: number;
+    scorePercent: number;
+  }[] {
+    const studentPapers = this.getPapers().filter(p => p.student_id === studentId);
+    return studentPapers
+      .map(paper => {
+        const results = this.getResultsForPaper(paper.id);
+        const scorePercent = paper.total_marks > 0
+          ? Math.round((paper.scored_marks / paper.total_marks) * 100)
+          : 0;
+        return {
+          paper,
+          results,
+          completionDate: paper.updated_at,
+          scorePercent,
+        };
+      })
+      .sort((a, b) => b.completionDate - a.completionDate);
   }
 
   public getSyncStatus(): SyncStatus {
@@ -376,22 +404,17 @@ class LocalDatabase {
       });
     }
 
-    // Optimistically create ready papers for zero-wait demo experience
-    const now = Date.now();
+    // Optimistically create ready papers with calibrated questions for zero-wait demo experience
     for (const student of missing) {
-      const paperId = `pap_prep_${student.id}_${now}`;
-      const newPaper: Paper = {
-        id: paperId,
-        student_id: student.id,
-        title: `${student.syllabus_board} - Targeted Diagnostic Mastery`,
-        status: 'ready_for_class',
-        target_class_time: student.schedule_time,
-        total_marks: 30,
-        scored_marks: 0,
-        created_at: now,
-        updated_at: now,
-      };
-      this.papers.set(paperId, newPaper);
+      const studentTopics = this.getTopicsForStudent(student.id);
+      const { paper: paperData, questions: questionsData } = AIPaperGenerator.generatePaper({
+        student,
+        topics: studentTopics,
+        questionCount: 6,
+        calibratedDifficulty: 'adaptive',
+        focusOnWeakTopics: true,
+      });
+      this.createPaperWithQuestions(paperData, questionsData);
     }
 
     this.persist();
@@ -407,53 +430,158 @@ class LocalDatabase {
   /**
    * "The Zero-Wait Async Strategy": Generate tomorrow's paper today.
    * Triggered upon completing a paper grading.
+   * Automatically targets persistent weak topics!
    */
-  private triggerAutoPrepNextPaper(studentId: string) {
+  public triggerAutoPrepNextPaper(studentId: string): Paper | null {
     const student = this.students.get(studentId);
-    if (!student) return;
+    if (!student) return null;
 
     // Check if next paper already exists
     const existingReady = this.getPapers().some(
       p => p.student_id === studentId && p.status === 'ready_for_class'
     );
-    if (existingReady) return;
+    if (existingReady) return null;
 
-    // Generate tomorrow's paper today into local DB
+    const topics = this.getTopicsForStudent(studentId);
+    const { paper: paperData, questions: questionsData } = AIPaperGenerator.generatePaper({
+      student,
+      topics,
+      questionCount: 6,
+      calibratedDifficulty: 'adaptive',
+      focusOnWeakTopics: true,
+      customTitle: `${student.syllabus_board} - Next Session Weak-Topic Mastery`,
+    });
+
+    const newPaper = this.createPaperWithQuestions(paperData, questionsData);
+    this.persist();
+    this.notify();
+    return newPaper;
+  }
+
+  // --- Student & Topic Management ---
+
+  public createStudent(
+    studentData: Omit<Student, 'id' | 'created_at' | 'updated_at'>,
+    initialTopics: { name: string; syllabus_code?: string; initialMastery?: number }[] = []
+  ): Student {
     const now = Date.now();
-    const newPaperId = `pap_tomorrow_${studentId}_${now}`;
-    const newPaper: Paper = {
-      id: newPaperId,
-      student_id: studentId,
-      title: `${student.syllabus_board} - Next Session Adaptive Mastery`,
-      status: 'ready_for_class',
-      target_class_time: 'Tomorrow',
-      total_marks: 35,
-      scored_marks: 0,
+    const studentId = `stu_${now}_${Math.random().toString(36).substring(2, 6)}`;
+    const student: Student = {
+      ...studentData,
+      id: studentId,
       created_at: now,
       updated_at: now,
     };
+    this.students.set(studentId, student);
 
-    this.papers.set(newPaperId, newPaper);
+    const topicsToCreate = initialTopics.length > 0 ? initialTopics : [
+      { name: 'Core Foundations', syllabus_code: 'TOP-01', initialMastery: 75 },
+      { name: 'Problem Solving & Applications', syllabus_code: 'TOP-02', initialMastery: 55 },
+      { name: 'Exam Challenging Topics', syllabus_code: 'TOP-03', initialMastery: 45 },
+    ];
 
-    // Add alternate question for tweaker
-    const altQ: Question = {
-      id: `alt_auto_${now}`,
-      paper_id: newPaperId,
-      topic_id: this.getTopicsForStudent(studentId)[0]?.id || 'top_01',
-      topic_name: 'Adaptive Intervention Question',
-      question_number: 99,
-      question_text: 'Evaluate integral_0^{pi/2} sin^3(x) cos(x) dx using u-substitution.',
-      answer_key: '1/4',
-      marking_scheme: ['M1: Let u = sin(x), du = cos(x)dx', 'A1: integral_0^1 u^3 du = [u^4/4]_0^1 = 1/4'],
-      difficulty: 2,
-      max_marks: 4,
-      is_alternate: true,
-      order_index: 99,
-    };
-    this.questions.set(altQ.id, altQ);
+    topicsToCreate.forEach((t, index) => {
+      const topicId = `top_${now}_${index}`;
+      const mastery = t.initialMastery !== undefined ? t.initialMastery : 60;
+      const topic: Topic = {
+        id: topicId,
+        student_id: studentId,
+        name: t.name,
+        syllabus_code: t.syllabus_code || `TOP-0${index + 1}`,
+        mastery_percentage: mastery,
+        last_tested_at: now,
+        is_weak: mastery < 60,
+        created_at: now,
+        updated_at: now,
+      };
+      this.topics.set(topicId, topic);
+    });
 
     this.persist();
     this.notify();
+    return student;
+  }
+
+  public updateStudent(student: Student): void {
+    const existing = this.students.get(student.id);
+    if (!existing) return;
+    const updated: Student = {
+      ...existing,
+      ...student,
+      updated_at: Date.now(),
+    };
+    this.students.set(student.id, updated);
+    this.persist();
+    this.notify();
+  }
+
+  public addTopic(studentId: string, name: string, syllabus_code?: string, initialMastery = 50): Topic {
+    const now = Date.now();
+    const topicId = `top_${now}_${Math.random().toString(36).substring(2, 5)}`;
+    const topic: Topic = {
+      id: topicId,
+      student_id: studentId,
+      name,
+      syllabus_code: syllabus_code || `TOP-${this.getTopicsForStudent(studentId).length + 1}`,
+      mastery_percentage: initialMastery,
+      last_tested_at: now,
+      is_weak: initialMastery < 60,
+      created_at: now,
+      updated_at: now,
+    };
+    this.topics.set(topicId, topic);
+    this.persist();
+    this.notify();
+    return topic;
+  }
+
+  public updateTopic(topic: Topic): void {
+    const existing = this.topics.get(topic.id);
+    if (!existing) return;
+    const updated: Topic = {
+      ...existing,
+      ...topic,
+      is_weak: topic.mastery_percentage < 60,
+      updated_at: Date.now(),
+    };
+    this.topics.set(topic.id, updated);
+    this.persist();
+    this.notify();
+  }
+
+  public deleteTopic(topicId: string): void {
+    this.topics.delete(topicId);
+    this.persist();
+    this.notify();
+  }
+
+  public createPaperWithQuestions(
+    paperData: Omit<Paper, 'id' | 'created_at' | 'updated_at'>,
+    questionsData: Omit<Question, 'id' | 'paper_id'>[]
+  ): Paper {
+    const now = Date.now();
+    const paperId = `pap_${now}_${Math.random().toString(36).substring(2, 6)}`;
+    const paper: Paper = {
+      ...paperData,
+      id: paperId,
+      created_at: now,
+      updated_at: now,
+    };
+    this.papers.set(paperId, paper);
+
+    questionsData.forEach((qData, idx) => {
+      const qId = `q_${now}_${idx}`;
+      const question: Question = {
+        ...qData,
+        id: qId,
+        paper_id: paperId,
+      };
+      this.questions.set(qId, question);
+    });
+
+    this.persist();
+    this.notify();
+    return paper;
   }
 
   private enqueueSync(item: SyncQueueItem) {

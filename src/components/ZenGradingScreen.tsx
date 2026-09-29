@@ -160,7 +160,7 @@ export const ZenGradingScreen: React.FC<ZenGradingScreenProps> = ({
           Awesome Job! 🎉
         </h2>
         <p style={{ color: '#6B7280', fontSize: '15px', fontWeight: 500, marginBottom: '24px' }}>
-          You graded all 10 questions for <strong>{student.name}</strong> in {completionSummary.timeSeconds} seconds!
+          Graded {questions.length} questions for <strong>{student.name}</strong> in {completionSummary.timeSeconds}s!
         </p>
 
         {/* Big Score Summary Box */}
@@ -170,7 +170,7 @@ export const ZenGradingScreen: React.FC<ZenGradingScreenProps> = ({
             border: '2px solid #E5E7EB',
             borderRadius: '20px',
             padding: '20px',
-            marginBottom: '24px',
+            marginBottom: '16px',
             display: 'flex',
             justifyContent: 'space-around',
           }}
@@ -182,17 +182,42 @@ export const ZenGradingScreen: React.FC<ZenGradingScreenProps> = ({
             <div style={{ fontSize: '26px', fontWeight: 900, color: '#58CC02', marginTop: '2px' }}>
               {completionSummary.scored} / {completionSummary.total}
             </div>
+            <div style={{ fontSize: '12px', fontWeight: 800, color: '#64748B' }}>
+              {completionSummary.total > 0 ? Math.round((completionSummary.scored / completionSummary.total) * 100) : 0}% Accuracy
+            </div>
           </div>
 
           <div style={{ width: '2px', backgroundColor: '#E5E7EB' }} />
 
           <div>
             <div style={{ fontSize: '12px', fontWeight: 700, color: '#6B7280', textTransform: 'uppercase' }}>
-              Next Paper
+              Suggested Next Paper
             </div>
-            <div style={{ fontSize: '15px', fontWeight: 800, color: '#1CB0F6', marginTop: '8px' }}>
+            <div style={{ fontSize: '15px', fontWeight: 800, color: '#1CB0F6', marginTop: '6px' }}>
               Auto-Prepared ✨
             </div>
+            <div style={{ fontSize: '11px', fontWeight: 700, color: '#10B981' }}>
+              Weak-Topic Focused
+            </div>
+          </div>
+        </div>
+
+        {/* Weak topic reinforcement highlight */}
+        <div
+          style={{
+            backgroundColor: '#EFF6FF',
+            border: '1px solid #BFDBFE',
+            borderRadius: '14px',
+            padding: '12px 14px',
+            marginBottom: '20px',
+            textAlign: 'left',
+          }}
+        >
+          <div style={{ fontSize: '12px', fontWeight: 800, color: '#1D4ED8', marginBottom: '2px' }}>
+            🎯 Adaptive Next Paper Ready for Class:
+          </div>
+          <div style={{ fontSize: '12px', color: '#3B82F6' }}>
+            Topic mastery has been recalculated via EWMA. A fresh practice paper calibrated to persistent weak areas has been placed in {student.name}'s profile.
           </div>
         </div>
 
@@ -206,7 +231,7 @@ export const ZenGradingScreen: React.FC<ZenGradingScreenProps> = ({
             borderRadius: '20px',
           }}
         >
-          <span>Continue</span>
+          <span>View Student & Next Paper</span>
         </button>
       </div>
     );
@@ -292,6 +317,37 @@ export const ZenGradingScreen: React.FC<ZenGradingScreenProps> = ({
           <Clock size={14} />
           <span>{elapsedSeconds}s</span>
         </div>
+      </div>
+
+      {/* Direct Question Jump Bar */}
+      <div
+        style={{
+          display: 'flex',
+          gap: '6px',
+          overflowX: 'auto',
+          paddingBottom: '8px',
+          marginBottom: '14px',
+        }}
+      >
+        {questions.map((q, idx) => (
+          <button
+            key={q.id}
+            onClick={() => setCurrentIndex(idx)}
+            style={{
+              padding: '6px 12px',
+              fontSize: '12px',
+              fontWeight: 800,
+              borderRadius: '10px',
+              border: 'none',
+              backgroundColor: idx === currentIndex ? '#1CB0F6' : '#E2E8F0',
+              color: idx === currentIndex ? '#FFFFFF' : '#475569',
+              cursor: 'pointer',
+              flexShrink: 0,
+            }}
+          >
+            Q{idx + 1} ({q.max_marks}p)
+          </button>
+        ))}
       </div>
 
       {/* Main Question Card (Clean, Big Typography, Easy to Understand) */}
@@ -479,13 +535,52 @@ export const ZenGradingScreen: React.FC<ZenGradingScreenProps> = ({
         </div>
       )}
 
+      {/* Quick 1-Tap Mark Entry Pills (Instant Scoring) */}
+      <div style={{ marginTop: '16px', marginBottom: '8px' }}>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '6px' }}>
+          <span style={{ fontSize: '12px', fontWeight: 800, color: '#64748B' }}>
+            Quick 1-Tap Score (0 to {currentQuestion.max_marks} pts):
+          </span>
+          <span style={{ fontSize: '11px', color: '#94A3B8' }}>
+            Tap score to award & advance
+          </span>
+        </div>
+
+        <div style={{ display: 'flex', gap: '6px' }}>
+          {Array.from({ length: currentQuestion.max_marks + 1 }, (_, i) => i).map(mark => {
+            const isFull = mark === currentQuestion.max_marks;
+            const isZero = mark === 0;
+            return (
+              <button
+                key={mark}
+                onClick={() => handleAwardMarks(mark)}
+                className="btn-duo"
+                style={{
+                  flex: 1,
+                  height: '42px',
+                  fontSize: '14px',
+                  fontWeight: 900,
+                  borderRadius: '12px',
+                  backgroundColor: isFull ? '#F0FDF4' : isZero ? '#FEF2F2' : '#FFFFFF',
+                  color: isFull ? '#16A34A' : isZero ? '#DC2626' : '#1E293B',
+                  border: isFull ? '2px solid #86EFAC' : isZero ? '2px solid #FECACA' : '2px solid #E2E8F0',
+                  boxShadow: 'none',
+                }}
+              >
+                {mark}
+              </button>
+            );
+          })}
+        </div>
+      </div>
+
       {/* 3 Big, Friendly, Intuitive Action Buttons (Duolingo Style) */}
       <div
         style={{
           display: 'grid',
           gridTemplateColumns: '1fr auto 1fr',
           gap: '12px',
-          marginTop: '16px',
+          marginTop: '10px',
         }}
       >
         {/* Wrong Button */}

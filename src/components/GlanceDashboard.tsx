@@ -6,12 +6,15 @@ import {
   ChevronRight, 
   Search, 
   CheckCircle2, 
-  FileText
+  FileText,
+  Plus,
+  AlertTriangle
 } from 'lucide-react';
 import type { Student, Paper } from '../types';
 import { localDb } from '../database/localDb';
 import { OfflinePill } from './OfflinePill';
 import { SupabaseService } from '../services/supabaseClient';
+import { StudentProfileModal } from './StudentProfileModal';
 
 interface GlanceDashboardProps {
   onSelectStudent: (student: Student) => void;
@@ -28,6 +31,7 @@ export const GlanceDashboard: React.FC<GlanceDashboardProps> = ({
   const [searchQuery, setSearchQuery] = useState('');
   const [isPrepping, setIsPrepping] = useState(false);
   const [prepNotification, setPrepNotification] = useState<string | null>(null);
+  const [showAddStudentModal, setShowAddStudentModal] = useState<boolean>(false);
 
   // 10-Minute Window live ticker countdown
   const [windowSecondsLeft, setWindowSecondsLeft] = useState(468);
@@ -143,7 +147,24 @@ export const GlanceDashboard: React.FC<GlanceDashboardProps> = ({
           </div>
         </div>
 
-        <OfflinePill />
+        <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+          <button
+            onClick={() => setShowAddStudentModal(true)}
+            className="btn-duo btn-duo-green"
+            style={{
+              padding: '8px 14px',
+              fontSize: '13px',
+              borderRadius: '12px',
+              display: 'flex',
+              alignItems: 'center',
+              gap: '6px',
+            }}
+          >
+            <Plus size={16} />
+            <span>Add Student</span>
+          </button>
+          <OfflinePill />
+        </div>
       </header>
 
       {/* 2 Big Friendly Goal Cards */}
@@ -402,7 +423,7 @@ export const GlanceDashboard: React.FC<GlanceDashboardProps> = ({
                     <span>{student.syllabus_board}</span>
                   </div>
 
-                  <div style={{ marginTop: '5px' }}>
+                  <div style={{ marginTop: '5px', display: 'flex', alignItems: 'center', gap: '6px', flexWrap: 'wrap' }}>
                     {isNeedsGrading ? (
                       <span
                         style={{
@@ -415,7 +436,7 @@ export const GlanceDashboard: React.FC<GlanceDashboardProps> = ({
                           border: '1px solid #FECDD3',
                         }}
                       >
-                        🔴 Paper waiting to be graded
+                        🔴 Needs Grading
                       </span>
                     ) : (
                       <span
@@ -429,9 +450,34 @@ export const GlanceDashboard: React.FC<GlanceDashboardProps> = ({
                           border: '1px solid #BBF7D0',
                         }}
                       >
-                        🟢 Practice paper ready for class
+                        🟢 Ready for Class
                       </span>
                     )}
+
+                    {(() => {
+                      const studentTopics = localDb.getTopicsForStudent(student.id);
+                      const weak = studentTopics.filter(t => t.mastery_percentage < 60);
+                      if (weak.length === 0) return null;
+                      return (
+                        <span
+                          style={{
+                            backgroundColor: '#FEF2F2',
+                            color: '#DC2626',
+                            fontSize: '11px',
+                            fontWeight: 800,
+                            padding: '3px 8px',
+                            borderRadius: '8px',
+                            border: '1px solid #FECACA',
+                            display: 'flex',
+                            alignItems: 'center',
+                            gap: '4px',
+                          }}
+                        >
+                          <AlertTriangle size={11} />
+                          <span>{weak.length} Weak Area{weak.length > 1 ? 's' : ''}</span>
+                        </span>
+                      );
+                    })()}
                   </div>
                 </div>
               </div>
@@ -493,6 +539,18 @@ export const GlanceDashboard: React.FC<GlanceDashboardProps> = ({
           <span>{isPrepping ? 'Preparing...' : '✨ Prepare All Papers'}</span>
         </button>
       </div>
+
+      {/* Add Student Modal */}
+      {showAddStudentModal && (
+        <StudentProfileModal
+          isOpen={showAddStudentModal}
+          onClose={() => setShowAddStudentModal(false)}
+          onSaved={(newStudent) => {
+            loadData();
+            onSelectStudent(newStudent);
+          }}
+        />
+      )}
     </div>
   );
 };
