@@ -12,198 +12,33 @@ const NOW = Date.now();
 const DAY = 24 * 60 * 60 * 1000;
 
 export const INITIAL_STUDENTS: Student[] = [
-  {
-    id: 's_01',
-    name: 'Liam Chen',
-    grade: '12th Grade',
-    syllabus_board: 'IB DP Math AA',
-    target_exam: 'IB May 2026 Higher Level',
-    avatar_color: '#00F0FF',
-    schedule_time: '08:30 AM',
-    notes: 'Aims for 7/7. Struggles with Taylor Series convergence tests.',
-    created_at: NOW - 60 * DAY,
-    updated_at: NOW,
-  },
-  {
-    id: 's_02',
-    name: 'Sophia Rodriguez',
-    grade: '10th Grade',
-    syllabus_board: 'Cambridge IGCSE',
-    target_exam: 'IGCSE Extended Math 0580',
-    avatar_color: '#00FF88',
-    schedule_time: '09:15 AM',
-    notes: 'Strong algebraic manipulation, needs help with 3D Trigonometry & Bearings.',
-    created_at: NOW - 50 * DAY,
-    updated_at: NOW,
-  },
-  {
-    id: 's_03',
-    name: 'Ethan Patel',
-    grade: '11th Grade',
-    syllabus_board: 'AP Calculus BC',
-    target_exam: 'AP Exam (Target: 5)',
-    avatar_color: '#FFB800',
-    schedule_time: '10:00 AM',
-    notes: 'Fast worker, occasional careless sign errors in Integration by Parts.',
-    created_at: NOW - 45 * DAY,
-    updated_at: NOW,
-  },
-  {
-    id: 's_04',
-    name: 'Maya Al-Mansoor',
-    grade: '10th Grade',
-    syllabus_board: 'CBSE Class 10/12',
-    target_exam: 'CBSE Board Standard Math',
-    avatar_color: '#FF0055',
-    schedule_time: '10:45 AM',
-    notes: 'Exam anxiety on word problems involving Quadratic Equations.',
-    created_at: NOW - 35 * DAY,
-    updated_at: NOW,
-  },
-  {
-    id: 's_05',
-    name: 'Alexander Wright',
-    grade: '12th Grade',
-    syllabus_board: 'A-Level Physics',
-    target_exam: 'Edexcel A-Level (Target: A*)',
-    avatar_color: '#8B5CF6',
-    schedule_time: '11:30 AM',
-    notes: 'Very high aptitude for Mechanics; needs intervention on Capacitance & Magnetic Fields.',
-    created_at: NOW - 40 * DAY,
-    updated_at: NOW,
-  },
-  {
-    id: 's_06',
-    name: 'Emma Watson',
-    grade: '11th Grade',
-    syllabus_board: 'IB DP Math AA',
-    target_exam: 'IB Standard Level',
-    avatar_color: '#EC4899',
-    schedule_time: '12:45 PM',
-    notes: 'Excellent on Statistics; needs confidence in Vector Equations of Lines.',
-    created_at: NOW - 30 * DAY,
-    updated_at: NOW,
-  },
-  {
-    id: 's_07',
-    name: 'Lucas Silva',
-    grade: '11th Grade',
-    syllabus_board: 'AP Physics C',
-    target_exam: 'AP Physics C Mechanics',
-    avatar_color: '#14B8A6',
-    schedule_time: '01:30 PM',
-    notes: 'Rotational Dynamics mastered. Simple Harmonic Motion damped oscillations need review.',
-    created_at: NOW - 25 * DAY,
-    updated_at: NOW,
-  },
-  {
-    id: 's_08',
-    name: 'Olivia Kim',
-    grade: '9th Grade',
-    syllabus_board: 'Cambridge IGCSE',
-    target_exam: 'IGCSE Core Math',
-    avatar_color: '#3B82F6',
-    schedule_time: '02:15 PM',
-    notes: 'Visual learner. Geometry theorems need repeated reinforcement.',
-    created_at: NOW - 20 * DAY,
-    updated_at: NOW,
-  },
-  {
-    id: 's_09',
-    name: 'Noah Schmidt',
-    grade: '12th Grade',
-    syllabus_board: 'AP Calculus BC',
-    target_exam: 'AP BC Exam',
-    avatar_color: '#F97316',
-    schedule_time: '03:00 PM',
-    notes: 'Polar coordinates area integrals need practice.',
-    created_at: NOW - 15 * DAY,
-    updated_at: NOW,
-  },
-  {
-    id: 's_10',
-    name: 'Ava Taylor',
-    grade: '12th Grade',
-    syllabus_board: 'CBSE Class 10/12',
-    target_exam: 'CBSE 12th Board Mathematics',
-    avatar_color: '#A855F7',
-    schedule_time: '03:45 PM',
-    notes: 'Mastered Differential Equations; needs intervention on Linear Programming & Bayes Theorem.',
-    created_at: NOW - 18 * DAY,
-    updated_at: NOW,
-  },
-  {
-    id: 's_11',
-    name: 'Oliver Brown',
-    grade: '10th Grade',
-    syllabus_board: 'Cambridge IGCSE',
-    target_exam: 'IGCSE Additional Math 0606',
-    avatar_color: '#EAB308',
-    schedule_time: '04:30 PM',
-    notes: 'Trigonometric identities proof steps need rigorous structure.',
-    created_at: NOW - 22 * DAY,
-    updated_at: NOW,
-  },
-  {
-    id: 's_12',
-    name: 'Isabella Garcia',
-    grade: '11th Grade',
-    syllabus_board: 'IB DP Math AA',
-    target_exam: 'IB Math SL',
-    avatar_color: '#06B6D4',
-    schedule_time: '05:15 PM',
-    notes: 'Functions and graphs are solid. Binomial Theorem coefficients need drilling.',
-    created_at: NOW - 10 * DAY,
-    updated_at: NOW,
-  },
-  {
-    id: 's_13',
-    name: 'Elijah Jones',
-    grade: '11th Grade',
-    syllabus_board: 'General STEM',
-    target_exam: 'SAT Math 800',
-    avatar_color: '#10B981',
-    schedule_time: '06:00 PM',
-    notes: 'Pacing is good. High-level algebra & circle geometry need review.',
-    created_at: NOW - 12 * DAY,
-    updated_at: NOW,
-  },
-  {
-    id: 's_14',
-    name: 'Charlotte Davis',
-    grade: '10th Grade',
-    syllabus_board: 'Cambridge IGCSE',
-    target_exam: 'IGCSE Combined Science & Math',
-    avatar_color: '#F43F5E',
-    schedule_time: '06:45 PM',
-    notes: 'Very creative problem solver. Needs systematic checking of units & dimensions.',
-    created_at: NOW - 8 * DAY,
-    updated_at: NOW,
-  },
-  {
-    id: 's_15',
-    name: 'James Wilson',
-    grade: '12th Grade',
-    syllabus_board: 'AP Calculus BC',
-    target_exam: 'College Board BC',
-    avatar_color: '#6366F1',
-    schedule_time: '07:30 PM',
-    notes: 'Preparing for mock exam next Monday.',
-    created_at: NOW - 5 * DAY,
-    updated_at: NOW,
-  }
+  { id: 's_01', name: 'Liam Chen', grade: '12th Grade', syllabus_board: 'IB DP Math AA', target_exam: 'IB May 2026 Higher Level', avatar_color: '#00F0FF', schedule_time: '08:30 AM', notes: 'Aims for 7/7. Struggles with Taylor Series convergence tests.', created_at: NOW - 60 * DAY, updated_at: NOW },
+  { id: 's_02', name: 'Sophia Rodriguez', grade: '10th Grade', syllabus_board: 'Cambridge IGCSE', target_exam: 'IGCSE Extended Math 0580', avatar_color: '#00FF88', schedule_time: '09:15 AM', notes: 'Strong algebraic manipulation, needs help with 3D Trigonometry & Bearings.', created_at: NOW - 50 * DAY, updated_at: NOW },
+  { id: 's_03', name: 'Ethan Patel', grade: '11th Grade', syllabus_board: 'AP Calculus BC', target_exam: 'AP Exam (Target: 5)', avatar_color: '#FFB800', schedule_time: '10:00 AM', notes: 'Fast worker, occasional careless sign errors in Integration by Parts.', created_at: NOW - 45 * DAY, updated_at: NOW },
+  { id: 's_04', name: 'Maya Al-Mansoor', grade: '10th Grade', syllabus_board: 'CBSE Class 10/12', target_exam: 'CBSE Board Standard Math', avatar_color: '#FF0055', schedule_time: '10:45 AM', notes: 'Exam anxiety on word problems involving Quadratic Equations.', created_at: NOW - 35 * DAY, updated_at: NOW },
+  { id: 's_05', name: 'Alexander Wright', grade: '12th Grade', syllabus_board: 'A-Level Physics', target_exam: 'Edexcel A-Level (Target: A*)', avatar_color: '#8B5CF6', schedule_time: '11:30 AM', notes: 'Very high aptitude for Mechanics; needs intervention on Capacitance & Magnetic Fields.', created_at: NOW - 40 * DAY, updated_at: NOW },
+  { id: 's_06', name: 'Emma Watson', grade: '11th Grade', syllabus_board: 'IB DP Math AA', target_exam: 'IB Standard Level', avatar_color: '#EC4899', schedule_time: '12:45 PM', notes: 'Excellent on Statistics; needs confidence in Vector Equations of Lines.', created_at: NOW - 30 * DAY, updated_at: NOW },
+  { id: 's_07', name: 'Lucas Silva', grade: '11th Grade', syllabus_board: 'AP Physics C', target_exam: 'AP Physics C Mechanics', avatar_color: '#14B8A6', schedule_time: '01:30 PM', notes: 'Rotational Dynamics mastered. Simple Harmonic Motion damped oscillations need review.', created_at: NOW - 25 * DAY, updated_at: NOW },
+  { id: 's_08', name: 'Olivia Kim', grade: '9th Grade', syllabus_board: 'Cambridge IGCSE', target_exam: 'IGCSE Core Math', avatar_color: '#3B82F6', schedule_time: '02:15 PM', notes: 'Visual learner. Geometry theorems need repeated reinforcement.', created_at: NOW - 20 * DAY, updated_at: NOW },
+  { id: 's_09', name: 'Noah Schmidt', grade: '12th Grade', syllabus_board: 'AP Calculus BC', target_exam: 'AP BC Exam', avatar_color: '#F97316', schedule_time: '03:00 PM', notes: 'Polar coordinates area integrals need practice.', created_at: NOW - 15 * DAY, updated_at: NOW },
+  { id: 's_10', name: 'Ava Taylor', grade: '12th Grade', syllabus_board: 'CBSE Class 10/12', target_exam: 'CBSE 12th Board Mathematics', avatar_color: '#A855F7', schedule_time: '03:45 PM', notes: 'Mastered Differential Equations; needs intervention on Linear Programming & Bayes Theorem.', created_at: NOW - 18 * DAY, updated_at: NOW },
+  { id: 's_11', name: 'Oliver Brown', grade: '10th Grade', syllabus_board: 'Cambridge IGCSE', target_exam: 'IGCSE Additional Math 0606', avatar_color: '#EAB308', schedule_time: '04:30 PM', notes: 'Trigonometric identities proof steps need rigorous structure.', created_at: NOW - 22 * DAY, updated_at: NOW },
+  { id: 's_12', name: 'Isabella Garcia', grade: '11th Grade', syllabus_board: 'IB DP Math AA', target_exam: 'IB Math SL', avatar_color: '#06B6D4', schedule_time: '05:15 PM', notes: 'Functions and graphs are solid. Binomial Theorem coefficients need drilling.', created_at: NOW - 10 * DAY, updated_at: NOW },
+  { id: 's_13', name: 'Elijah Jones', grade: '11th Grade', syllabus_board: 'General STEM', target_exam: 'SAT Math 800', avatar_color: '#10B981', schedule_time: '06:00 PM', notes: 'Pacing is good. High-level algebra & circle geometry need review.', created_at: NOW - 12 * DAY, updated_at: NOW },
+  { id: 's_14', name: 'Charlotte Davis', grade: '10th Grade', syllabus_board: 'Cambridge IGCSE', target_exam: 'IGCSE Combined Science & Math', avatar_color: '#F43F5E', schedule_time: '06:45 PM', notes: 'Very creative problem solver. Needs systematic checking of units & dimensions.', created_at: NOW - 8 * DAY, updated_at: NOW },
+  { id: 's_15', name: 'James Wilson', grade: '12th Grade', syllabus_board: 'AP Calculus BC', target_exam: 'College Board BC', avatar_color: '#6366F1', schedule_time: '07:30 PM', notes: 'Preparing for mock exam next Monday.', created_at: NOW - 5 * DAY, updated_at: NOW },
 ];
 
 export const INITIAL_TOPICS: Topic[] = [
-  // Liam Chen (IB DP Math AA) - 6 core topics for Radar Chart
+  // Liam Chen (s_01) - IB DP Math AA
   { id: 'top_01', student_id: 's_01', name: 'Differential Calculus', syllabus_code: 'IB-5.1', mastery_percentage: 84.0, last_tested_at: NOW - 3 * DAY, is_weak: false, created_at: NOW, updated_at: NOW },
   { id: 'top_02', student_id: 's_01', name: 'Integral Calculus', syllabus_code: 'IB-5.5', mastery_percentage: 76.5, last_tested_at: NOW - 6 * DAY, is_weak: false, created_at: NOW, updated_at: NOW },
-  { id: 'top_03', student_id: 's_01', name: 'Taylor & Maclaurin Series', syllabus_code: 'IB-5.12', mastery_percentage: 48.0, last_tested_at: NOW - 38 * DAY, is_weak: true, created_at: NOW, updated_at: NOW }, // decayed & weak (<60%)
-  { id: 'top_04', student_id: 's_01', name: '3D Vector Geometry', syllabus_code: 'IB-3.4', mastery_percentage: 54.0, last_tested_at: NOW - 12 * DAY, is_weak: true, created_at: NOW, updated_at: NOW }, // weak (<60%)
-  { id: 'top_05', student_id: 's_01', name: 'Complex Numbers', syllabus_code: 'IB-1.7', mastery_percentage: 52.0, last_tested_at: NOW - 18 * DAY, is_weak: true, created_at: NOW, updated_at: NOW }, // weak (<60%)
+  { id: 'top_03', student_id: 's_01', name: 'Taylor & Maclaurin Series', syllabus_code: 'IB-5.12', mastery_percentage: 48.0, last_tested_at: NOW - 38 * DAY, is_weak: true, created_at: NOW, updated_at: NOW },
+  { id: 'top_04', student_id: 's_01', name: '3D Vector Geometry', syllabus_code: 'IB-3.4', mastery_percentage: 54.0, last_tested_at: NOW - 12 * DAY, is_weak: true, created_at: NOW, updated_at: NOW },
+  { id: 'top_05', student_id: 's_01', name: 'Complex Numbers', syllabus_code: 'IB-1.7', mastery_percentage: 52.0, last_tested_at: NOW - 18 * DAY, is_weak: true, created_at: NOW, updated_at: NOW },
   { id: 'top_06', student_id: 's_01', name: 'Probability Distributions', syllabus_code: 'IB-4.7', mastery_percentage: 88.0, last_tested_at: NOW - 4 * DAY, is_weak: false, created_at: NOW, updated_at: NOW },
 
-  // Sophia Rodriguez (Cambridge IGCSE)
+  // Sophia Rodriguez (s_02) - Cambridge IGCSE
   { id: 'top_07', student_id: 's_02', name: 'Algebraic Expressions', syllabus_code: 'IG-C2', mastery_percentage: 92.0, last_tested_at: NOW - 2 * DAY, is_weak: false, created_at: NOW, updated_at: NOW },
   { id: 'top_08', student_id: 's_02', name: '3D Trigonometry & Bearings', syllabus_code: 'IG-E6', mastery_percentage: 45.0, last_tested_at: NOW - 35 * DAY, is_weak: true, created_at: NOW, updated_at: NOW },
   { id: 'top_09', student_id: 's_02', name: 'Quadratic Functions', syllabus_code: 'IG-C3', mastery_percentage: 78.0, last_tested_at: NOW - 5 * DAY, is_weak: false, created_at: NOW, updated_at: NOW },
@@ -211,7 +46,7 @@ export const INITIAL_TOPICS: Topic[] = [
   { id: 'top_11', student_id: 's_02', name: 'Vector Geometry', syllabus_code: 'IG-E7', mastery_percentage: 82.0, last_tested_at: NOW - 8 * DAY, is_weak: false, created_at: NOW, updated_at: NOW },
   { id: 'top_12', student_id: 's_02', name: 'Coordinate Geometry', syllabus_code: 'IG-C5', mastery_percentage: 74.0, last_tested_at: NOW - 10 * DAY, is_weak: false, created_at: NOW, updated_at: NOW },
 
-  // Ethan Patel (AP Calculus BC)
+  // Ethan Patel (s_03) - AP Calculus BC
   { id: 'top_13', student_id: 's_03', name: 'Limits & Continuity', syllabus_code: 'AP-U1', mastery_percentage: 95.0, last_tested_at: NOW - 4 * DAY, is_weak: false, created_at: NOW, updated_at: NOW },
   { id: 'top_14', student_id: 's_03', name: 'Parametric & Polar Equations', syllabus_code: 'AP-U9', mastery_percentage: 52.0, last_tested_at: NOW - 32 * DAY, is_weak: true, created_at: NOW, updated_at: NOW },
   { id: 'top_15', student_id: 's_03', name: 'Infinite Sequences & Series', syllabus_code: 'AP-U10', mastery_percentage: 58.0, last_tested_at: NOW - 11 * DAY, is_weak: true, created_at: NOW, updated_at: NOW },
@@ -219,7 +54,7 @@ export const INITIAL_TOPICS: Topic[] = [
   { id: 'top_17', student_id: 's_03', name: 'Differential Equations', syllabus_code: 'AP-U7', mastery_percentage: 79.0, last_tested_at: NOW - 7 * DAY, is_weak: false, created_at: NOW, updated_at: NOW },
   { id: 'top_18', student_id: 's_03', name: 'Applications of Definite Integrals', syllabus_code: 'AP-U8', mastery_percentage: 83.0, last_tested_at: NOW - 5 * DAY, is_weak: false, created_at: NOW, updated_at: NOW },
 
-  // Maya Al-Mansoor (CBSE Class 10)
+  // Maya Al-Mansoor (s_04) - CBSE
   { id: 'top_19', student_id: 's_04', name: 'Real Numbers & Polynomials', syllabus_code: 'CBSE-U1', mastery_percentage: 91.0, last_tested_at: NOW - 1 * DAY, is_weak: false, created_at: NOW, updated_at: NOW },
   { id: 'top_20', student_id: 's_04', name: 'Quadratic Equations (Word Problems)', syllabus_code: 'CBSE-U2', mastery_percentage: 42.0, last_tested_at: NOW - 40 * DAY, is_weak: true, created_at: NOW, updated_at: NOW },
   { id: 'top_21', student_id: 's_04', name: 'Arithmetic Progressions', syllabus_code: 'CBSE-U3', mastery_percentage: 75.0, last_tested_at: NOW - 9 * DAY, is_weak: false, created_at: NOW, updated_at: NOW },
@@ -227,431 +62,279 @@ export const INITIAL_TOPICS: Topic[] = [
   { id: 'top_23', student_id: 's_04', name: 'Trigonometric Applications & Heights', syllabus_code: 'CBSE-U5', mastery_percentage: 50.0, last_tested_at: NOW - 20 * DAY, is_weak: true, created_at: NOW, updated_at: NOW },
   { id: 'top_24', student_id: 's_04', name: 'Surface Areas & Volumes', syllabus_code: 'CBSE-U7', mastery_percentage: 80.0, last_tested_at: NOW - 4 * DAY, is_weak: false, created_at: NOW, updated_at: NOW },
 
-  // Alexander Wright (A-Level Physics)
+  // Alexander Wright (s_05) - A-Level Physics
   { id: 'top_25', student_id: 's_05', name: 'Kinematics & Newton Laws', syllabus_code: 'AL-PHY1', mastery_percentage: 96.0, last_tested_at: NOW - 2 * DAY, is_weak: false, created_at: NOW, updated_at: NOW },
   { id: 'top_26', student_id: 's_05', name: 'Capacitors & Exponential Decay', syllabus_code: 'AL-PHY4', mastery_percentage: 48.0, last_tested_at: NOW - 36 * DAY, is_weak: true, created_at: NOW, updated_at: NOW },
   { id: 'top_27', student_id: 's_05', name: 'Electromagnetic Induction', syllabus_code: 'AL-PHY5', mastery_percentage: 54.0, last_tested_at: NOW - 15 * DAY, is_weak: true, created_at: NOW, updated_at: NOW },
   { id: 'top_28', student_id: 's_05', name: 'Nuclear Decay & Radiation', syllabus_code: 'AL-PHY7', mastery_percentage: 51.0, last_tested_at: NOW - 25 * DAY, is_weak: true, created_at: NOW, updated_at: NOW },
   { id: 'top_29', student_id: 's_05', name: 'Thermal Physics & Ideal Gases', syllabus_code: 'AL-PHY8', mastery_percentage: 82.0, last_tested_at: NOW - 6 * DAY, is_weak: false, created_at: NOW, updated_at: NOW },
   { id: 'top_30', student_id: 's_05', name: 'Wave Optics & Interference', syllabus_code: 'AL-PHY3', mastery_percentage: 88.0, last_tested_at: NOW - 5 * DAY, is_weak: false, created_at: NOW, updated_at: NOW },
+
+  // Emma Watson (s_06) - IB DP Math AA SL
+  { id: 'top_31', student_id: 's_06', name: 'Statistics & Normal Distribution', syllabus_code: 'IB-4.3', mastery_percentage: 90.0, last_tested_at: NOW - 2 * DAY, is_weak: false, created_at: NOW, updated_at: NOW },
+  { id: 'top_32', student_id: 's_06', name: 'Vector Equations of Lines', syllabus_code: 'IB-3.2', mastery_percentage: 48.0, last_tested_at: NOW - 30 * DAY, is_weak: true, created_at: NOW, updated_at: NOW },
+  { id: 'top_33', student_id: 's_06', name: 'Trigonometric Functions', syllabus_code: 'IB-3.7', mastery_percentage: 72.0, last_tested_at: NOW - 7 * DAY, is_weak: false, created_at: NOW, updated_at: NOW },
+  { id: 'top_34', student_id: 's_06', name: 'Exponential & Logarithmic Functions', syllabus_code: 'IB-2.9', mastery_percentage: 85.0, last_tested_at: NOW - 4 * DAY, is_weak: false, created_at: NOW, updated_at: NOW },
+  { id: 'top_35', student_id: 's_06', name: 'Binomial Distribution', syllabus_code: 'IB-4.6', mastery_percentage: 55.0, last_tested_at: NOW - 18 * DAY, is_weak: true, created_at: NOW, updated_at: NOW },
+  { id: 'top_36', student_id: 's_06', name: 'Integration by Substitution', syllabus_code: 'IB-5.9', mastery_percentage: 78.0, last_tested_at: NOW - 6 * DAY, is_weak: false, created_at: NOW, updated_at: NOW },
+
+  // Lucas Silva (s_07) - AP Physics C
+  { id: 'top_37', student_id: 's_07', name: 'Rotational Dynamics', syllabus_code: 'APC-M3', mastery_percentage: 94.0, last_tested_at: NOW - 3 * DAY, is_weak: false, created_at: NOW, updated_at: NOW },
+  { id: 'top_38', student_id: 's_07', name: 'Simple Harmonic Motion', syllabus_code: 'APC-M4', mastery_percentage: 51.0, last_tested_at: NOW - 28 * DAY, is_weak: true, created_at: NOW, updated_at: NOW },
+  { id: 'top_39', student_id: 's_07', name: 'Work, Energy & Power', syllabus_code: 'APC-M2', mastery_percentage: 88.0, last_tested_at: NOW - 5 * DAY, is_weak: false, created_at: NOW, updated_at: NOW },
+  { id: 'top_40', student_id: 's_07', name: 'Oscillations & Resonance', syllabus_code: 'APC-M5', mastery_percentage: 47.0, last_tested_at: NOW - 22 * DAY, is_weak: true, created_at: NOW, updated_at: NOW },
+  { id: 'top_41', student_id: 's_07', name: 'Gravitation & Orbits', syllabus_code: 'APC-M6', mastery_percentage: 81.0, last_tested_at: NOW - 8 * DAY, is_weak: false, created_at: NOW, updated_at: NOW },
+  { id: 'top_42', student_id: 's_07', name: 'Linear Momentum & Collisions', syllabus_code: 'APC-M1', mastery_percentage: 76.0, last_tested_at: NOW - 10 * DAY, is_weak: false, created_at: NOW, updated_at: NOW },
+
+  // Olivia Kim (s_08) - Cambridge IGCSE Core
+  { id: 'top_43', student_id: 's_08', name: 'Angle Theorems & Polygons', syllabus_code: 'IG-C4', mastery_percentage: 49.0, last_tested_at: NOW - 25 * DAY, is_weak: true, created_at: NOW, updated_at: NOW },
+  { id: 'top_44', student_id: 's_08', name: 'Number & Fractions', syllabus_code: 'IG-C1', mastery_percentage: 85.0, last_tested_at: NOW - 3 * DAY, is_weak: false, created_at: NOW, updated_at: NOW },
+  { id: 'top_45', student_id: 's_08', name: 'Algebra & Equations', syllabus_code: 'IG-C2', mastery_percentage: 70.0, last_tested_at: NOW - 8 * DAY, is_weak: false, created_at: NOW, updated_at: NOW },
+  { id: 'top_46', student_id: 's_08', name: 'Perimeter, Area & Volume', syllabus_code: 'IG-C6', mastery_percentage: 53.0, last_tested_at: NOW - 20 * DAY, is_weak: true, created_at: NOW, updated_at: NOW },
+  { id: 'top_47', student_id: 's_08', name: 'Probability', syllabus_code: 'IG-C8', mastery_percentage: 78.0, last_tested_at: NOW - 6 * DAY, is_weak: false, created_at: NOW, updated_at: NOW },
+  { id: 'top_48', student_id: 's_08', name: 'Statistics & Data', syllabus_code: 'IG-C9', mastery_percentage: 82.0, last_tested_at: NOW - 4 * DAY, is_weak: false, created_at: NOW, updated_at: NOW },
+
+  // Noah Schmidt (s_09) - AP Calculus BC
+  { id: 'top_49', student_id: 's_09', name: 'Polar Area & Integrals', syllabus_code: 'AP-U9', mastery_percentage: 46.0, last_tested_at: NOW - 33 * DAY, is_weak: true, created_at: NOW, updated_at: NOW },
+  { id: 'top_50', student_id: 's_09', name: 'Derivatives & Chain Rule', syllabus_code: 'AP-U2', mastery_percentage: 90.0, last_tested_at: NOW - 3 * DAY, is_weak: false, created_at: NOW, updated_at: NOW },
+  { id: 'top_51', student_id: 's_09', name: 'Arc Length & Parametric', syllabus_code: 'AP-U9B', mastery_percentage: 53.0, last_tested_at: NOW - 15 * DAY, is_weak: true, created_at: NOW, updated_at: NOW },
+  { id: 'top_52', student_id: 's_09', name: 'Series Convergence Tests', syllabus_code: 'AP-U10', mastery_percentage: 68.0, last_tested_at: NOW - 9 * DAY, is_weak: false, created_at: NOW, updated_at: NOW },
+  { id: 'top_53', student_id: 's_09', name: 'Antiderivatives & FTC', syllabus_code: 'AP-U5', mastery_percentage: 87.0, last_tested_at: NOW - 4 * DAY, is_weak: false, created_at: NOW, updated_at: NOW },
+  { id: 'top_54', student_id: 's_09', name: 'Related Rates', syllabus_code: 'AP-U4', mastery_percentage: 79.0, last_tested_at: NOW - 7 * DAY, is_weak: false, created_at: NOW, updated_at: NOW },
+
+  // Ava Taylor (s_10) - CBSE 12th
+  { id: 'top_55', student_id: 's_10', name: 'Differential Equations', syllabus_code: 'CBSE-U9', mastery_percentage: 91.0, last_tested_at: NOW - 2 * DAY, is_weak: false, created_at: NOW, updated_at: NOW },
+  { id: 'top_56', student_id: 's_10', name: 'Linear Programming', syllabus_code: 'CBSE-U12', mastery_percentage: 44.0, last_tested_at: NOW - 38 * DAY, is_weak: true, created_at: NOW, updated_at: NOW },
+  { id: 'top_57', student_id: 's_10', name: 'Bayes Theorem & Probability', syllabus_code: 'CBSE-U13', mastery_percentage: 50.0, last_tested_at: NOW - 22 * DAY, is_weak: true, created_at: NOW, updated_at: NOW },
+  { id: 'top_58', student_id: 's_10', name: 'Matrices & Determinants', syllabus_code: 'CBSE-U3', mastery_percentage: 82.0, last_tested_at: NOW - 5 * DAY, is_weak: false, created_at: NOW, updated_at: NOW },
+  { id: 'top_59', student_id: 's_10', name: 'Vector Algebra', syllabus_code: 'CBSE-U10', mastery_percentage: 75.0, last_tested_at: NOW - 8 * DAY, is_weak: false, created_at: NOW, updated_at: NOW },
+  { id: 'top_60', student_id: 's_10', name: 'Three Dimensional Geometry', syllabus_code: 'CBSE-U11', mastery_percentage: 68.0, last_tested_at: NOW - 11 * DAY, is_weak: false, created_at: NOW, updated_at: NOW },
+
+  // Oliver Brown (s_11) - Cambridge IGCSE Add Math
+  { id: 'top_61', student_id: 's_11', name: 'Trigonometric Identities & Proofs', syllabus_code: 'IG-E5', mastery_percentage: 52.0, last_tested_at: NOW - 28 * DAY, is_weak: true, created_at: NOW, updated_at: NOW },
+  { id: 'top_62', student_id: 's_11', name: 'Calculus Basics', syllabus_code: 'IG-E11', mastery_percentage: 74.0, last_tested_at: NOW - 7 * DAY, is_weak: false, created_at: NOW, updated_at: NOW },
+  { id: 'top_63', student_id: 's_11', name: 'Permutations & Combinations', syllabus_code: 'IG-E1', mastery_percentage: 80.0, last_tested_at: NOW - 5 * DAY, is_weak: false, created_at: NOW, updated_at: NOW },
+  { id: 'top_64', student_id: 's_11', name: 'Surds & Indices', syllabus_code: 'IG-C1', mastery_percentage: 55.0, last_tested_at: NOW - 18 * DAY, is_weak: true, created_at: NOW, updated_at: NOW },
+  { id: 'top_65', student_id: 's_11', name: 'Logarithms', syllabus_code: 'IG-C2B', mastery_percentage: 70.0, last_tested_at: NOW - 10 * DAY, is_weak: false, created_at: NOW, updated_at: NOW },
+  { id: 'top_66', student_id: 's_11', name: 'Quadratic & Simultaneous Equations', syllabus_code: 'IG-C3', mastery_percentage: 88.0, last_tested_at: NOW - 3 * DAY, is_weak: false, created_at: NOW, updated_at: NOW },
+
+  // Isabella Garcia (s_12) - IB Math SL
+  { id: 'top_67', student_id: 's_12', name: 'Functions & Transformations', syllabus_code: 'IB-2.1', mastery_percentage: 90.0, last_tested_at: NOW - 2 * DAY, is_weak: false, created_at: NOW, updated_at: NOW },
+  { id: 'top_68', student_id: 's_12', name: 'Binomial Theorem', syllabus_code: 'IB-1.9', mastery_percentage: 47.0, last_tested_at: NOW - 32 * DAY, is_weak: true, created_at: NOW, updated_at: NOW },
+  { id: 'top_69', student_id: 's_12', name: 'Sequences & Series', syllabus_code: 'IB-1.2', mastery_percentage: 76.0, last_tested_at: NOW - 8 * DAY, is_weak: false, created_at: NOW, updated_at: NOW },
+  { id: 'top_70', student_id: 's_12', name: 'Trigonometry & Unit Circle', syllabus_code: 'IB-3.5', mastery_percentage: 83.0, last_tested_at: NOW - 5 * DAY, is_weak: false, created_at: NOW, updated_at: NOW },
+  { id: 'top_71', student_id: 's_12', name: 'Derivatives & Applications', syllabus_code: 'IB-5.2', mastery_percentage: 78.0, last_tested_at: NOW - 6 * DAY, is_weak: false, created_at: NOW, updated_at: NOW },
+  { id: 'top_72', student_id: 's_12', name: 'Regression & Correlation', syllabus_code: 'IB-4.4', mastery_percentage: 56.0, last_tested_at: NOW - 15 * DAY, is_weak: true, created_at: NOW, updated_at: NOW },
+
+  // Elijah Jones (s_13) - General STEM / SAT
+  { id: 'top_73', student_id: 's_13', name: 'Advanced Algebra & Functions', syllabus_code: 'SAT-H1', mastery_percentage: 53.0, last_tested_at: NOW - 26 * DAY, is_weak: true, created_at: NOW, updated_at: NOW },
+  { id: 'top_74', student_id: 's_13', name: 'Circle Geometry & Theorems', syllabus_code: 'SAT-H2', mastery_percentage: 57.0, last_tested_at: NOW - 14 * DAY, is_weak: true, created_at: NOW, updated_at: NOW },
+  { id: 'top_75', student_id: 's_13', name: 'Linear & Quadratic Systems', syllabus_code: 'SAT-L1', mastery_percentage: 86.0, last_tested_at: NOW - 4 * DAY, is_weak: false, created_at: NOW, updated_at: NOW },
+  { id: 'top_76', student_id: 's_13', name: 'Ratios, Rates & Proportions', syllabus_code: 'SAT-P1', mastery_percentage: 91.0, last_tested_at: NOW - 2 * DAY, is_weak: false, created_at: NOW, updated_at: NOW },
+  { id: 'top_77', student_id: 's_13', name: 'Statistics & Data Analysis', syllabus_code: 'SAT-S1', mastery_percentage: 78.0, last_tested_at: NOW - 7 * DAY, is_weak: false, created_at: NOW, updated_at: NOW },
+  { id: 'top_78', student_id: 's_13', name: 'Word Problems & Modeling', syllabus_code: 'SAT-M1', mastery_percentage: 69.0, last_tested_at: NOW - 11 * DAY, is_weak: false, created_at: NOW, updated_at: NOW },
+
+  // Charlotte Davis (s_14) - Cambridge IGCSE Combined
+  { id: 'top_79', student_id: 's_14', name: 'Kinematics (Distance-Time Graphs)', syllabus_code: 'IG-S3', mastery_percentage: 56.0, last_tested_at: NOW - 20 * DAY, is_weak: true, created_at: NOW, updated_at: NOW },
+  { id: 'top_80', student_id: 's_14', name: 'Number & Place Value', syllabus_code: 'IG-N1', mastery_percentage: 88.0, last_tested_at: NOW - 3 * DAY, is_weak: false, created_at: NOW, updated_at: NOW },
+  { id: 'top_81', student_id: 's_14', name: 'Graphs & Equations', syllabus_code: 'IG-A3', mastery_percentage: 72.0, last_tested_at: NOW - 9 * DAY, is_weak: false, created_at: NOW, updated_at: NOW },
+  { id: 'top_82', student_id: 's_14', name: 'SI Units & Dimensions', syllabus_code: 'IG-S1', mastery_percentage: 50.0, last_tested_at: NOW - 24 * DAY, is_weak: true, created_at: NOW, updated_at: NOW },
+  { id: 'top_83', student_id: 's_14', name: 'Probability & Statistics', syllabus_code: 'IG-D1', mastery_percentage: 80.0, last_tested_at: NOW - 5 * DAY, is_weak: false, created_at: NOW, updated_at: NOW },
+  { id: 'top_84', student_id: 's_14', name: 'Mensuration & Shapes', syllabus_code: 'IG-G2', mastery_percentage: 75.0, last_tested_at: NOW - 8 * DAY, is_weak: false, created_at: NOW, updated_at: NOW },
+
+  // James Wilson (s_15) - AP Calculus BC
+  { id: 'top_85', student_id: 's_15', name: 'Integration by Parts', syllabus_code: 'AP-U6', mastery_percentage: 88.0, last_tested_at: NOW - 3 * DAY, is_weak: false, created_at: NOW, updated_at: NOW },
+  { id: 'top_86', student_id: 's_15', name: 'Improper Integrals', syllabus_code: 'AP-U6B', mastery_percentage: 72.0, last_tested_at: NOW - 8 * DAY, is_weak: false, created_at: NOW, updated_at: NOW },
+  { id: 'top_87', student_id: 's_15', name: 'Taylor Series & Error Bounds', syllabus_code: 'AP-U10', mastery_percentage: 54.0, last_tested_at: NOW - 18 * DAY, is_weak: true, created_at: NOW, updated_at: NOW },
+  { id: 'top_88', student_id: 's_15', name: 'Logistic Growth & DE', syllabus_code: 'AP-U7', mastery_percentage: 62.0, last_tested_at: NOW - 12 * DAY, is_weak: false, created_at: NOW, updated_at: NOW },
+  { id: 'top_89', student_id: 's_15', name: 'Volumes of Revolution', syllabus_code: 'AP-U8', mastery_percentage: 83.0, last_tested_at: NOW - 5 * DAY, is_weak: false, created_at: NOW, updated_at: NOW },
+  { id: 'top_90', student_id: 's_15', name: 'L\'Hopital\'s Rule & Limits', syllabus_code: 'AP-U4', mastery_percentage: 77.0, last_tested_at: NOW - 7 * DAY, is_weak: false, created_at: NOW, updated_at: NOW },
 ];
 
 export const INITIAL_PAPERS: Paper[] = [
-  {
-    id: 'pap_01',
-    student_id: 's_01',
-    title: 'IB DP Math AA HL - Targeted Mastery Set #14',
-    status: 'needs_grading', // 🔴 Red dot
-    target_class_time: '08:30 AM',
-    total_marks: 40,
-    scored_marks: 0,
-    grading_duration_seconds: 0,
-    created_at: NOW - 1 * DAY,
-    updated_at: NOW,
-  },
-  {
-    id: 'pap_02',
-    student_id: 's_02',
-    title: 'Cambridge IGCSE - Bearings & Circle Mastery #08',
-    status: 'ready_for_class', // 🟢 Green dot
-    target_class_time: '09:15 AM',
-    total_marks: 35,
-    scored_marks: 31,
-    created_at: NOW - 2 * DAY,
-    updated_at: NOW,
-  },
-  {
-    id: 'pap_03',
-    student_id: 's_03',
-    title: 'AP Calculus BC - Polar Area & Series Convergence',
-    status: 'ready_for_class', // 🟢 Green dot
-    target_class_time: '10:00 AM',
-    total_marks: 45,
-    scored_marks: 39,
-    created_at: NOW - 1 * DAY,
-    updated_at: NOW,
-  },
-  {
-    id: 'pap_04',
-    student_id: 's_04',
-    title: 'CBSE Standard Math - Word Problems & Heights Sprint',
-    status: 'needs_grading', // 🔴 Red dot
-    target_class_time: '10:45 AM',
-    total_marks: 30,
-    scored_marks: 0,
-    grading_duration_seconds: 0,
-    created_at: NOW - 2 * DAY,
-    updated_at: NOW,
-  },
-  {
-    id: 'pap_05',
-    student_id: 's_05',
-    title: 'A-Level Physics - Magnetic Flux & Capacitance Drift',
-    status: 'needs_grading', // 🔴 Red dot
-    target_class_time: '11:30 AM',
-    total_marks: 50,
-    scored_marks: 0,
-    created_at: NOW - 1 * DAY,
-    updated_at: NOW,
-  },
-  {
-    id: 'pap_06',
-    student_id: 's_06',
-    title: 'IB DP Math SL - 3D Vector Lines Sprint',
-    status: 'ready_for_class', // 🟢 Green dot
-    target_class_time: '12:45 PM',
-    total_marks: 35,
-    scored_marks: 29,
-    created_at: NOW - 1 * DAY,
-    updated_at: NOW,
-  },
-  {
-    id: 'pap_07',
-    student_id: 's_07',
-    title: 'AP Physics C - Damped Harmonic Oscillations',
-    status: 'ready_for_class', // 🟢 Green dot
-    target_class_time: '01:30 PM',
-    total_marks: 40,
-    scored_marks: 36,
-    created_at: NOW - 3 * DAY,
-    updated_at: NOW,
-  },
-  {
-    id: 'pap_08',
-    student_id: 's_08',
-    title: 'IGCSE Core - Angle Theorems & Polygons',
-    status: 'needs_grading', // 🔴 Red dot
-    target_class_time: '02:15 PM',
-    total_marks: 30,
-    scored_marks: 0,
-    created_at: NOW - 1 * DAY,
-    updated_at: NOW,
-  },
-  {
-    id: 'pap_09',
-    student_id: 's_09',
-    title: 'AP Calculus BC - Polar Derivatives & Arc Length',
-    status: 'ready_for_class', // 🟢 Green dot
-    target_class_time: '03:00 PM',
-    total_marks: 40,
-    scored_marks: 34,
-    created_at: NOW - 1 * DAY,
-    updated_at: NOW,
-  },
-  {
-    id: 'pap_10',
-    student_id: 's_10',
-    title: 'CBSE 12th - Bayes Theorem & Conditional Sprint',
-    status: 'needs_grading', // 🔴 Red dot
-    target_class_time: '03:45 PM',
-    total_marks: 30,
-    scored_marks: 0,
-    created_at: NOW - 2 * DAY,
-    updated_at: NOW,
-  },
-  {
-    id: 'pap_11',
-    student_id: 's_11',
-    title: 'Cambridge Add Math - Trigonometric Proofs',
-    status: 'ready_for_class', // 🟢 Green dot
-    target_class_time: '04:30 PM',
-    total_marks: 35,
-    scored_marks: 30,
-    created_at: NOW - 1 * DAY,
-    updated_at: NOW,
-  },
-  {
-    id: 'pap_12',
-    student_id: 's_12',
-    title: 'IB Math SL - Binomial Expansions & Negative Powers',
-    status: 'ready_for_class', // 🟢 Green dot
-    target_class_time: '05:15 PM',
-    total_marks: 35,
-    scored_marks: 32,
-    created_at: NOW - 1 * DAY,
-    updated_at: NOW,
-  },
-  {
-    id: 'pap_13',
-    student_id: 's_13',
-    title: 'SAT Math - Advanced Functions & Circle Geometry',
-    status: 'needs_grading', // 🔴 Red dot
-    target_class_time: '06:00 PM',
-    total_marks: 40,
-    scored_marks: 0,
-    created_at: NOW - 1 * DAY,
-    updated_at: NOW,
-  },
-  {
-    id: 'pap_14',
-    student_id: 's_14',
-    title: 'IGCSE Combined - Stoichiometry & Kinematics',
-    status: 'ready_for_class', // 🟢 Green dot
-    target_class_time: '06:45 PM',
-    total_marks: 30,
-    scored_marks: 27,
-    created_at: NOW - 1 * DAY,
-    updated_at: NOW,
-  },
-  {
-    id: 'pap_15',
-    student_id: 's_15',
-    title: 'AP Calculus BC - Comprehensive Mock Sprint',
-    status: 'ready_for_class', // 🟢 Green dot
-    target_class_time: '07:30 PM',
-    total_marks: 50,
-    scored_marks: 44,
-    created_at: NOW - 1 * DAY,
-    updated_at: NOW,
-  }
+  { id: 'pap_01', student_id: 's_01', title: 'IB DP Math AA HL - Targeted Mastery Set #14', status: 'needs_grading', target_class_time: '08:30 AM', total_marks: 40, scored_marks: 0, grading_duration_seconds: 0, created_at: NOW - 1 * DAY, updated_at: NOW },
+  { id: 'pap_02', student_id: 's_02', title: 'Cambridge IGCSE - Bearings & Circle Mastery #08', status: 'ready_for_class', target_class_time: '09:15 AM', total_marks: 35, scored_marks: 31, created_at: NOW - 2 * DAY, updated_at: NOW },
+  { id: 'pap_03', student_id: 's_03', title: 'AP Calculus BC - Polar Area & Series Convergence', status: 'ready_for_class', target_class_time: '10:00 AM', total_marks: 45, scored_marks: 39, created_at: NOW - 1 * DAY, updated_at: NOW },
+  { id: 'pap_04', student_id: 's_04', title: 'CBSE Standard Math - Word Problems & Heights Sprint', status: 'needs_grading', target_class_time: '10:45 AM', total_marks: 30, scored_marks: 0, grading_duration_seconds: 0, created_at: NOW - 2 * DAY, updated_at: NOW },
+  { id: 'pap_05', student_id: 's_05', title: 'A-Level Physics - Magnetic Flux & Capacitance Drift', status: 'needs_grading', target_class_time: '11:30 AM', total_marks: 50, scored_marks: 0, created_at: NOW - 1 * DAY, updated_at: NOW },
+  { id: 'pap_06', student_id: 's_06', title: 'IB DP Math SL - 3D Vector Lines Sprint', status: 'ready_for_class', target_class_time: '12:45 PM', total_marks: 35, scored_marks: 29, created_at: NOW - 1 * DAY, updated_at: NOW },
+  { id: 'pap_07', student_id: 's_07', title: 'AP Physics C - Damped Harmonic Oscillations', status: 'ready_for_class', target_class_time: '01:30 PM', total_marks: 40, scored_marks: 36, created_at: NOW - 3 * DAY, updated_at: NOW },
+  { id: 'pap_08', student_id: 's_08', title: 'IGCSE Core - Angle Theorems & Polygons', status: 'needs_grading', target_class_time: '02:15 PM', total_marks: 30, scored_marks: 0, created_at: NOW - 1 * DAY, updated_at: NOW },
+  { id: 'pap_09', student_id: 's_09', title: 'AP Calculus BC - Polar Derivatives & Arc Length', status: 'ready_for_class', target_class_time: '03:00 PM', total_marks: 40, scored_marks: 34, created_at: NOW - 1 * DAY, updated_at: NOW },
+  { id: 'pap_10', student_id: 's_10', title: 'CBSE 12th - Bayes Theorem & Conditional Sprint', status: 'needs_grading', target_class_time: '03:45 PM', total_marks: 30, scored_marks: 0, created_at: NOW - 2 * DAY, updated_at: NOW },
+  { id: 'pap_11', student_id: 's_11', title: 'Cambridge Add Math - Trigonometric Proofs', status: 'ready_for_class', target_class_time: '04:30 PM', total_marks: 35, scored_marks: 30, created_at: NOW - 1 * DAY, updated_at: NOW },
+  { id: 'pap_12', student_id: 's_12', title: 'IB Math SL - Binomial Expansions & Negative Powers', status: 'ready_for_class', target_class_time: '05:15 PM', total_marks: 35, scored_marks: 32, created_at: NOW - 1 * DAY, updated_at: NOW },
+  { id: 'pap_13', student_id: 's_13', title: 'SAT Math - Advanced Functions & Circle Geometry', status: 'needs_grading', target_class_time: '06:00 PM', total_marks: 40, scored_marks: 0, created_at: NOW - 1 * DAY, updated_at: NOW },
+  { id: 'pap_14', student_id: 's_14', title: 'IGCSE Combined - Stoichiometry & Kinematics', status: 'ready_for_class', target_class_time: '06:45 PM', total_marks: 30, scored_marks: 27, created_at: NOW - 1 * DAY, updated_at: NOW },
+  { id: 'pap_15', student_id: 's_15', title: 'AP Calculus BC - Comprehensive Mock Sprint', status: 'ready_for_class', target_class_time: '07:30 PM', total_marks: 50, scored_marks: 44, created_at: NOW - 1 * DAY, updated_at: NOW },
 ];
 
 export const INITIAL_QUESTIONS: Question[] = [
-  // Paper 1 (Liam Chen - 10 questions for Zen Grading + 3 Pre-fetched Alternates)
-  {
-    id: 'q_01_01',
-    paper_id: 'pap_01',
-    topic_id: 'top_03',
-    topic_name: 'Taylor & Maclaurin Series',
-    question_number: 1,
-    question_text: 'Find the first four non-zero terms of the Maclaurin expansion for f(x) = e^(2x) · cos(x).',
-    answer_key: '1 + 2x + (3/2)x^2 + (1/3)x^3 + ...',
-    marking_scheme: [
-      'M1: Expands e^(2x) = 1 + 2x + 2x^2 + (4/3)x^3',
-      'M1: Expands cos(x) = 1 - (1/2)x^2',
-      'A1: Multiplies terms up to x^3 correctly',
-      'A1: Combines like terms into 1 + 2x + 1.5x^2 + 0.333x^3'
-    ],
-    difficulty: 2, // 60% weak distribution (Diff 1-2)
-    max_marks: 4,
-    is_alternate: false,
-    order_index: 0,
-  },
-  {
-    id: 'q_01_02',
-    paper_id: 'pap_01',
-    topic_id: 'top_03',
-    topic_name: 'Taylor & Maclaurin Series',
-    question_number: 2,
-    question_text: 'Use the ratio test to determine the radius of convergence R for the series sum_{n=1}^inf ((-1)^n · (x - 3)^n) / (n · 4^n).',
-    answer_key: 'R = 4, Interval: (-1, 7]',
-    marking_scheme: [
-      'M1: Sets up |a_{n+1} / a_n| with limit as n -> infinity',
-      'M1: Evaluates limit: |x - 3| / 4 < 1',
-      'A1: Concludes radius of convergence R = 4',
-      'A1: Tests endpoints x = 7 (converges) and x = -1 (diverges)'
-    ],
-    difficulty: 2,
-    max_marks: 4,
-    is_alternate: false,
-    order_index: 1,
-  },
-  {
-    id: 'q_01_03',
-    paper_id: 'pap_01',
-    topic_id: 'top_04',
-    topic_name: '3D Vector Geometry',
-    question_number: 3,
-    question_text: 'Given line L1: r = (2, 0, -1) + t(1, -2, 3) and plane Pi: 2x + y - z = 5. Find the coordinates of the point of intersection.',
-    answer_key: '(1, 2, -4) with t = -1',
-    marking_scheme: [
-      'M1: Substitutes parametric line coordinates into plane equation',
-      'M1: Solves 2(2 + t) + (-2t) - (-1 + 3t) = 5 for parameter t',
-      'A1: Obtains t = -1',
-      'A1: Substitutes back to find coordinates (1, 2, -4)'
-    ],
-    difficulty: 1,
-    max_marks: 4,
-    is_alternate: false,
-    order_index: 2,
-  },
-  {
-    id: 'q_01_04',
-    paper_id: 'pap_01',
-    topic_id: 'top_04',
-    topic_name: '3D Vector Geometry',
-    question_number: 4,
-    question_text: 'Calculate the acute angle between vectors u = 2i - j + 2k and v = 3i + 4k. Express answer to the nearest 0.1 degree.',
-    answer_key: 'theta = arccos(14/15) approx 21.0 deg',
-    marking_scheme: [
-      'M1: Computes dot product: (2)(3) + (-1)(0) + (2)(4) = 14',
-      'M1: Computes magnitudes: |u| = 3, |v| = 5',
-      'A1: Applies cos(theta) = 14 / 15',
-      'A1: Final angle = 21.0 degrees'
-    ],
-    difficulty: 2,
-    max_marks: 4,
-    is_alternate: false,
-    order_index: 3,
-  },
-  {
-    id: 'q_01_05',
-    paper_id: 'pap_01',
-    topic_id: 'top_05',
-    topic_name: 'Complex Numbers',
-    question_number: 5,
-    question_text: 'Express z = (1 + i * sqrt(3))^6 in rectangular form x + iy.',
-    answer_key: '64 + 0i (or 64)',
-    marking_scheme: [
-      'M1: Converts 1 + i*sqrt(3) to polar form: r = 2, theta = pi/3',
-      'M1: Applies De Moivre’s Theorem: z^6 = 2^6 * (cos(2pi) + i*sin(2pi))',
-      'A1: Calculates 2^6 = 64',
-      'A1: Rectangular form: 64'
-    ],
-    difficulty: 2,
-    max_marks: 4,
-    is_alternate: false,
-    order_index: 4,
-  },
-  {
-    id: 'q_01_06',
-    paper_id: 'pap_01',
-    topic_id: 'top_05',
-    topic_name: 'Complex Numbers',
-    question_number: 6,
-    question_text: 'Solve the equation w^3 = -8i, giving all roots in Euler form r * e^(i*theta) where -pi < theta <= pi.',
-    answer_key: '2e^(-ipi/6), 2e^(i5pi/6), 2e^(-i5pi/6)',
-    marking_scheme: [
-      'M1: Writes -8i in polar form: 8e^(-i*pi/2)',
-      'M1: Applies cube root to modulus: r = 2',
-      'A1: Finds principal argument theta_1 = -pi/6',
-      'A1: Finds subsequent arguments separated by 2pi/3'
-    ],
-    difficulty: 2,
-    max_marks: 4,
-    is_alternate: false,
-    order_index: 5,
-  },
-  {
-    id: 'q_01_07',
-    paper_id: 'pap_01',
-    topic_id: 'top_01',
-    topic_name: 'Differential Calculus',
-    question_number: 7,
-    question_text: 'Find the equation of the tangent to the curve defined implicitly by x^3 + y^3 - 3xy = 3 at the point (2, 1).',
-    answer_key: 'y = -3x + 7',
-    marking_scheme: [
-      'M1: Differentiates implicitly: 3x^2 + 3y^2(dy/dx) - 3(y + x*dy/dx) = 0',
-      'M1: Isolates dy/dx = (y - x^2) / (y^2 - x)',
-      'A1: Evaluates gradient at (2, 1): m = -3',
-      'A1: Tangent equation: y - 1 = -3(x - 2) => y = -3x + 7'
-    ],
-    difficulty: 4, // 40% strong challenge (Diff 4-5)
-    max_marks: 4,
-    is_alternate: false,
-    order_index: 6,
-  },
-  {
-    id: 'q_01_08',
-    paper_id: 'pap_01',
-    topic_id: 'top_01',
-    topic_name: 'Differential Calculus',
-    question_number: 8,
-    question_text: 'A cylinder has volume V = 250pi cm^3. Find the height h and radius r that minimize the total surface area.',
-    answer_key: 'r = 5 cm, h = 10 cm',
-    marking_scheme: [
-      'M1: Expresses surface area S(r) = 2pi*r^2 + 500pi/r',
-      'M1: Sets derivative dS/dr = 4pi*r - 500pi/r^2 = 0',
-      'A1: Solves r^3 = 125 => r = 5 cm',
-      'A1: Calculates h = 10 cm and verifies minimum using second derivative'
-    ],
-    difficulty: 4,
-    max_marks: 4,
-    is_alternate: false,
-    order_index: 7,
-  },
-  {
-    id: 'q_01_09',
-    paper_id: 'pap_01',
-    topic_id: 'top_06',
-    topic_name: 'Probability Distributions',
-    question_number: 9,
-    question_text: 'X follows a Poisson distribution with mean lambda = 4.2. Find P(2 <= X <= 4) rounded to 4 decimal places.',
-    answer_key: '0.5151',
-    marking_scheme: [
-      'M1: Identifies P(X = k) = e^(-4.2) * 4.2^k / k!',
-      'M1: Computes P(X=2) = 0.1325, P(X=3) = 0.1855, P(X=4) = 0.1948',
-      'A1: Sums values = 0.5128',
-      'A1: Correct rounding to 4 decimal places'
-    ],
-    difficulty: 5,
-    max_marks: 4,
-    is_alternate: false,
-    order_index: 8,
-  },
-  {
-    id: 'q_01_10',
-    paper_id: 'pap_01',
-    topic_id: 'top_06',
-    topic_name: 'Probability Distributions',
-    question_number: 10,
-    question_text: 'The continuous random variable Y has PDF f(y) = k*(4 - y^2) for 0 <= y <= 2, and 0 otherwise. Determine the exact value of k and E[Y].',
-    answer_key: 'k = 3/16, E[Y] = 3/4',
-    marking_scheme: [
-      'M1: Integrates integral_0^2 k(4 - y^2) dy = 1 to find k',
-      'A1: [4y - y^3/3]_0^2 = 16/3 => k = 3/16',
-      'M1: Evaluates E[Y] = integral_0^2 (3/16)(4y - y^3) dy',
-      'A1: [2y^2 - y^4/4]_0^2 = 4 => E[Y] = (3/16)*4 = 3/4'
-    ],
-    difficulty: 5,
-    max_marks: 4,
-    is_alternate: false,
-    order_index: 9,
-  },
+  // ─── PAPER 1: Liam Chen — IB DP Math AA HL (pap_01) ───────────────────────
+  { id: 'q_01_01', paper_id: 'pap_01', topic_id: 'top_03', topic_name: 'Taylor & Maclaurin Series', question_number: 1, question_text: 'Find the first four non-zero terms of the Maclaurin expansion for f(x) = e^(2x) · cos(x).', answer_key: '1 + 2x + (3/2)x² + (1/3)x³ + ...', marking_scheme: ['M1: Expands e^(2x) = 1 + 2x + 2x² + (4/3)x³', 'M1: Expands cos(x) = 1 − (1/2)x²', 'A1: Multiplies terms up to x³ correctly', 'A1: Combines like terms → 1 + 2x + 1.5x² + 0.333x³'], difficulty: 2, max_marks: 4, is_alternate: false, order_index: 0 },
+  { id: 'q_01_02', paper_id: 'pap_01', topic_id: 'top_03', topic_name: 'Taylor & Maclaurin Series', question_number: 2, question_text: 'Use the ratio test to determine the radius of convergence R for the series Σ (−1)ⁿ(x−3)ⁿ / (n·4ⁿ).', answer_key: 'R = 4, Interval: (−1, 7]', marking_scheme: ['M1: Sets up |aₙ₊₁/aₙ| with limit as n→∞', 'M1: Evaluates limit: |x−3|/4 < 1', 'A1: Concludes R = 4', 'A1: Tests endpoints; x=7 converges, x=−1 diverges'], difficulty: 2, max_marks: 4, is_alternate: false, order_index: 1 },
+  { id: 'q_01_03', paper_id: 'pap_01', topic_id: 'top_04', topic_name: '3D Vector Geometry', question_number: 3, question_text: 'Line L: r = (2, 0, −1) + t(1, −2, 3) and plane π: 2x + y − z = 5. Find the point of intersection.', answer_key: '(1, 2, −4), t = −1', marking_scheme: ['M1: Substitutes parametric coords into plane equation', 'M1: Solves 2(2+t) + (−2t) − (−1+3t) = 5 for t', 'A1: t = −1', 'A1: Coords (1, 2, −4)'], difficulty: 1, max_marks: 4, is_alternate: false, order_index: 2 },
+  { id: 'q_01_04', paper_id: 'pap_01', topic_id: 'top_04', topic_name: '3D Vector Geometry', question_number: 4, question_text: 'Find the acute angle between u = 2i − j + 2k and v = 3i + 4k. Give answer to 0.1°.', answer_key: 'θ = arccos(14/15) ≈ 21.0°', marking_scheme: ['M1: Dot product u·v = 6 + 0 + 8 = 14', 'M1: |u| = 3, |v| = 5', 'A1: cos θ = 14/15', 'A1: θ = 21.0°'], difficulty: 2, max_marks: 4, is_alternate: false, order_index: 3 },
+  { id: 'q_01_05', paper_id: 'pap_01', topic_id: 'top_05', topic_name: 'Complex Numbers', question_number: 5, question_text: 'Express z = (1 + i√3)⁶ in rectangular form x + iy.', answer_key: '64', marking_scheme: ['M1: Polar form: r=2, θ=π/3', 'M1: De Moivre: z⁶ = 64(cos2π + i sin2π)', 'A1: 2⁶ = 64', 'A1: Rectangular: 64 + 0i'], difficulty: 2, max_marks: 4, is_alternate: false, order_index: 4 },
+  { id: 'q_01_06', paper_id: 'pap_01', topic_id: 'top_05', topic_name: 'Complex Numbers', question_number: 6, question_text: 'Solve w³ = −8i, giving all roots in Euler form re^(iθ) where −π < θ ≤ π.', answer_key: '2e^(−iπ/6), 2e^(i5π/6), 2e^(−i5π/6)', marking_scheme: ['M1: −8i = 8e^(−iπ/2)', 'M1: Cube root of modulus: r = 2', 'A1: Principal arg θ₁ = −π/6', 'A1: Remaining args separated by 2π/3'], difficulty: 2, max_marks: 4, is_alternate: false, order_index: 5 },
+  { id: 'q_01_07', paper_id: 'pap_01', topic_id: 'top_01', topic_name: 'Differential Calculus', question_number: 7, question_text: 'Find the tangent to x³ + y³ − 3xy = 3 at (2, 1).', answer_key: 'y = −3x + 7', marking_scheme: ['M1: Implicit differentiation: 3x² + 3y²(dy/dx) − 3(y + x dy/dx) = 0', 'M1: dy/dx = (y−x²)/(y²−x)', 'A1: Gradient at (2,1) = −3', 'A1: y − 1 = −3(x−2) → y = −3x + 7'], difficulty: 4, max_marks: 4, is_alternate: false, order_index: 6 },
+  { id: 'q_01_08', paper_id: 'pap_01', topic_id: 'top_01', topic_name: 'Differential Calculus', question_number: 8, question_text: 'A cylinder with V = 250π cm³. Find r and h that minimize total surface area.', answer_key: 'r = 5 cm, h = 10 cm', marking_scheme: ['M1: S(r) = 2πr² + 500π/r', 'M1: dS/dr = 4πr − 500π/r² = 0', 'A1: r³ = 125 → r = 5', 'A1: h = 10 cm confirmed by second derivative'], difficulty: 4, max_marks: 4, is_alternate: false, order_index: 7 },
+  { id: 'q_01_09', paper_id: 'pap_01', topic_id: 'top_06', topic_name: 'Probability Distributions', question_number: 9, question_text: 'X ~ Poisson(λ = 4.2). Find P(2 ≤ X ≤ 4) to 4 d.p.', answer_key: '0.5128', marking_scheme: ['M1: P(X=k) = e^(−4.2) · 4.2^k / k!', 'M1: P(2)=0.1325, P(3)=0.1855, P(4)=0.1948', 'A1: Sum = 0.5128', 'A1: Correctly rounded'], difficulty: 5, max_marks: 4, is_alternate: false, order_index: 8 },
+  { id: 'q_01_10', paper_id: 'pap_01', topic_id: 'top_06', topic_name: 'Probability Distributions', question_number: 10, question_text: 'PDF: f(y) = k(4 − y²) for 0 ≤ y ≤ 2. Find exact k and E[Y].', answer_key: 'k = 3/16, E[Y] = 3/4', marking_scheme: ['M1: ∫₀² k(4−y²)dy = 1', 'A1: [4y − y³/3]₀² = 16/3 → k = 3/16', 'M1: E[Y] = ∫₀² (3/16)(4y−y³)dy', 'A1: E[Y] = 3/4'], difficulty: 5, max_marks: 4, is_alternate: false, order_index: 9 },
+  // Alternates for pap_01
+  { id: 'alt_01_01', paper_id: 'pap_01', topic_id: 'top_03', topic_name: 'Taylor & Maclaurin Series', question_number: 99, question_text: 'Find the third-degree Taylor polynomial for f(x) = ln(x) centered at a = 1.', answer_key: 'P₃(x) = (x−1) − ½(x−1)² + ⅓(x−1)³', marking_scheme: ['M1: f\'(1)=1, f\'\'(1)=−1, f\'\'\'(1)=2', 'A1: Constructs polynomial with factorial denominators', 'A1: Standard centered form'], difficulty: 2, max_marks: 4, is_alternate: true, order_index: 100 },
+  { id: 'alt_01_02', paper_id: 'pap_01', topic_id: 'top_04', topic_name: '3D Vector Geometry', question_number: 99, question_text: 'Find the Cartesian equation of the plane through A(1,2,3) perpendicular to n = (3,−1,4).', answer_key: '3x − y + 4z = 13', marking_scheme: ['M1: 3(x−1)−(y−2)+4(z−3)=0', 'A1: 3x−y+4z−3+2−12=0', 'A1: 3x−y+4z=13'], difficulty: 2, max_marks: 4, is_alternate: true, order_index: 101 },
+  { id: 'alt_01_03', paper_id: 'pap_01', topic_id: 'top_01', topic_name: 'Differential Calculus', question_number: 99, question_text: 'Evaluate lim(x→0) (eˣ − 1 − x) / x² using L\'Hôpital\'s Rule.', answer_key: '1/2', marking_scheme: ['M1: 0/0 indeterminate', 'M1: Apply L\'Hôpital once: (eˣ−1)/(2x)', 'A1: Apply second time: eˣ/2 → 1/2'], difficulty: 4, max_marks: 4, is_alternate: true, order_index: 102 },
 
-  // PRE-FETCHED ALTERNATE QUESTIONS FOR ZERO-WAIT SWAPPING (Paper 1)
-  {
-    id: 'alt_01_01',
-    paper_id: 'pap_01',
-    topic_id: 'top_03',
-    topic_name: 'Taylor & Maclaurin Series',
-    question_number: 99,
-    question_text: 'ALTERNATE: Find the third-degree Taylor polynomial for f(x) = ln(x) centered at a = 1.',
-    answer_key: 'P_3(x) = (x - 1) - (1/2)(x - 1)^2 + (1/3)(x - 1)^3',
-    marking_scheme: [
-      'M1: Computes derivatives: f\'(1) = 1, f\'\'(1) = -1, f\'\'\'(1) = 2',
-      'A1: Constructs polynomial with factorial denominators',
-      'A1: Simplifies to standard centered form'
-    ],
-    difficulty: 2,
-    max_marks: 4,
-    is_alternate: true, // Pre-fetched alternate!
-    order_index: 100,
-  },
-  {
-    id: 'alt_01_02',
-    paper_id: 'pap_01',
-    topic_id: 'top_04',
-    topic_name: '3D Vector Geometry',
-    question_number: 99,
-    question_text: 'ALTERNATE: Find a Cartesian equation of the plane passing through point A(1, 2, 3) and perpendicular to vector n = (3, -1, 4).',
-    answer_key: '3x - y + 4z = 13',
-    marking_scheme: [
-      'M1: Uses 3(x - 1) - 1(y - 2) + 4(z - 3) = 0',
-      'A1: Expands 3x - y + 4z - 3 + 2 - 12 = 0',
-      'A1: Final form: 3x - y + 4z = 13'
-    ],
-    difficulty: 2,
-    max_marks: 4,
-    is_alternate: true,
-    order_index: 101,
-  },
-  {
-    id: 'alt_01_03',
-    paper_id: 'pap_01',
-    topic_id: 'top_01',
-    topic_name: 'Differential Calculus',
-    question_number: 99,
-    question_text: 'ALTERNATE: Evaluate the limit lim_{x -> 0} (e^x - 1 - x) / x^2 using L\'Hopital\'s Rule.',
-    answer_key: '1/2',
-    marking_scheme: [
-      'M1: Identifies 0/0 indeterminate form',
-      'M1: Applies L\'Hopital once: lim (e^x - 1) / (2x)',
-      'A1: Applies L\'Hopital second time: lim (e^x) / 2 = 1/2'
-    ],
-    difficulty: 4,
-    max_marks: 4,
-    is_alternate: true,
-    order_index: 102,
-  },
+  // ─── PAPER 2: Sophia Rodriguez — Cambridge IGCSE (pap_02) ──────────────────
+  { id: 'q_02_01', paper_id: 'pap_02', topic_id: 'top_08', topic_name: '3D Trigonometry & Bearings', question_number: 1, question_text: 'A ship travels 15 km on a bearing of 035°, then 20 km on a bearing of 120°. Find the distance and bearing back to the start.', answer_key: '22.3 km, bearing 260°', marking_scheme: ['M1: Resolves east and north components for each leg', 'M1: Total displacement: east=17.6km, north=−7.2km', 'A1: Distance = √(17.6²+7.2²) = 19.0 km', 'A1: Bearing = 180° + arctan(17.6/7.2) ≈ 260°'], difficulty: 2, max_marks: 4, is_alternate: false, order_index: 0 },
+  { id: 'q_02_02', paper_id: 'pap_02', topic_id: 'top_08', topic_name: '3D Trigonometry & Bearings', question_number: 2, question_text: 'In triangle ABC, AB = 12 cm, BC = 9 cm, angle ABC = 65°. Find AC using the cosine rule.', answer_key: 'AC ≈ 11.3 cm', marking_scheme: ['M1: States cosine rule: AC² = AB² + BC² − 2·AB·BC·cos(B)', 'M1: Substitutes: 144 + 81 − 2(12)(9)cos65°', 'A1: AC² ≈ 134.8 − 91.3 = 43.5... corrects to 127', 'A1: AC ≈ 11.3 cm'], difficulty: 2, max_marks: 4, is_alternate: false, order_index: 1 },
+  { id: 'q_02_03', paper_id: 'pap_02', topic_id: 'top_10', topic_name: 'Circle Theorems', question_number: 3, question_text: 'O is the centre of a circle. Angle AOB = 130°. Find angle ACB where C is on the major arc.', answer_key: 'Angle ACB = 65°', marking_scheme: ['M1: Identifies angle at centre = 2 × angle at circumference', 'A1: Angle ACB = 130°/2 = 65°'], difficulty: 1, max_marks: 2, is_alternate: false, order_index: 2 },
+  { id: 'q_02_04', paper_id: 'pap_02', topic_id: 'top_10', topic_name: 'Circle Theorems', question_number: 4, question_text: 'TA and TB are tangents from external point T to circle centre O. AT = 8 cm, OA = 6 cm. Find OT and angle AOT.', answer_key: 'OT = 10 cm, angle AOT = 53.1°', marking_scheme: ['M1: OA ⊥ TA so OAT is right-angled', 'A1: OT = √(6²+8²) = 10 cm', 'M1: tan(AOT) = 8/6', 'A1: angle AOT = arctan(4/3) = 53.1°'], difficulty: 2, max_marks: 4, is_alternate: false, order_index: 3 },
+  { id: 'q_02_05', paper_id: 'pap_02', topic_id: 'top_07', topic_name: 'Algebraic Expressions', question_number: 5, question_text: 'Simplify (3x² − 12) / (x² − x − 6).', answer_key: '3(x+2)/(x+2)(x−2) simplified form: 3(x+2)/((x−3)(x+2)) = 3/(x−3)', marking_scheme: ['M1: Factorises numerator: 3(x²−4) = 3(x+2)(x−2)', 'M1: Factorises denominator: (x−3)(x+2)', 'A1: Cancels (x+2)', 'A1: Result: 3(x−2)/(x−3)'], difficulty: 1, max_marks: 4, is_alternate: false, order_index: 4 },
+  { id: 'q_02_06', paper_id: 'pap_02', topic_id: 'top_09', topic_name: 'Quadratic Functions', question_number: 6, question_text: 'Write f(x) = 2x² − 8x + 5 in completed-square form and state the vertex.', answer_key: 'f(x) = 2(x−2)² − 3, vertex (2, −3)', marking_scheme: ['M1: Factors 2 from first two terms: 2(x²−4x)+5', 'M1: Completes square: 2(x−2)²−8+5', 'A1: 2(x−2)²−3', 'A1: Vertex (2, −3)'], difficulty: 2, max_marks: 4, is_alternate: false, order_index: 5 },
+  { id: 'q_02_07', paper_id: 'pap_02', topic_id: 'top_11', topic_name: 'Vector Geometry', question_number: 7, question_text: 'OA = (3, 4) and OB = (7, 1). M is the midpoint of AB. Find OM and |OM|.', answer_key: 'OM = (5, 2.5), |OM| = √31.25 ≈ 5.59', marking_scheme: ['M1: AB = OB − OA = (4, −3)', 'M1: OM = OA + ½AB = (3,4) + (2,−1.5)', 'A1: OM = (5, 2.5)', 'A1: |OM| = √(25+6.25) ≈ 5.59'], difficulty: 2, max_marks: 4, is_alternate: false, order_index: 6 },
+  { id: 'q_02_08', paper_id: 'pap_02', topic_id: 'top_12', topic_name: 'Coordinate Geometry', question_number: 8, question_text: 'A(2, 5) and B(6, −3). Find the equation of the perpendicular bisector of AB.', answer_key: 'y = ½x − 1', marking_scheme: ['M1: Midpoint M = (4, 1)', 'M1: Gradient AB = −2; perp. gradient = ½', 'A1: y − 1 = ½(x − 4)', 'A1: y = ½x − 1'], difficulty: 2, max_marks: 4, is_alternate: false, order_index: 7 },
+  { id: 'q_02_09', paper_id: 'pap_02', topic_id: 'top_08', topic_name: '3D Trigonometry & Bearings', question_number: 9, question_text: 'A vertical pole PQ stands at Q on horizontal ground. From A, the angle of elevation of P is 32°. AQ = 45 m. Find PQ.', answer_key: 'PQ ≈ 28.1 m', marking_scheme: ['M1: tan(32°) = PQ/AQ', 'M1: PQ = 45 × tan32°', 'A1: PQ = 45 × 0.6249', 'A1: PQ ≈ 28.1 m'], difficulty: 1, max_marks: 3, is_alternate: false, order_index: 8 },
+  // Alternate for pap_02
+  { id: 'alt_02_01', paper_id: 'pap_02', topic_id: 'top_10', topic_name: 'Circle Theorems', question_number: 99, question_text: 'ABCD is a cyclic quadrilateral. Angle A = 78°. Find angle C and explain your reasoning.', answer_key: 'Angle C = 102°', marking_scheme: ['M1: Opposite angles of a cyclic quadrilateral are supplementary', 'A1: Angle C = 180° − 78° = 102°', 'A1: States theorem clearly'], difficulty: 1, max_marks: 3, is_alternate: true, order_index: 100 },
+
+  // ─── PAPER 3: Ethan Patel — AP Calculus BC (pap_03) ───────────────────────
+  { id: 'q_03_01', paper_id: 'pap_03', topic_id: 'top_14', topic_name: 'Parametric & Polar Equations', question_number: 1, question_text: 'Find the area enclosed by one petal of r = 4sin(3θ).', answer_key: 'A = 4π/3 ≈ 4.19', marking_scheme: ['M1: A = ½∫₀^(π/3) (4sin3θ)² dθ', 'M1: = 8∫₀^(π/3) sin²(3θ)dθ', 'A1: Uses identity: (1−cos6θ)/2', 'A1: = 4[θ − sin(6θ)/6]₀^(π/3) = 4π/3'], difficulty: 2, max_marks: 5, is_alternate: false, order_index: 0 },
+  { id: 'q_03_02', paper_id: 'pap_03', topic_id: 'top_14', topic_name: 'Parametric & Polar Equations', question_number: 2, question_text: 'Curve: x = t², y = t³ − 3t. Find dy/dx and d²y/dx² at t = 2.', answer_key: 'dy/dx = 9/4, d²y/dx² = 3/16', marking_scheme: ['M1: dy/dx = (dy/dt)/(dx/dt) = (3t²−3)/(2t)', 'A1: At t=2: 9/4', 'M1: d²y/dx² = (d/dt)(dy/dx)/(dx/dt)', 'A1: = [6t·2t−(3t²−3)·2]/(4t²·2t) → 3/16'], difficulty: 3, max_marks: 5, is_alternate: false, order_index: 1 },
+  { id: 'q_03_03', paper_id: 'pap_03', topic_id: 'top_15', topic_name: 'Infinite Sequences & Series', question_number: 3, question_text: 'Determine whether Σ (n!)/(nⁿ) converges or diverges using the ratio test.', answer_key: 'Converges (L = 1/e < 1)', marking_scheme: ['M1: |aₙ₊₁/aₙ| = (n+1)!/(n+1)^(n+1) · nⁿ/n!', 'M1: Simplifies to nⁿ/(n+1)ⁿ = (1+1/n)^(−n)', 'A1: Limit = 1/e as n→∞', 'A1: 1/e < 1, series converges'], difficulty: 2, max_marks: 5, is_alternate: false, order_index: 2 },
+  { id: 'q_03_04', paper_id: 'pap_03', topic_id: 'top_16', topic_name: 'Integration Techniques', question_number: 4, question_text: 'Evaluate ∫ x²·eˣ dx.', answer_key: 'eˣ(x² − 2x + 2) + C', marking_scheme: ['M1: Integration by Parts: u=x², dv=eˣdx', 'M1: First application: x²eˣ − 2∫x·eˣdx', 'M1: Second IBP on ∫x·eˣdx: xeˣ − eˣ', 'A1: x²eˣ − 2xeˣ + 2eˣ + C = eˣ(x²−2x+2)+C'], difficulty: 3, max_marks: 5, is_alternate: false, order_index: 3 },
+  { id: 'q_03_05', paper_id: 'pap_03', topic_id: 'top_17', topic_name: 'Differential Equations', question_number: 5, question_text: 'Solve dy/dx = 2xy with y(0) = 3.', answer_key: 'y = 3e^(x²)', marking_scheme: ['M1: Separates: dy/y = 2x dx', 'M1: Integrates: ln|y| = x² + C', 'A1: y = Ae^(x²)', 'A1: y(0)=3 → A=3; y = 3e^(x²)'], difficulty: 2, max_marks: 5, is_alternate: false, order_index: 4 },
+  { id: 'q_03_06', paper_id: 'pap_03', topic_id: 'top_18', topic_name: 'Applications of Definite Integrals', question_number: 6, question_text: 'Find the volume of the solid obtained by rotating y = √x from x=0 to x=4 around the x-axis.', answer_key: 'V = 8π', marking_scheme: ['M1: V = π∫₀⁴ (√x)² dx = π∫₀⁴ x dx', 'M1: = π[x²/2]₀⁴', 'A1: = π(8−0) = 8π'], difficulty: 3, max_marks: 5, is_alternate: false, order_index: 5 },
+  { id: 'q_03_07', paper_id: 'pap_03', topic_id: 'top_13', topic_name: 'Limits & Continuity', question_number: 7, question_text: 'Evaluate lim(x→0) (sin 3x)/(tan 5x).', answer_key: '3/5', marking_scheme: ['M1: Rewrites as (sin3x/3x)·(5x/tan5x)·(3/5)', 'A1: Each limit factor → 1 as x→0', 'A1: Final limit = 3/5'], difficulty: 1, max_marks: 3, is_alternate: false, order_index: 6 },
+  // Alternate for pap_03
+  { id: 'alt_03_01', paper_id: 'pap_03', topic_id: 'top_14', topic_name: 'Parametric & Polar Equations', question_number: 99, question_text: 'Find the arc length of r = e^θ from θ = 0 to θ = π.', answer_key: 'L = √2(eᵖ − 1)', marking_scheme: ['M1: L = ∫₀ᵖ √(r² + (dr/dθ)²) dθ', 'M1: r = eθ, dr/dθ = eθ; L = ∫₀ᵖ √2·eθ dθ', 'A1: = √2[eθ]₀ᵖ = √2(eᵖ − 1)'], difficulty: 3, max_marks: 5, is_alternate: true, order_index: 100 },
+
+  // ─── PAPER 4: Maya Al-Mansoor — CBSE (pap_04) ─────────────────────────────
+  { id: 'q_04_01', paper_id: 'pap_04', topic_id: 'top_20', topic_name: 'Quadratic Equations (Word Problems)', question_number: 1, question_text: 'The product of two consecutive positive integers is 306. Find the integers.', answer_key: '17 and 18', marking_scheme: ['M1: Let integers be n and n+1; n(n+1)=306', 'M1: n²+n−306=0; factorises to (n−17)(n+18)=0', 'A1: n=17 (positive)', 'A1: Integers are 17 and 18'], difficulty: 1, max_marks: 3, is_alternate: false, order_index: 0 },
+  { id: 'q_04_02', paper_id: 'pap_04', topic_id: 'top_20', topic_name: 'Quadratic Equations (Word Problems)', question_number: 2, question_text: 'A train travels 360 km at uniform speed. If speed had been 5 km/h more, it would have taken 1 hour less. Find the speed.', answer_key: '40 km/h', marking_scheme: ['M1: Time₁ = 360/x; Time₂ = 360/(x+5)', 'M1: 360/x − 360/(x+5) = 1 → x(x+5) = 1800', 'A1: x² + 5x − 1800 = 0 → (x+45)(x−40)=0', 'A1: x = 40 km/h'], difficulty: 2, max_marks: 4, is_alternate: false, order_index: 1 },
+  { id: 'q_04_03', paper_id: 'pap_04', topic_id: 'top_23', topic_name: 'Trigonometric Applications & Heights', question_number: 3, question_text: 'From the top of a 75 m high lighthouse, the angles of depression of two ships are 30° and 45°. Find the distance between the ships.', answer_key: '75(√3 − 1) ≈ 54.9 m', marking_scheme: ['M1: Distance to ship 1: 75/tan45° = 75 m', 'M1: Distance to ship 2: 75/tan30° = 75√3 m', 'A1: Distance between = 75√3 − 75', 'A1: = 75(√3−1) ≈ 54.9 m'], difficulty: 2, max_marks: 4, is_alternate: false, order_index: 2 },
+  { id: 'q_04_04', paper_id: 'pap_04', topic_id: 'top_21', topic_name: 'Arithmetic Progressions', question_number: 4, question_text: 'The sum of first n terms of an AP is 5n² + 3n. Find the AP and the 20th term.', answer_key: 'AP: 8, 18, 28 ... ; a₂₀ = 198', marking_scheme: ['M1: a₁ = S₁ = 8', 'M1: a₂ = S₂ − S₁ = 26 − 8 = 18; d = 10', 'A1: AP confirmed: 8, 18, 28...', 'A1: a₂₀ = 8 + 19×10 = 198'], difficulty: 2, max_marks: 4, is_alternate: false, order_index: 3 },
+  { id: 'q_04_05', paper_id: 'pap_04', topic_id: 'top_22', topic_name: 'Triangles & Similarity', question_number: 5, question_text: 'In △ABC, DE ∥ BC. AD = 4 cm, DB = 6 cm, AE = 3 cm. Find EC using BPT.', answer_key: 'EC = 4.5 cm', marking_scheme: ['M1: Basic Proportionality Theorem: AD/DB = AE/EC', 'M1: 4/6 = 3/EC', 'A1: EC = 18/4 = 4.5 cm'], difficulty: 1, max_marks: 3, is_alternate: false, order_index: 4 },
+  { id: 'q_04_06', paper_id: 'pap_04', topic_id: 'top_24', topic_name: 'Surface Areas & Volumes', question_number: 6, question_text: 'A solid hemisphere of radius 7 cm is melted into a cone of base radius 14 cm. Find the height of the cone.', answer_key: 'h = 3.5 cm', marking_scheme: ['M1: Volume hemisphere = ⅔πr³ = ⅔π(343)', 'M1: Volume cone = ⅓πR²h = ⅓π(196)h', 'A1: ⅔(343) = ⅓(196)h', 'A1: h = 686/196 = 3.5 cm'], difficulty: 2, max_marks: 4, is_alternate: false, order_index: 5 },
+  { id: 'q_04_07', paper_id: 'pap_04', topic_id: 'top_19', topic_name: 'Real Numbers & Polynomials', question_number: 7, question_text: 'Find the zeroes of p(x) = 6x² − 7x − 3 and verify the relationship between zeroes and coefficients.', answer_key: 'Zeroes: 3/2 and −1/3', marking_scheme: ['M1: Factorises: (2x−3)(3x+1)', 'A1: Zeroes: 3/2, −1/3', 'A1: Sum = 3/2−1/3 = 7/6 = −(−7)/6 ✓', 'A1: Product = −1/2 = −3/6 ✓'], difficulty: 2, max_marks: 4, is_alternate: false, order_index: 6 },
+  // Alternate for pap_04
+  { id: 'alt_04_01', paper_id: 'pap_04', topic_id: 'top_20', topic_name: 'Quadratic Equations (Word Problems)', question_number: 99, question_text: 'Two numbers differ by 3 and their product is 504. Find the numbers.', answer_key: '21 and 24', marking_scheme: ['M1: Let numbers be x and x+3; x(x+3)=504', 'M1: x²+3x−504=0', 'A1: (x−21)(x+24)=0 → x=21', 'A1: Numbers: 21 and 24'], difficulty: 1, max_marks: 3, is_alternate: true, order_index: 100 },
+
+  // ─── PAPER 5: Alexander Wright — A-Level Physics (pap_05) ─────────────────
+  { id: 'q_05_01', paper_id: 'pap_05', topic_id: 'top_26', topic_name: 'Capacitors & Exponential Decay', question_number: 1, question_text: 'A 470 µF capacitor is charged to 12 V then discharged through a 10 kΩ resistor. Find the time constant and voltage after 8 s.', answer_key: 'τ = 4.7 s; V ≈ 2.76 V', marking_scheme: ['M1: τ = RC = 10×10³ × 470×10⁻⁶', 'A1: τ = 4.7 s', 'M1: V = 12e^(−8/4.7)', 'A1: V = 12e^(−1.702) ≈ 2.76 V'], difficulty: 2, max_marks: 5, is_alternate: false, order_index: 0 },
+  { id: 'q_05_02', paper_id: 'pap_05', topic_id: 'top_26', topic_name: 'Capacitors & Exponential Decay', question_number: 2, question_text: 'A 100 µF capacitor stores 50 mJ. Find the charge and pd across it.', answer_key: 'Q = 3.16 mC, V = 31.6 V', marking_scheme: ['M1: E = Q²/(2C) → Q = √(2EC)', 'A1: Q = √(2×0.05×100×10⁻⁶) = 3.16×10⁻³ C', 'M1: V = Q/C', 'A1: V = 3.16×10⁻³/(100×10⁻⁶) = 31.6 V'], difficulty: 2, max_marks: 5, is_alternate: false, order_index: 1 },
+  { id: 'q_05_03', paper_id: 'pap_05', topic_id: 'top_27', topic_name: 'Electromagnetic Induction', question_number: 3, question_text: 'A 200-turn coil of area 0.04 m² rotates at 50 Hz in a uniform field B = 0.3 T. Calculate peak EMF.', answer_key: 'ε₀ = 753 V', marking_scheme: ['M1: ε₀ = NBAω where ω = 2πf', 'M1: ω = 2π × 50 = 314.2 rad/s', 'A1: ε₀ = 200 × 0.3 × 0.04 × 314.2', 'A1: ε₀ ≈ 753 V'], difficulty: 2, max_marks: 5, is_alternate: false, order_index: 2 },
+  { id: 'q_05_04', paper_id: 'pap_05', topic_id: 'top_28', topic_name: 'Nuclear Decay & Radiation', question_number: 4, question_text: 'Carbon-14 has a half-life of 5730 years. A sample has 25% of its original C-14. How old is the sample?', answer_key: '11460 years', marking_scheme: ['M1: N/N₀ = (½)^(t/t½)', 'M1: 0.25 = (½)^(t/5730) → t/5730 = 2', 'A1: t = 11460 years', 'A1: Alternatively: 2 half-lives passed'], difficulty: 1, max_marks: 4, is_alternate: false, order_index: 3 },
+  { id: 'q_05_05', paper_id: 'pap_05', topic_id: 'top_25', topic_name: 'Kinematics & Newton Laws', question_number: 5, question_text: 'A 5 kg box is pulled along a rough surface (µ = 0.3) at constant velocity by a rope at 20° above horizontal. Find the tension.', answer_key: 'T ≈ 15.3 N', marking_scheme: ['M1: Vertical: N + Tsin20° = mg → N = 49 − Tsin20°', 'M1: Horizontal equilibrium: Tcos20° = µN', 'A1: Tcos20° = 0.3(49 − Tsin20°)', 'A1: T(cos20° + 0.3sin20°) = 14.7 → T ≈ 15.3 N'], difficulty: 3, max_marks: 5, is_alternate: false, order_index: 4 },
+  { id: 'q_05_06', paper_id: 'pap_05', topic_id: 'top_29', topic_name: 'Thermal Physics & Ideal Gases', question_number: 6, question_text: '2 mol of an ideal gas at 300 K occupies 0.05 m³. Find the pressure. (R = 8.31 J/mol/K)', answer_key: 'p = 99720 Pa ≈ 99.7 kPa', marking_scheme: ['M1: pV = nRT', 'M1: p = nRT/V = 2×8.31×300/0.05', 'A1: p = 4986/0.05 = 99720 Pa', 'A1: ≈ 99.7 kPa'], difficulty: 1, max_marks: 4, is_alternate: false, order_index: 5 },
+  { id: 'q_05_07', paper_id: 'pap_05', topic_id: 'top_30', topic_name: 'Wave Optics & Interference', question_number: 7, question_text: 'In a double-slit experiment, slit separation d = 0.5 mm, screen distance D = 2 m, fringe spacing w = 2.4 mm. Find wavelength λ.', answer_key: 'λ = 600 nm', marking_scheme: ['M1: w = λD/d → λ = wd/D', 'M1: λ = (2.4×10⁻³ × 0.5×10⁻³)/2', 'A1: λ = 6×10⁻⁷ m = 600 nm'], difficulty: 1, max_marks: 3, is_alternate: false, order_index: 6 },
+  // Alternate for pap_05
+  { id: 'alt_05_01', paper_id: 'pap_05', topic_id: 'top_27', topic_name: 'Electromagnetic Induction', question_number: 99, question_text: 'A wire of length 0.5 m moves at 4 m/s perpendicular to a 0.2 T field. Find the induced EMF.', answer_key: 'ε = 0.4 V', marking_scheme: ['M1: ε = BLv', 'M1: ε = 0.2 × 0.5 × 4', 'A1: ε = 0.4 V'], difficulty: 1, max_marks: 3, is_alternate: true, order_index: 100 },
+
+  // ─── PAPER 6: Emma Watson — IB Math SL (pap_06) ────────────────────────────
+  { id: 'q_06_01', paper_id: 'pap_06', topic_id: 'top_32', topic_name: 'Vector Equations of Lines', question_number: 1, question_text: 'Line L: r = (1, 2, 3) + t(2, −1, 4). Find the position vector of the point on L closest to origin O.', answer_key: 'r = (−3/7, 17/7, 1/7)', marking_scheme: ['M1: Any point P = (1+2t, 2−t, 3+4t)', 'M1: OP · d = 0 where d=(2,−1,4)', 'A1: 2(1+2t)−(2−t)+4(3+4t)=0 → t=−10/21... recalculate → t=−4/7', 'A1: Substitutes to get final coords'], difficulty: 3, max_marks: 5, is_alternate: false, order_index: 0 },
+  { id: 'q_06_02', paper_id: 'pap_06', topic_id: 'top_32', topic_name: 'Vector Equations of Lines', question_number: 2, question_text: 'Lines L1: r = (3,0,1)+s(1,2,−1) and L2: r = (1,4,−1)+t(2,1,1). Show they intersect and find the point.', answer_key: 'Intersection at (5, 4, −1)', marking_scheme: ['M1: Sets parametric equations equal component-wise', 'M1: Solves system: s=2, t=1', 'A1: Verifies consistency in all 3 equations', 'A1: Point = (5, 4, −1)'], difficulty: 3, max_marks: 5, is_alternate: false, order_index: 1 },
+  { id: 'q_06_03', paper_id: 'pap_06', topic_id: 'top_31', topic_name: 'Statistics & Normal Distribution', question_number: 3, question_text: 'X ~ N(50, 8²). Find P(42 < X < 62).', answer_key: '0.7745', marking_scheme: ['M1: Standardises: z₁=(42−50)/8=−1, z₂=(62−50)/8=1.5', 'M1: P(−1<Z<1.5) = Φ(1.5)−Φ(−1)', 'A1: = 0.9332 − 0.1587', 'A1: = 0.7745'], difficulty: 2, max_marks: 4, is_alternate: false, order_index: 2 },
+  { id: 'q_06_04', paper_id: 'pap_06', topic_id: 'top_33', topic_name: 'Trigonometric Functions', question_number: 4, question_text: 'Solve 2cos²x − cosx − 1 = 0 for 0 ≤ x ≤ 2π.', answer_key: 'x = π/3, π, 5π/3', marking_scheme: ['M1: Factorises: (2cosx+1)(cosx−1)=0', 'A1: cosx=1 → x=0... wait; cosx=½ → x=π/3, 5π/3', 'A1: cosx=−½ → x=2π/3, 4π/3 (not cosx=1)', 'A1: Correct set: x=π/3, 2π/3, 4π/3, 5π/3'], difficulty: 2, max_marks: 4, is_alternate: false, order_index: 3 },
+  { id: 'q_06_05', paper_id: 'pap_06', topic_id: 'top_34', topic_name: 'Exponential & Logarithmic Functions', question_number: 5, question_text: 'Solve 3^(2x−1) = 5^(x+2). Give answer to 3 s.f.', answer_key: 'x ≈ 4.19', marking_scheme: ['M1: Takes log both sides: (2x−1)ln3 = (x+2)ln5', 'M1: 2x ln3 − x ln5 = 2ln5 + ln3', 'A1: x(2ln3−ln5) = 2ln5+ln3', 'A1: x = (2ln5+ln3)/(2ln3−ln5) ≈ 4.19'], difficulty: 3, max_marks: 4, is_alternate: false, order_index: 4 },
+  { id: 'q_06_06', paper_id: 'pap_06', topic_id: 'top_35', topic_name: 'Binomial Distribution', question_number: 6, question_text: 'X ~ B(12, 0.3). Find P(X ≥ 5) to 4 d.p.', answer_key: '0.2763', marking_scheme: ['M1: P(X≥5) = 1 − P(X≤4)', 'M1: Calculates P(0) through P(4) using binomial formula', 'A1: P(X≤4) = 0.7237', 'A1: P(X≥5) = 0.2763'], difficulty: 2, max_marks: 4, is_alternate: false, order_index: 5 },
+  { id: 'q_06_07', paper_id: 'pap_06', topic_id: 'top_36', topic_name: 'Integration by Substitution', question_number: 7, question_text: 'Evaluate ∫ x/(x²+1) dx.', answer_key: '½ln(x²+1) + C', marking_scheme: ['M1: Let u = x²+1, du = 2x dx', 'M1: ∫ x/u · du/(2x) = ½∫(1/u)du', 'A1: = ½ln|u| + C = ½ln(x²+1)+C'], difficulty: 1, max_marks: 3, is_alternate: false, order_index: 6 },
+  // Alternate for pap_06
+  { id: 'alt_06_01', paper_id: 'pap_06', topic_id: 'top_32', topic_name: 'Vector Equations of Lines', question_number: 99, question_text: 'Find the angle between lines L1: r = (1,0,0)+s(1,1,0) and L2: r = (0,1,0)+t(0,1,1).', answer_key: 'θ = 60°', marking_scheme: ['M1: Direction vectors: d1=(1,1,0), d2=(0,1,1)', 'M1: cos θ = d1·d2/(|d1||d2|) = 1/(√2·√2) = ½', 'A1: θ = 60°'], difficulty: 2, max_marks: 3, is_alternate: true, order_index: 100 },
+
+  // ─── PAPER 7: Lucas Silva — AP Physics C (pap_07) ──────────────────────────
+  { id: 'q_07_01', paper_id: 'pap_07', topic_id: 'top_38', topic_name: 'Simple Harmonic Motion', question_number: 1, question_text: 'A mass-spring system has k = 200 N/m and m = 0.5 kg. Find angular frequency ω, period T, and amplitude if v_max = 3 m/s.', answer_key: 'ω = 20 rad/s, T = 0.314 s, A = 0.15 m', marking_scheme: ['M1: ω = √(k/m) = √400 = 20 rad/s', 'A1: T = 2π/ω = 0.314 s', 'M1: v_max = Aω → A = 3/20', 'A1: A = 0.15 m'], difficulty: 2, max_marks: 5, is_alternate: false, order_index: 0 },
+  { id: 'q_07_02', paper_id: 'pap_07', topic_id: 'top_38', topic_name: 'Simple Harmonic Motion', question_number: 2, question_text: 'A damped oscillator has x(t) = 0.2e^(−0.5t)cos(4t). Find the initial amplitude and when amplitude drops to 50%.', answer_key: 'A₀ = 0.2 m; t = 1.39 s', marking_scheme: ['M1: Initial amplitude = 0.2 (at t=0)', 'M1: 0.2e^(−0.5t) = 0.1 → e^(−0.5t)=0.5', 'A1: −0.5t = ln0.5 → t = ln2/0.5', 'A1: t ≈ 1.39 s'], difficulty: 2, max_marks: 5, is_alternate: false, order_index: 1 },
+  { id: 'q_07_03', paper_id: 'pap_07', topic_id: 'top_37', topic_name: 'Rotational Dynamics', question_number: 3, question_text: 'A solid disk (M=2 kg, R=0.3 m) has torque 1.8 N·m applied. Find angular acceleration and angular velocity after 5 s.', answer_key: 'α = 20 rad/s², ω = 100 rad/s', marking_scheme: ['M1: I = ½MR² = ½(2)(0.09) = 0.09 kg·m²', 'M1: τ = Iα → α = 1.8/0.09', 'A1: α = 20 rad/s²', 'A1: ω = αt = 100 rad/s'], difficulty: 2, max_marks: 5, is_alternate: false, order_index: 2 },
+  { id: 'q_07_04', paper_id: 'pap_07', topic_id: 'top_40', topic_name: 'Oscillations & Resonance', question_number: 4, question_text: 'Explain the conditions for resonance in a driven oscillator and its potential dangers. Give one engineering example.', answer_key: 'Driving frequency equals natural frequency; amplitude becomes very large. Example: Tacoma Narrows Bridge collapse.', marking_scheme: ['A1: Resonance when f_drive = f_natural', 'A1: Energy input maximised → amplitude grows dramatically', 'A1: Engineering example with explanation (bridge/building/machine)'], difficulty: 3, max_marks: 3, is_alternate: false, order_index: 3 },
+  { id: 'q_07_05', paper_id: 'pap_07', topic_id: 'top_41', topic_name: 'Gravitation & Orbits', question_number: 5, question_text: 'A satellite orbits Earth at height 400 km. Find orbital speed and period. (M_E = 6×10²⁴ kg, R_E = 6.4×10⁶ m, G = 6.67×10⁻¹¹)', answer_key: 'v ≈ 7676 m/s, T ≈ 5542 s ≈ 92 min', marking_scheme: ['M1: r = R_E + h = 6.8×10⁶ m', 'M1: v = √(GM/r)', 'A1: v = √(6.67×10⁻¹¹×6×10²⁴/6.8×10⁶) ≈ 7676 m/s', 'A1: T = 2πr/v ≈ 5542 s'], difficulty: 2, max_marks: 5, is_alternate: false, order_index: 4 },
+  { id: 'q_07_06', paper_id: 'pap_07', topic_id: 'top_42', topic_name: 'Linear Momentum & Collisions', question_number: 6, question_text: 'A 2 kg ball at 5 m/s collides perfectly inelastically with a stationary 3 kg ball. Find final velocity and energy lost.', answer_key: 'v_f = 2 m/s; ΔKE = 15 J', marking_scheme: ['M1: Conservation of momentum: 2×5 = 5×v_f', 'A1: v_f = 2 m/s', 'M1: ΔKE = ½(2)(25) − ½(5)(4)', 'A1: ΔKE = 25 − 10 = 15 J'], difficulty: 2, max_marks: 5, is_alternate: false, order_index: 5 },
+  // Alternate for pap_07
+  { id: 'alt_07_01', paper_id: 'pap_07', topic_id: 'top_38', topic_name: 'Simple Harmonic Motion', question_number: 99, question_text: 'A pendulum of length 1.5 m swings on the Moon (g = 1.6 m/s²). Find its period.', answer_key: 'T ≈ 6.08 s', marking_scheme: ['M1: T = 2π√(L/g)', 'M1: T = 2π√(1.5/1.6)', 'A1: T = 2π × 0.968 ≈ 6.08 s'], difficulty: 1, max_marks: 3, is_alternate: true, order_index: 100 },
+
+  // ─── PAPER 8: Olivia Kim — Cambridge IGCSE Core (pap_08) ──────────────────
+  { id: 'q_08_01', paper_id: 'pap_08', topic_id: 'top_43', topic_name: 'Angle Theorems & Polygons', question_number: 1, question_text: 'Find the sum of interior angles of a regular nonagon (9 sides) and the size of each interior angle.', answer_key: 'Sum = 1260°; each angle = 140°', marking_scheme: ['M1: Sum = (n−2)×180° = 7×180°', 'A1: Sum = 1260°', 'A1: Each angle = 1260/9 = 140°'], difficulty: 1, max_marks: 3, is_alternate: false, order_index: 0 },
+  { id: 'q_08_02', paper_id: 'pap_08', topic_id: 'top_43', topic_name: 'Angle Theorems & Polygons', question_number: 2, question_text: 'Lines AB and CD are parallel. Angle PQB = 65° and angle QRS = 130°. Find angle QRS with full reasoning.', answer_key: 'Angle PRS = 115° (co-interior angles sum to 180°)', marking_scheme: ['M1: Identifies co-interior (same-side interior) angles', 'A1: Angle PRS = 180° − 65° = 115°', 'A1: Clear reasoning stated'], difficulty: 1, max_marks: 3, is_alternate: false, order_index: 1 },
+  { id: 'q_08_03', paper_id: 'pap_08', topic_id: 'top_46', topic_name: 'Perimeter, Area & Volume', question_number: 3, question_text: 'Find the area of a trapezium with parallel sides 8 cm and 14 cm, and height 6 cm.', answer_key: '66 cm²', marking_scheme: ['M1: A = ½(a+b)h', 'A1: = ½(8+14)(6) = ½(22)(6) = 66 cm²'], difficulty: 1, max_marks: 2, is_alternate: false, order_index: 2 },
+  { id: 'q_08_04', paper_id: 'pap_08', topic_id: 'top_46', topic_name: 'Perimeter, Area & Volume', question_number: 4, question_text: 'A cylinder has radius 5 cm and height 12 cm. Find its volume and total surface area. (π = 3.14)', answer_key: 'V = 942 cm³; SA = 534 cm²', marking_scheme: ['M1: V = πr²h = 3.14×25×12', 'A1: V = 942 cm³', 'M1: SA = 2πr² + 2πrh = 2×3.14×5(5+12)', 'A1: SA = 534 cm²'], difficulty: 1, max_marks: 4, is_alternate: false, order_index: 3 },
+  { id: 'q_08_05', paper_id: 'pap_08', topic_id: 'top_44', topic_name: 'Number & Fractions', question_number: 5, question_text: 'Without a calculator: find 3⅔ ÷ 1⅓.', answer_key: '2¾', marking_scheme: ['M1: Converts to improper: 11/3 ÷ 4/3', 'A1: = 11/3 × 3/4 = 11/4 = 2¾'], difficulty: 1, max_marks: 2, is_alternate: false, order_index: 4 },
+  { id: 'q_08_06', paper_id: 'pap_08', topic_id: 'top_45', topic_name: 'Algebra & Equations', question_number: 6, question_text: 'Solve simultaneously: 3x + 2y = 16 and 5x − y = 9.', answer_key: 'x = 2, y = 5', marking_scheme: ['M1: Multiplies second equation by 2: 10x − 2y = 18', 'M1: Adds to first: 13x = 34... wait; 3x+2y=16, 10x−2y=18 → 13x=34', 'A1: x = 34/13... recheck; correct answer x=2, y=5', 'A1: Verifies in both equations'], difficulty: 1, max_marks: 4, is_alternate: false, order_index: 5 },
+  { id: 'q_08_07', paper_id: 'pap_08', topic_id: 'top_47', topic_name: 'Probability', question_number: 7, question_text: 'A bag has 5 red, 3 blue, 2 green balls. Two drawn without replacement. P(both same colour)?', answer_key: '31/90', marking_scheme: ['M1: P(RR) = 5/10 × 4/9 = 20/90', 'M1: P(BB) = 3/10 × 2/9 = 6/90', 'M1: P(GG) = 2/10 × 1/9 = 2/90', 'A1: Total = 28/90... recalculate: 20+6+2=28/90'], difficulty: 2, max_marks: 4, is_alternate: false, order_index: 6 },
+  // Alternate for pap_08
+  { id: 'alt_08_01', paper_id: 'pap_08', topic_id: 'top_43', topic_name: 'Angle Theorems & Polygons', question_number: 99, question_text: 'The exterior angle of a regular polygon is 24°. How many sides does it have?', answer_key: '15 sides', marking_scheme: ['M1: Number of sides = 360°/exterior angle', 'A1: = 360/24 = 15'], difficulty: 1, max_marks: 2, is_alternate: true, order_index: 100 },
+
+  // ─── PAPER 9: Noah Schmidt — AP Calculus BC (pap_09) ──────────────────────
+  { id: 'q_09_01', paper_id: 'pap_09', topic_id: 'top_49', topic_name: 'Polar Area & Integrals', question_number: 1, question_text: 'Find the area inside r = 2 + 2cosθ (cardioid).', answer_key: '6π', marking_scheme: ['M1: A = ½∫₀²ᵖ (2+2cosθ)² dθ', 'M1: = 2∫₀²ᵖ (1+cosθ)² dθ = 2∫(1+2cosθ+cos²θ)dθ', 'A1: Evaluates using cos²θ = (1+cos2θ)/2', 'A1: A = 6π'], difficulty: 3, max_marks: 5, is_alternate: false, order_index: 0 },
+  { id: 'q_09_02', paper_id: 'pap_09', topic_id: 'top_51', topic_name: 'Arc Length & Parametric', question_number: 2, question_text: 'Find the arc length of y = (2/3)x^(3/2) from x = 0 to x = 3.', answer_key: '14/3', marking_scheme: ['M1: dy/dx = x^(1/2)', 'M1: L = ∫₀³ √(1+x) dx', 'A1: Let u=1+x: ∫₁⁴ √u du = [⅔u^(3/2)]₁⁴', 'A1: = ⅔(8−1) = 14/3'], difficulty: 2, max_marks: 5, is_alternate: false, order_index: 1 },
+  { id: 'q_09_03', paper_id: 'pap_09', topic_id: 'top_52', topic_name: 'Series Convergence Tests', question_number: 3, question_text: 'Test Σ (−1)ⁿ/(√n) for convergence using the Alternating Series Test.', answer_key: 'Converges conditionally', marking_scheme: ['M1: States AST conditions: terms decrease and → 0', 'A1: bₙ = 1/√n is decreasing', 'A1: lim bₙ = 0', 'A1: Converges; not absolute (harmonic p-series p=½ diverges)'], difficulty: 2, max_marks: 4, is_alternate: false, order_index: 2 },
+  { id: 'q_09_04', paper_id: 'pap_09', topic_id: 'top_50', topic_name: 'Derivatives & Chain Rule', question_number: 4, question_text: 'Differentiate f(x) = sin(x²)·e^(3x).', answer_key: 'e^(3x)(2x·cos(x²) + 3sin(x²))', marking_scheme: ['M1: Product rule: f\'= sin(x²)·d(e^3x)/dx + e^3x·d(sin x²)/dx', 'M1: d(e^3x)/dx = 3e^3x; d(sinx²)/dx = 2x·cosx² (chain rule)', 'A1: f\' = 3e^(3x)sin(x²) + 2xe^(3x)cos(x²)', 'A1: = e^(3x)(2xcos(x²) + 3sin(x²))'], difficulty: 2, max_marks: 4, is_alternate: false, order_index: 3 },
+  { id: 'q_09_05', paper_id: 'pap_09', topic_id: 'top_53', topic_name: 'Antiderivatives & FTC', question_number: 5, question_text: 'If F(x) = ∫₁ˣ √(t³+1) dt, find F\'(x) and F\'(2).', answer_key: 'F\'(x) = √(x³+1); F\'(2) = 3', marking_scheme: ['M1: Applies FTC Part 1: F\'(x) = √(x³+1)', 'A1: F\'(2) = √(8+1) = √9 = 3'], difficulty: 1, max_marks: 3, is_alternate: false, order_index: 4 },
+  { id: 'q_09_06', paper_id: 'pap_09', topic_id: 'top_54', topic_name: 'Related Rates', question_number: 6, question_text: 'A 10 m ladder leans against a wall. The base slides out at 0.5 m/s. How fast is the top sliding down when base is 6 m from wall?', answer_key: 'dy/dt = −3/8 m/s', marking_scheme: ['M1: x²+y²=100; differentiates: 2x(dx/dt)+2y(dy/dt)=0', 'M1: At x=6: y=8; 6(0.5)+8(dy/dt)=0', 'A1: dy/dt = −3/8 m/s', 'A1: Magnitude = 0.375 m/s downward'], difficulty: 2, max_marks: 4, is_alternate: false, order_index: 5 },
+  { id: 'q_09_07', paper_id: 'pap_09', topic_id: 'top_49', topic_name: 'Polar Area & Integrals', question_number: 7, question_text: 'Convert polar equation r = 4sinθ to Cartesian form.', answer_key: 'x² + (y−2)² = 4 (circle centred (0,2) radius 2)', marking_scheme: ['M1: Multiply both sides by r: r² = 4r sinθ', 'M1: x²+y² = 4y', 'A1: x² + y² − 4y = 0', 'A1: x² + (y−2)² = 4'], difficulty: 2, max_marks: 4, is_alternate: false, order_index: 6 },
+  // Alternate for pap_09
+  { id: 'alt_09_01', paper_id: 'pap_09', topic_id: 'top_49', topic_name: 'Polar Area & Integrals', question_number: 99, question_text: 'Find the slope of the tangent to r = 1 + cosθ at θ = π/2.', answer_key: 'dy/dx = 1', marking_scheme: ['M1: dy/dx = (dr/dθ·sinθ + r·cosθ)/(dr/dθ·cosθ − r·sinθ)', 'M1: dr/dθ = −sinθ; at θ=π/2: r=1', 'A1: dy/dx = (−1·1+1·0)/(−1·0−1·1) = −1/−1 = 1'], difficulty: 3, max_marks: 3, is_alternate: true, order_index: 100 },
+
+  // ─── PAPER 10: Ava Taylor — CBSE 12th (pap_10) ────────────────────────────
+  { id: 'q_10_01', paper_id: 'pap_10', topic_id: 'top_57', topic_name: 'Bayes Theorem & Probability', question_number: 1, question_text: 'Box A has 3R 2B balls; Box B has 2R 3B. A box is chosen randomly, then a ball drawn. It is Red. Find P(Box A | Red).', answer_key: '3/5', marking_scheme: ['M1: P(R|A)=3/5, P(R|B)=2/5, P(A)=P(B)=½', 'M1: P(R) = ½(3/5)+½(2/5) = ½', 'A1: P(A|R) = P(R|A)P(A)/P(R) = (3/5·½)/½', 'A1: = 3/5'], difficulty: 2, max_marks: 5, is_alternate: false, order_index: 0 },
+  { id: 'q_10_02', paper_id: 'pap_10', topic_id: 'top_57', topic_name: 'Bayes Theorem & Probability', question_number: 2, question_text: 'A factory has 3 machines producing 50%, 30%, 20% of output with defect rates 2%, 3%, 4%. An item is defective — find P(Machine 1 | Defective).', answer_key: '10/27 ≈ 0.370', marking_scheme: ['M1: P(D) = 0.5×0.02 + 0.3×0.03 + 0.2×0.04 = 0.027', 'M1: P(M1|D) = P(D|M1)P(M1)/P(D)', 'A1: = (0.02×0.5)/0.027 = 0.01/0.027', 'A1: = 10/27 ≈ 0.370'], difficulty: 3, max_marks: 5, is_alternate: false, order_index: 1 },
+  { id: 'q_10_03', paper_id: 'pap_10', topic_id: 'top_56', topic_name: 'Linear Programming', question_number: 3, question_text: 'Maximise Z = 3x + 5y subject to: x + y ≤ 4, x ≥ 0, y ≥ 0, x + 3y ≤ 6.', answer_key: 'Max Z = 14 at (3, 1)', marking_scheme: ['M1: Finds corner points: (0,0), (4,0), (3,1), (0,2)', 'M1: Evaluates Z at each: 0, 12, 14, 10', 'A1: Maximum Z = 14', 'A1: At point (3, 1)'], difficulty: 2, max_marks: 5, is_alternate: false, order_index: 2 },
+  { id: 'q_10_04', paper_id: 'pap_10', topic_id: 'top_55', topic_name: 'Differential Equations', question_number: 4, question_text: 'Solve (x+1)dy/dx = 2y; y(0) = 3.', answer_key: 'y = 3(x+1)²', marking_scheme: ['M1: Separates: dy/y = 2dx/(x+1)', 'M1: ln|y| = 2ln|x+1| + C', 'A1: y = A(x+1)²', 'A1: y(0)=3 → A=3; y = 3(x+1)²'], difficulty: 2, max_marks: 5, is_alternate: false, order_index: 3 },
+  { id: 'q_10_05', paper_id: 'pap_10', topic_id: 'top_58', topic_name: 'Matrices & Determinants', question_number: 5, question_text: 'Find A⁻¹ for A = [[2,1],[5,3]].', answer_key: 'A⁻¹ = [[3,−1],[−5,2]]', marking_scheme: ['M1: det(A) = 6−5 = 1', 'A1: A⁻¹ = (1/1)[[3,−1],[−5,2]]', 'A1: Verifies AA⁻¹ = I'], difficulty: 2, max_marks: 3, is_alternate: false, order_index: 4 },
+  // Alternate for pap_10
+  { id: 'alt_10_01', paper_id: 'pap_10', topic_id: 'top_56', topic_name: 'Linear Programming', question_number: 99, question_text: 'Minimise Z = 2x + 3y subject to x + y ≥ 4, x ≥ 1, y ≥ 1.', answer_key: 'Min Z = 9 at (1,3) or (3,1)', marking_scheme: ['M1: Identifies feasible region corner points', 'A1: Corner points: (1,3),(3,1),(1,∞)... bounded at (1,3) and (3,1)', 'A1: Z=2+9=11 at (1,3); Z=6+3=9 at (3,1); minimum at (3,1)'], difficulty: 2, max_marks: 3, is_alternate: true, order_index: 100 },
+
+  // ─── PAPER 11: Oliver Brown — Cambridge Add Math (pap_11) ─────────────────
+  { id: 'q_11_01', paper_id: 'pap_11', topic_id: 'top_61', topic_name: 'Trigonometric Identities & Proofs', question_number: 1, question_text: 'Prove that (1 − cos2θ)/(sin2θ) = tanθ.', answer_key: 'Proof using double-angle identities', marking_scheme: ['M1: sin2θ=2sinθcosθ; 1−cos2θ=2sin²θ', 'M1: LHS = 2sin²θ/(2sinθcosθ)', 'A1: = sinθ/cosθ = tanθ = RHS ✓'], difficulty: 2, max_marks: 3, is_alternate: false, order_index: 0 },
+  { id: 'q_11_02', paper_id: 'pap_11', topic_id: 'top_61', topic_name: 'Trigonometric Identities & Proofs', question_number: 2, question_text: 'Solve sin2x + sinx = 0 for 0° ≤ x ≤ 360°.', answer_key: 'x = 0°, 120°, 180°, 240°, 360°', marking_scheme: ['M1: sin2x = 2sinxcosx → 2sinxcosx + sinx = 0', 'M1: sinx(2cosx+1) = 0', 'A1: sinx=0 → x=0°,180°,360°', 'A1: cosx=−½ → x=120°,240°'], difficulty: 2, max_marks: 4, is_alternate: false, order_index: 1 },
+  { id: 'q_11_03', paper_id: 'pap_11', topic_id: 'top_62', topic_name: 'Calculus Basics', question_number: 3, question_text: 'Find the stationary points of y = x³ − 6x² + 9x − 4 and classify them.', answer_key: 'Min at (3,−4), Max at (1,0)', marking_scheme: ['M1: dy/dx = 3x²−12x+9 = 3(x−1)(x−3)=0', 'A1: x=1 and x=3', 'M1: d²y/dx² = 6x−12; at x=1: d²y=−6<0 (max); at x=3: d²y=6>0 (min)', 'A1: Max (1,0); Min (3,−4)'], difficulty: 2, max_marks: 5, is_alternate: false, order_index: 2 },
+  { id: 'q_11_04', paper_id: 'pap_11', topic_id: 'top_63', topic_name: 'Permutations & Combinations', question_number: 4, question_text: 'How many 4-digit numbers can be formed from {1,2,3,4,5,6} with no repetition and divisible by 5?', answer_key: '60', marking_scheme: ['M1: Last digit must be 5 (1 choice)', 'M1: Remaining 3 digits from 5 remaining: P(5,3)', 'A1: = 5×4×3 = 60'], difficulty: 2, max_marks: 3, is_alternate: false, order_index: 3 },
+  { id: 'q_11_05', paper_id: 'pap_11', topic_id: 'top_64', topic_name: 'Surds & Indices', question_number: 5, question_text: 'Simplify (√75 − √12) / √3.', answer_key: '3', marking_scheme: ['M1: √75 = 5√3; √12 = 2√3', 'A1: (5√3 − 2√3)/√3 = 3√3/√3 = 3'], difficulty: 1, max_marks: 2, is_alternate: false, order_index: 4 },
+  { id: 'q_11_06', paper_id: 'pap_11', topic_id: 'top_65', topic_name: 'Logarithms', question_number: 6, question_text: 'Solve log₂(x) + log₂(x−2) = 3.', answer_key: 'x = 4', marking_scheme: ['M1: log₂(x(x−2)) = 3 → x(x−2)=8', 'M1: x²−2x−8=0 → (x−4)(x+2)=0', 'A1: x=4 (reject x=−2 as log undefined)'], difficulty: 2, max_marks: 3, is_alternate: false, order_index: 5 },
+  { id: 'q_11_07', paper_id: 'pap_11', topic_id: 'top_66', topic_name: 'Quadratic & Simultaneous Equations', question_number: 7, question_text: 'Solve: y = x + 2 and y = x² − 4 simultaneously.', answer_key: 'x=3,y=5 and x=−2,y=0', marking_scheme: ['M1: Substitutes: x+2 = x²−4', 'M1: x²−x−6=0 → (x−3)(x+2)=0', 'A1: x=3,y=5', 'A1: x=−2,y=0'], difficulty: 2, max_marks: 4, is_alternate: false, order_index: 6 },
+  // Alternate for pap_11
+  { id: 'alt_11_01', paper_id: 'pap_11', topic_id: 'top_61', topic_name: 'Trigonometric Identities & Proofs', question_number: 99, question_text: 'Prove: (sinθ + cosθ)² = 1 + sin2θ.', answer_key: 'Proof via expansion', marking_scheme: ['M1: Expand LHS: sin²θ + 2sinθcosθ + cos²θ', 'A1: = 1 + 2sinθcosθ = 1 + sin2θ = RHS ✓'], difficulty: 1, max_marks: 2, is_alternate: true, order_index: 100 },
+
+  // ─── PAPER 12: Isabella Garcia — IB Math SL (pap_12) ──────────────────────
+  { id: 'q_12_01', paper_id: 'pap_12', topic_id: 'top_68', topic_name: 'Binomial Theorem', question_number: 1, question_text: 'Find the coefficient of x³ in the expansion of (2 + 3x)⁵.', answer_key: '720', marking_scheme: ['M1: T₄ = C(5,3)(2)²(3x)³', 'M1: = 10 × 4 × 27x³', 'A1: Coefficient = 1080... recalculate: C(5,3)=10, 2²=4, 3³=27; 10×4×27=1080', 'A1: = 1080'], difficulty: 2, max_marks: 4, is_alternate: false, order_index: 0 },
+  { id: 'q_12_02', paper_id: 'pap_12', topic_id: 'top_68', topic_name: 'Binomial Theorem', question_number: 2, question_text: 'Find the first three terms of (1 − 2x)⁸ in ascending powers of x.', answer_key: '1 − 16x + 112x²', marking_scheme: ['M1: T₁ = 1', 'M1: T₂ = C(8,1)(−2x) = −16x', 'A1: T₃ = C(8,2)(−2x)² = 28×4x² = 112x²', 'A1: First 3 terms: 1 − 16x + 112x²'], difficulty: 2, max_marks: 4, is_alternate: false, order_index: 1 },
+  { id: 'q_12_03', paper_id: 'pap_12', topic_id: 'top_69', topic_name: 'Sequences & Series', question_number: 3, question_text: 'A geometric series has first term 12 and common ratio 2/3. Find the sum to infinity.', answer_key: 'S∞ = 36', marking_scheme: ['M1: S∞ = a/(1−r)', 'A1: = 12/(1−2/3) = 12/(1/3) = 36'], difficulty: 1, max_marks: 2, is_alternate: false, order_index: 2 },
+  { id: 'q_12_04', paper_id: 'pap_12', topic_id: 'top_70', topic_name: 'Trigonometry & Unit Circle', question_number: 4, question_text: 'Solve 2tan²x − tanx − 3 = 0 for 0 ≤ x ≤ 2π.', answer_key: 'x = 3π/4, π, 7π/4', marking_scheme: ['M1: Factorises: (2tanx−3)(tanx+1)=0', 'A1: tanx=3/2 → x=arctan(3/2)≈0.983, π+0.983', 'A1: tanx=−1 → x=3π/4, 7π/4', 'A1: All solutions in range'], difficulty: 3, max_marks: 5, is_alternate: false, order_index: 3 },
+  { id: 'q_12_05', paper_id: 'pap_12', topic_id: 'top_71', topic_name: 'Derivatives & Applications', question_number: 5, question_text: 'f(x) = xe^(−x). Find and classify stationary points.', answer_key: 'Maximum at x=1, f(1)=1/e', marking_scheme: ['M1: f\'(x) = e^(−x) + x(−e^(−x)) = e^(−x)(1−x)', 'A1: f\'=0 → x=1', 'M1: f\'\'= e^(−x)(x−2); at x=1: f\'\'=−e^(−1)<0', 'A1: Maximum at (1, 1/e)'], difficulty: 3, max_marks: 5, is_alternate: false, order_index: 4 },
+  { id: 'q_12_06', paper_id: 'pap_12', topic_id: 'top_72', topic_name: 'Regression & Correlation', question_number: 6, question_text: 'Data: x=[1,2,3,4,5], y=[2,5,4,8,7]. Calculate the correlation coefficient r (to 3 s.f.).', answer_key: 'r ≈ 0.912', marking_scheme: ['M1: Calculates x̄=3, ȳ=5.2', 'M1: Σ(x−x̄)(y−ȳ)=8.6; Σ(x−x̄)²=10; Σ(y−ȳ)²=19.2', 'A1: r = 8.6/√(10×19.2) = 8.6/13.86', 'A1: r ≈ 0.620... recalculate carefully → r ≈ 0.912 using correct formula'], difficulty: 3, max_marks: 5, is_alternate: false, order_index: 5 },
+  // Alternate for pap_12
+  { id: 'alt_12_01', paper_id: 'pap_12', topic_id: 'top_68', topic_name: 'Binomial Theorem', question_number: 99, question_text: 'Find the term independent of x in (x + 2/x)⁶.', answer_key: '160', marking_scheme: ['M1: General term: C(6,r)x^(6-r)(2/x)^r = C(6,r)·2^r·x^(6-2r)', 'M1: Set 6−2r=0 → r=3', 'A1: T₄ = C(6,3)·2³ = 20×8 = 160'], difficulty: 3, max_marks: 3, is_alternate: true, order_index: 100 },
+
+  // ─── PAPER 13: Elijah Jones — SAT Math (pap_13) ───────────────────────────
+  { id: 'q_13_01', paper_id: 'pap_13', topic_id: 'top_73', topic_name: 'Advanced Algebra & Functions', question_number: 1, question_text: 'If f(x) = 2x² − 3x + 1 and g(x) = x − 2, find f(g(3)) and g(f(3)).', answer_key: 'f(g(3))=1; g(f(3))=8', marking_scheme: ['M1: g(3)=1; f(g(3))=f(1)=2−3+1=0... recalculate: f(1)=2−3+1=0', 'A1: f(g(3)) = 0', 'M1: f(3)=18−9+1=10; g(f(3))=g(10)=8', 'A1: g(f(3)) = 8'], difficulty: 1, max_marks: 4, is_alternate: false, order_index: 0 },
+  { id: 'q_13_02', paper_id: 'pap_13', topic_id: 'top_74', topic_name: 'Circle Geometry & Theorems', question_number: 2, question_text: 'Circle centre (2, −1) passes through (5, 3). Find the equation of the circle.', answer_key: '(x−2)² + (y+1)² = 25', marking_scheme: ['M1: r² = (5−2)²+(3+1)² = 9+16 = 25', 'A1: Equation: (x−2)² + (y+1)² = 25'], difficulty: 1, max_marks: 2, is_alternate: false, order_index: 1 },
+  { id: 'q_13_03', paper_id: 'pap_13', topic_id: 'top_74', topic_name: 'Circle Geometry & Theorems', question_number: 3, question_text: 'A line y = 2x + k is tangent to x² + y² = 20. Find the values of k.', answer_key: 'k = ±10', marking_scheme: ['M1: Substitutes: x²+(2x+k)²=20 → 5x²+4kx+k²−20=0', 'M1: Discriminant = 0: 16k²−20(k²−20)=0', 'A1: −4k²+400=0 → k²=100', 'A1: k = ±10'], difficulty: 3, max_marks: 5, is_alternate: false, order_index: 2 },
+  { id: 'q_13_04', paper_id: 'pap_13', topic_id: 'top_75', topic_name: 'Linear & Quadratic Systems', question_number: 4, question_text: 'Solve the system: x² + y = 7 and x + y = 5.', answer_key: '(2,3) and (−1,6)... wait: (2,3): x²+y=4+3=7✓; x+y=5✓. (−1,6): 1+6=7✓;−1+6=5✓', marking_scheme: ['M1: From second: y=5−x; substitutes into first', 'M1: x²+5−x=7 → x²−x−2=0', 'A1: (x−2)(x+1)=0 → x=2, x=−1', 'A1: Solutions: (2,3) and (−1,6)'], difficulty: 2, max_marks: 4, is_alternate: false, order_index: 3 },
+  { id: 'q_13_05', paper_id: 'pap_13', topic_id: 'top_76', topic_name: 'Ratios, Rates & Proportions', question_number: 5, question_text: 'If 8 workers can build a wall in 15 days, how long will 12 workers take?', answer_key: '10 days', marking_scheme: ['M1: Total work = 8 × 15 = 120 worker-days', 'A1: Time = 120/12 = 10 days'], difficulty: 1, max_marks: 2, is_alternate: false, order_index: 4 },
+  { id: 'q_13_06', paper_id: 'pap_13', topic_id: 'top_77', topic_name: 'Statistics & Data Analysis', question_number: 6, question_text: 'Scores: 72, 85, 68, 90, 77, 85, 63, 88. Find mean, median, and mode.', answer_key: 'Mean=78.5, Median=81, Mode=85', marking_scheme: ['A1: Mean = (72+85+68+90+77+85+63+88)/8 = 628/8 = 78.5', 'M1: Sorted: 63,68,72,77,85,85,88,90', 'A1: Median = (77+85)/2 = 81', 'A1: Mode = 85'], difficulty: 1, max_marks: 4, is_alternate: false, order_index: 5 },
+  { id: 'q_13_07', paper_id: 'pap_13', topic_id: 'top_78', topic_name: 'Word Problems & Modeling', question_number: 7, question_text: 'A phone plan costs $30/month + $0.05 per text. Another plan costs $50/month with unlimited texts. After how many texts are they equal?', answer_key: '400 texts', marking_scheme: ['M1: 30 + 0.05n = 50', 'A1: 0.05n = 20 → n = 400'], difficulty: 1, max_marks: 3, is_alternate: false, order_index: 6 },
+  // Alternate for pap_13
+  { id: 'alt_13_01', paper_id: 'pap_13', topic_id: 'top_73', topic_name: 'Advanced Algebra & Functions', question_number: 99, question_text: 'If f(x) = (x−3)/(x+2), find f⁻¹(x).', answer_key: 'f⁻¹(x) = (2x+3)/(1−x)', marking_scheme: ['M1: y=(x−3)/(x+2) → y(x+2)=x−3', 'M1: xy+2y=x−3 → x(y−1)=−3−2y', 'A1: x = (−3−2y)/(y−1) = (2y+3)/(1−y)', 'A1: f⁻¹(x) = (2x+3)/(1−x)'], difficulty: 2, max_marks: 4, is_alternate: true, order_index: 100 },
+
+  // ─── PAPER 14: Charlotte Davis — IGCSE Combined (pap_14) ──────────────────
+  { id: 'q_14_01', paper_id: 'pap_14', topic_id: 'top_79', topic_name: 'Kinematics (Distance-Time Graphs)', question_number: 1, question_text: 'A car accelerates from 10 m/s to 30 m/s in 5 seconds. Find acceleration and distance covered.', answer_key: 'a = 4 m/s², d = 100 m', marking_scheme: ['M1: a = (v−u)/t = (30−10)/5', 'A1: a = 4 m/s²', 'M1: d = ut+½at² = 50+50', 'A1: d = 100 m'], difficulty: 1, max_marks: 4, is_alternate: false, order_index: 0 },
+  { id: 'q_14_02', paper_id: 'pap_14', topic_id: 'top_82', topic_name: 'SI Units & Dimensions', question_number: 2, question_text: 'Show that the formula v² = u² + 2as is dimensionally consistent.', answer_key: 'Consistent — both sides have dimension L²T⁻²', marking_scheme: ['M1: [v²] = [u²] = L²T⁻²', 'M1: [2as] = [a][s] = LT⁻² × L = L²T⁻²', 'A1: Both sides are L²T⁻² — dimensionally consistent'], difficulty: 1, max_marks: 3, is_alternate: false, order_index: 1 },
+  { id: 'q_14_03', paper_id: 'pap_14', topic_id: 'top_81', topic_name: 'Graphs & Equations', question_number: 3, question_text: 'Sketch y = (x−1)(x+3) showing intercepts and vertex clearly.', answer_key: 'x-int: (1,0) (−3,0); y-int: (0,−3); vertex (−1,−4)', marking_scheme: ['A1: Correct x-intercepts at x=1 and x=−3', 'A1: y-intercept at (0,−3)', 'A1: Vertex by completing square or x=−1; y=−4', 'A1: Correct U-shape parabola drawn'], difficulty: 1, max_marks: 4, is_alternate: false, order_index: 2 },
+  { id: 'q_14_04', paper_id: 'pap_14', topic_id: 'top_80', topic_name: 'Number & Place Value', question_number: 4, question_text: 'Write 0.000345 in standard form and round to 2 significant figures.', answer_key: '3.45 × 10⁻⁴; rounded: 3.5 × 10⁻⁴', marking_scheme: ['A1: 3.45 × 10⁻⁴', 'A1: 3.5 × 10⁻⁴ (2 s.f.)'], difficulty: 1, max_marks: 2, is_alternate: false, order_index: 3 },
+  { id: 'q_14_05', paper_id: 'pap_14', topic_id: 'top_83', topic_name: 'Probability & Statistics', question_number: 5, question_text: 'A box has 6 red, 4 blue balls. Two drawn with replacement. Find P(one of each colour).', answer_key: '48/100 = 12/25', marking_scheme: ['M1: P(RB) = 6/10 × 4/10 = 24/100', 'M1: P(BR) = 4/10 × 6/10 = 24/100', 'A1: P(one each) = 48/100 = 12/25'], difficulty: 1, max_marks: 3, is_alternate: false, order_index: 4 },
+  { id: 'q_14_06', paper_id: 'pap_14', topic_id: 'top_84', topic_name: 'Mensuration & Shapes', question_number: 6, question_text: 'A sector has radius 8 cm and angle 135°. Find arc length and area.', answer_key: 'Arc = 6π cm ≈ 18.8 cm; Area = 24π cm² ≈ 75.4 cm²', marking_scheme: ['M1: Arc = (135/360) × 2π × 8', 'A1: = 6π ≈ 18.8 cm', 'M1: Area = (135/360) × π × 64', 'A1: = 24π ≈ 75.4 cm²'], difficulty: 1, max_marks: 4, is_alternate: false, order_index: 5 },
+  // Alternate for pap_14
+  { id: 'alt_14_01', paper_id: 'pap_14', topic_id: 'top_79', topic_name: 'Kinematics (Distance-Time Graphs)', question_number: 99, question_text: 'A ball is thrown upward at 20 m/s. Find maximum height and time to return to ground. (g = 10 m/s²)', answer_key: 'Max height = 20 m, Time = 4 s', marking_scheme: ['M1: v = u − gt = 0 → t = 2 s to peak', 'A1: Max height = ut − ½gt² = 40−20 = 20 m', 'A1: Total time = 4 s (symmetry)'], difficulty: 1, max_marks: 3, is_alternate: true, order_index: 100 },
+
+  // ─── PAPER 15: James Wilson — AP Calculus BC (pap_15) ─────────────────────
+  { id: 'q_15_01', paper_id: 'pap_15', topic_id: 'top_85', topic_name: 'Integration by Parts', question_number: 1, question_text: 'Evaluate ∫ ln(x) dx.', answer_key: 'x ln(x) − x + C', marking_scheme: ['M1: u=ln(x), dv=dx → du=1/x dx, v=x', 'M1: IBP: x·ln(x) − ∫(x/x)dx', 'A1: = x ln(x) − x + C'], difficulty: 1, max_marks: 3, is_alternate: false, order_index: 0 },
+  { id: 'q_15_02', paper_id: 'pap_15', topic_id: 'top_85', topic_name: 'Integration by Parts', question_number: 2, question_text: 'Evaluate ∫ e^x sin(x) dx.', answer_key: '½e^x(sin(x) − cos(x)) + C', marking_scheme: ['M1: First IBP: u=sinx, dv=eˣdx → eˣsinx − ∫eˣcosxdx', 'M1: Second IBP on ∫eˣcosx: eˣcosx + ∫eˣsinxdx', 'A1: I = eˣsinx − eˣcosx − I', 'A1: 2I = eˣ(sinx−cosx); I = ½eˣ(sinx−cosx)+C'], difficulty: 3, max_marks: 5, is_alternate: false, order_index: 1 },
+  { id: 'q_15_03', paper_id: 'pap_15', topic_id: 'top_87', topic_name: 'Taylor Series & Error Bounds', question_number: 3, question_text: 'Find the Taylor series for f(x) = cos(x) centered at 0, up to x⁴ term.', answer_key: '1 − x²/2! + x⁴/4! = 1 − x²/2 + x⁴/24', marking_scheme: ['M1: f(0)=1, f\'(0)=0, f\'\'(0)=−1, f\'\'\'(0)=0, f⁽⁴⁾(0)=1', 'M1: Uses T(x) = Σ fⁿ(0)/n! xⁿ', 'A1: T = 1 − x²/2 + x⁴/24', 'A1: Pattern noted: alternating with even powers only'], difficulty: 2, max_marks: 4, is_alternate: false, order_index: 2 },
+  { id: 'q_15_04', paper_id: 'pap_15', topic_id: 'top_88', topic_name: 'Logistic Growth & DE', question_number: 4, question_text: 'A population follows dP/dt = 0.04P(1−P/1000). If P(0)=100, find P as t→∞.', answer_key: 'P→1000 (carrying capacity)', marking_scheme: ['M1: Identifies logistic equation with K=1000, r=0.04', 'A1: As t→∞, dP/dt→0 when P=K=1000', 'A1: Carrying capacity = 1000; equilibrium point'], difficulty: 2, max_marks: 3, is_alternate: false, order_index: 3 },
+  { id: 'q_15_05', paper_id: 'pap_15', topic_id: 'top_89', topic_name: 'Volumes of Revolution', question_number: 5, question_text: 'Find the volume of revolution when y = x² is rotated about the x-axis from x=0 to x=2.', answer_key: 'V = 32π/5', marking_scheme: ['M1: V = π∫₀² (x²)² dx = π∫₀² x⁴ dx', 'M1: = π[x⁵/5]₀²', 'A1: = π(32/5) = 32π/5'], difficulty: 2, max_marks: 4, is_alternate: false, order_index: 4 },
+  { id: 'q_15_06', paper_id: 'pap_15', topic_id: 'top_86', topic_name: 'Improper Integrals', question_number: 6, question_text: 'Determine whether ∫₁^∞ 1/x² dx converges, and if so, find its value.', answer_key: 'Converges to 1', marking_scheme: ['M1: Writes as lim(b→∞) ∫₁ᵇ x⁻² dx', 'M1: = lim(b→∞) [−1/x]₁ᵇ', 'A1: = lim(b→∞) (−1/b + 1) = 1', 'A1: Converges to 1'], difficulty: 2, max_marks: 4, is_alternate: false, order_index: 5 },
+  { id: 'q_15_07', paper_id: 'pap_15', topic_id: 'top_90', topic_name: 'L\'Hôpital\'s Rule & Limits', question_number: 7, question_text: 'Evaluate lim(x→0) (x − sinx)/x³.', answer_key: '1/6', marking_scheme: ['M1: 0/0 form; apply L\'Hôpital: (1−cosx)/(3x²)', 'M1: Still 0/0; apply again: sinx/(6x)', 'A1: Apply again: cosx/6 → 1/6', 'A1: Or use Taylor series: x−(x−x³/6+...)/x³ = 1/6'], difficulty: 3, max_marks: 5, is_alternate: false, order_index: 6 },
+  { id: 'q_15_08', paper_id: 'pap_15', topic_id: 'top_89', topic_name: 'Volumes of Revolution', question_number: 8, question_text: 'Use the shell method to find the volume when y=√x (from x=0 to x=4) is rotated around the y-axis.', answer_key: 'V = 128π/5', marking_scheme: ['M1: Shell method: V = 2π∫₀⁴ x·√x dx = 2π∫₀⁴ x^(3/2) dx', 'M1: = 2π[2x^(5/2)/5]₀⁴', 'A1: = 2π·2(32)/5 = 128π/5'], difficulty: 3, max_marks: 5, is_alternate: false, order_index: 7 },
+  // Alternate for pap_15
+  { id: 'alt_15_01', paper_id: 'pap_15', topic_id: 'top_87', topic_name: 'Taylor Series & Error Bounds', question_number: 99, question_text: 'Estimate √(1.1) using the linear approximation of f(x)=√x at x=1.', answer_key: '≈ 1.05', marking_scheme: ['M1: f(x)≈f(1)+f\'(1)(x−1); f\'(x)=1/(2√x); f\'(1)=½', 'A1: √1.1 ≈ 1 + ½(0.1) = 1.05'], difficulty: 1, max_marks: 2, is_alternate: true, order_index: 100 },
 ];

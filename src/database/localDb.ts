@@ -3,14 +3,15 @@ import { INITIAL_STUDENTS, INITIAL_TOPICS, INITIAL_PAPERS, INITIAL_QUESTIONS } f
 import { AnalyticsEngine } from '../services/analyticsEngine';
 import { gradingUndoStack } from '../services/undoStack';
 
+const STORAGE_VERSION = 'v2';
 const STORAGE_KEYS = {
-  STUDENTS: 'antigravity_students_v1',
-  TOPICS: 'antigravity_topics_v1',
-  PAPERS: 'antigravity_papers_v1',
-  QUESTIONS: 'antigravity_questions_v1',
-  RESULTS: 'antigravity_results_v1',
-  SYNC_QUEUE: 'antigravity_sync_queue_v1',
-  LAST_SYNC: 'antigravity_last_sync_v1',
+  STUDENTS: `antigravity_students_${STORAGE_VERSION}`,
+  TOPICS: `antigravity_topics_${STORAGE_VERSION}`,
+  PAPERS: `antigravity_papers_${STORAGE_VERSION}`,
+  QUESTIONS: `antigravity_questions_${STORAGE_VERSION}`,
+  RESULTS: `antigravity_results_${STORAGE_VERSION}`,
+  SYNC_QUEUE: `antigravity_sync_queue_${STORAGE_VERSION}`,
+  LAST_SYNC: `antigravity_last_sync_${STORAGE_VERSION}`,
 };
 
 type Listener = () => void;
@@ -38,11 +39,18 @@ class LocalDatabase {
   private init() {
     try {
       const storedStudents = localStorage.getItem(STORAGE_KEYS.STUDENTS);
-      if (storedStudents) {
+      const storedQuestions = localStorage.getItem(STORAGE_KEYS.QUESTIONS);
+      if (storedStudents && storedQuestions) {
+        const parsedQuestions: Question[] = JSON.parse(storedQuestions);
+        // If question count is less than INITIAL_QUESTIONS (e.g. older seed had only 8 questions), reseed
+        if (parsedQuestions.length < INITIAL_QUESTIONS.length) {
+          this.resetToInitialSeed();
+          return;
+        }
         this.students = new Map(JSON.parse(storedStudents).map((s: Student) => [s.id, s]));
         this.topics = new Map(JSON.parse(localStorage.getItem(STORAGE_KEYS.TOPICS) || '[]').map((t: Topic) => [t.id, t]));
         this.papers = new Map(JSON.parse(localStorage.getItem(STORAGE_KEYS.PAPERS) || '[]').map((p: Paper) => [p.id, p]));
-        this.questions = new Map(JSON.parse(localStorage.getItem(STORAGE_KEYS.QUESTIONS) || '[]').map((q: Question) => [q.id, q]));
+        this.questions = new Map(parsedQuestions.map((q: Question) => [q.id, q]));
         this.results = new Map(JSON.parse(localStorage.getItem(STORAGE_KEYS.RESULTS) || '[]').map((r: Result) => [r.id, r]));
         this.syncQueue = JSON.parse(localStorage.getItem(STORAGE_KEYS.SYNC_QUEUE) || '[]');
         const lastSync = localStorage.getItem(STORAGE_KEYS.LAST_SYNC);
