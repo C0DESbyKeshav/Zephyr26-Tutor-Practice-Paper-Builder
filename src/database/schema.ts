@@ -1,0 +1,88 @@
+export const appSchema = {
+  version: 1,
+  tables: {
+    students: {
+      name: 'students',
+      columns: [
+        { name: 'name', type: 'string' },
+        { name: 'grade', type: 'string' },
+        { name: 'syllabus_board', type: 'string' },
+        { name: 'target_exam', type: 'string' },
+        { name: 'avatar_color', type: 'string' },
+        { name: 'schedule_time', type: 'string' },
+        { name: 'notes', type: 'string', isOptional: true },
+        { name: 'created_at', type: 'number' },
+        { name: 'updated_at', type: 'number' },
+      ],
+    },
+    topics: {
+      name: 'topics',
+      columns: [
+        { name: 'student_id', type: 'string', isIndexed: true },
+        { name: 'name', type: 'string' },
+        { name: 'syllabus_code', type: 'string' },
+        { name: 'mastery_percentage', type: 'number' },
+        { name: 'last_tested_at', type: 'number' },
+        { name: 'is_weak', type: 'boolean' },
+        { name: 'created_at', type: 'number' },
+        { name: 'updated_at', type: 'number' },
+      ],
+    },
+    papers: {
+      name: 'papers',
+      columns: [
+        { name: 'student_id', type: 'string', isIndexed: true },
+        { name: 'title', type: 'string' },
+        { name: 'status', type: 'string', isIndexed: true },
+        { name: 'target_class_time', type: 'string' },
+        { name: 'total_marks', type: 'number' },
+        { name: 'scored_marks', type: 'number' },
+        { name: 'grading_duration_seconds', type: 'number', isOptional: true },
+        { name: 'created_at', type: 'number' },
+        { name: 'updated_at', type: 'number' },
+      ],
+    },
+    questions: {
+      name: 'questions',
+      columns: [
+        { name: 'paper_id', type: 'string', isIndexed: true },
+        { name: 'topic_id', type: 'string', isIndexed: true, isOptional: true },
+        { name: 'topic_name', type: 'string' },
+        { name: 'question_number', type: 'number' },
+        { name: 'question_text', type: 'string' },
+        { name: 'answer_key', type: 'string' },
+        { name: 'marking_scheme', type: 'string' }, // JSON stringified array of steps
+        { name: 'difficulty', type: 'number' },
+        { name: 'max_marks', type: 'number' },
+        { name: 'is_alternate', type: 'boolean', isIndexed: true },
+        { name: 'swapped_with_id', type: 'string', isOptional: true },
+        { name: 'order_index', type: 'number' },
+      ],
+    },
+    results: {
+      name: 'results',
+      columns: [
+        { name: 'question_id', type: 'string', isIndexed: true },
+        { name: 'student_id', type: 'string', isIndexed: true },
+        { name: 'paper_id', type: 'string', isIndexed: true },
+        { name: 'awarded_marks', type: 'number' },
+        { name: 'max_marks', type: 'number' },
+        { name: 'is_correct', type: 'boolean' },
+        { name: 'graded_at', type: 'number' },
+        { name: 'time_spent_ms', type: 'number', isOptional: true },
+        { name: 'synced', type: 'boolean' },
+      ],
+    },
+    sync_queue: {
+      name: 'sync_queue',
+      columns: [
+        { name: 'table_name', type: 'string' },
+        { name: 'record_id', type: 'string' },
+        { name: 'action', type: 'string' },
+        { name: 'payload', type: 'string' },
+        { name: 'attempts', type: 'number' },
+        { name: 'created_at', type: 'number' },
+      ],
+    },
+  },
+};
