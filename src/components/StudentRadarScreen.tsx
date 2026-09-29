@@ -2,16 +2,14 @@ import React, { useState, useEffect } from 'react';
 import { 
   ArrowLeft, 
   Printer, 
-  AlertTriangle, 
-  CheckCircle2, 
-  Clock, 
   Zap, 
-  RefreshCw
+  RefreshCw,
+  CheckCircle2,
+  AlertCircle
 } from 'lucide-react';
 import type { Student, Topic, Paper, Question } from '../types';
 import { localDb } from '../database/localDb';
 import { RadarChart } from './RadarChart';
-import { AnalyticsEngine } from '../services/analyticsEngine';
 import { PaperPrintModal } from './PaperPrintModal';
 
 interface StudentRadarScreenProps {
@@ -59,7 +57,7 @@ export const StudentRadarScreen: React.FC<StudentRadarScreenProps> = ({
 
   const handleSwapQuestion = (questionId: string) => {
     if (alternatePool.length === 0) {
-      alert('All pre-fetched alternate questions have already been used for this paper!');
+      alert('All alternate questions have already been used for this paper!');
       return;
     }
 
@@ -77,88 +75,69 @@ export const StudentRadarScreen: React.FC<StudentRadarScreenProps> = ({
     ? Math.round(topics.reduce((acc, t) => acc + t.mastery_percentage, 0) / topics.length)
     : 0;
 
-  const weakTopics = topics.filter(t => t.mastery_percentage < 60);
-
   return (
-    <div style={{ maxWidth: '1020px', margin: '0 auto', padding: '24px 20px' }}>
-      {/* Top Header */}
+    <div style={{ maxWidth: '900px', margin: '0 auto', padding: '24px 16px' }}>
+      {/* Friendly Top Header */}
       <div
         style={{
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'space-between',
           flexWrap: 'wrap',
-          gap: '16px',
+          gap: '12px',
           marginBottom: '24px',
-          paddingBottom: '20px',
-          borderBottom: '1px solid #E2E8F0',
         }}
       >
         <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
           <button
             onClick={onBack}
+            className="btn-duo btn-duo-white"
             style={{
-              backgroundColor: '#FFFFFF',
-              border: '1px solid #CBD5E1',
-              borderRadius: '8px',
-              padding: '8px',
-              color: '#334155',
-              cursor: 'pointer',
-              display: 'flex',
-              alignItems: 'center',
-              boxShadow: '0 1px 2px 0 rgba(0, 0, 0, 0.05)',
+              padding: '8px 12px',
+              borderRadius: '14px',
+              color: '#4B5563',
             }}
           >
-            <ArrowLeft size={16} />
+            <ArrowLeft size={18} />
           </button>
 
           <div>
             <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-              <h2 style={{ fontSize: '20px', fontWeight: 800, color: '#0F172A' }}>
+              <h2 style={{ fontSize: '22px', fontWeight: 900, color: '#23272E', margin: 0 }}>
                 {student.name}
               </h2>
               <span
                 style={{
-                  backgroundColor: '#EFF6FF',
-                  border: '1px solid #BFDBFE',
-                  color: '#1D4ED8',
-                  fontSize: '11px',
-                  fontWeight: 700,
-                  padding: '2px 8px',
-                  borderRadius: '12px',
+                  backgroundColor: '#EBF5FF',
+                  color: '#1CB0F6',
+                  fontSize: '12px',
+                  fontWeight: 800,
+                  padding: '3px 10px',
+                  borderRadius: '10px',
                 }}
               >
                 {student.syllabus_board}
               </span>
             </div>
-            <div style={{ fontSize: '13px', color: '#64748B', marginTop: '2px' }}>
-              {student.grade} • Target: <strong>{student.target_exam}</strong> • Class Slot: <strong>{student.schedule_time}</strong>
-            </div>
+            <p style={{ fontSize: '13px', color: '#6B7280', margin: 0, fontWeight: 500, marginTop: '2px' }}>
+              {student.grade} • Class Time: <strong>{student.schedule_time}</strong>
+            </p>
           </div>
         </div>
 
-        {/* Quick Actions */}
+        {/* Action Buttons */}
         <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
           {activePaper && (
             <button
               onClick={() => setShowPrintModal(true)}
+              className="btn-duo btn-duo-blue"
               style={{
-                display: 'flex',
-                alignItems: 'center',
-                gap: '6px',
-                backgroundColor: '#FFFFFF',
-                border: '1px solid #CBD5E1',
-                color: '#334155',
-                padding: '8px 14px',
-                borderRadius: '8px',
-                fontSize: '13px',
-                fontWeight: 600,
-                cursor: 'pointer',
-                boxShadow: '0 1px 2px 0 rgba(0, 0, 0, 0.05)',
+                padding: '10px 18px',
+                fontSize: '14px',
+                borderRadius: '14px',
               }}
-              title="Print Clean Practice Paper Sheet"
             >
-              <Printer size={15} />
+              <Printer size={16} />
               <span>Print Paper</span>
             </button>
           )}
@@ -166,279 +145,213 @@ export const StudentRadarScreen: React.FC<StudentRadarScreenProps> = ({
           {activePaper && activePaper.status === 'needs_grading' && onGradePaper && (
             <button
               onClick={() => onGradePaper(activePaper)}
+              className="btn-duo btn-duo-red"
               style={{
-                display: 'flex',
-                alignItems: 'center',
-                gap: '6px',
-                backgroundColor: '#E11D48',
-                color: '#FFFFFF',
-                padding: '8px 16px',
-                borderRadius: '8px',
-                fontSize: '13px',
-                fontWeight: 700,
-                border: 'none',
-                cursor: 'pointer',
-                boxShadow: '0 2px 6px rgba(225, 29, 72, 0.3)',
+                padding: '10px 18px',
+                fontSize: '14px',
+                borderRadius: '14px',
               }}
             >
-              <Zap size={14} />
-              <span>Zen Grade Now</span>
+              <Zap size={16} />
+              <span>Grade Paper</span>
             </button>
           )}
         </div>
       </div>
 
-      {/* Main Grid: Radar Chart + Analytics on Left, Paper Tweaker on Right */}
+      {/* Main 2-Column Friendly Layout */}
       <div
         style={{
           display: 'grid',
-          gridTemplateColumns: 'minmax(340px, 440px) 1fr',
-          gap: '24px',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(340px, 1fr))',
+          gap: '20px',
         }}
       >
-        {/* Left Column: Hexagon Radar Chart & EWMA Decay Inspector */}
-        <div className="card-clean" style={{ padding: '24px' }}>
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '16px' }}>
-            <h3 style={{ fontSize: '16px', fontWeight: 800, color: '#0F172A' }}>
-              6-Topic Mastery Radar
+        {/* Left Column: Topic Mastery Overview */}
+        <div className="duo-card" style={{ padding: '22px' }}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '14px' }}>
+            <h3 style={{ fontSize: '16px', fontWeight: 800, color: '#23272E', margin: 0 }}>
+              Topic Mastery
             </h3>
             <span
               style={{
-                fontSize: '12px',
+                fontSize: '13px',
                 fontWeight: 800,
-                color: avgMastery >= 70 ? '#059669' : '#D97706',
-                backgroundColor: avgMastery >= 70 ? '#ECFDF5' : '#FFFBEB',
-                border: '1px solid ' + (avgMastery >= 70 ? '#A7F3D0' : '#FDE68A'),
-                padding: '3px 8px',
-                borderRadius: '6px',
+                color: avgMastery >= 60 ? '#58CC02' : '#FF9600',
+                backgroundColor: avgMastery >= 60 ? '#D7FFB8' : '#FFEBD1',
+                padding: '3px 10px',
+                borderRadius: '10px',
               }}
             >
-              Avg {avgMastery}%
+              Average {avgMastery}%
             </span>
           </div>
 
+          {/* Clean Radar */}
           <RadarChart
             topics={topics}
-            size={360}
+            size={320}
             onSelectTopic={t => setSelectedTopic(t)}
             selectedTopicId={selectedTopic?.id}
           />
 
-          {/* Topic Detail & EWMA Decay Inspector Card */}
-          {selectedTopic && (
-            <div
-              style={{
-                marginTop: '20px',
-                backgroundColor: '#F8FAFC',
-                border: `1px solid ${selectedTopic.mastery_percentage < 60 ? '#FECDD3' : '#BFDBFE'}`,
-                borderRadius: '10px',
-                padding: '14px 16px',
-              }}
-            >
-              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '6px' }}>
-                <div style={{ fontSize: '14px', fontWeight: 800, color: '#0F172A' }}>
-                  {selectedTopic.name}
-                </div>
-                <div
-                  style={{
-                    fontSize: '15px',
-                    fontWeight: 900,
-                    color: selectedTopic.mastery_percentage < 60 ? '#E11D48' : '#059669',
-                  }}
-                >
-                  {selectedTopic.mastery_percentage}%
-                </div>
-              </div>
-
-              {(() => {
-                const { decayApplied, daysSinceTested } = AnalyticsEngine.applyTimeDecay(
-                  selectedTopic.mastery_percentage,
-                  selectedTopic.last_tested_at
-                );
-
-                return (
-                  <div style={{ fontSize: '12px', color: '#475569', display: 'flex', flexDirection: 'column', gap: '6px' }}>
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-                      <Clock size={13} color="#D97706" />
-                      <span>Last tested <strong>{daysSinceTested} days ago</strong></span>
-                      {decayApplied && (
-                        <span style={{ color: '#E11D48', fontWeight: 700 }}>
-                          (-10% Decay Applied)
-                        </span>
-                      )}
-                    </div>
-
-                    {selectedTopic.mastery_percentage < 60 ? (
-                      <div style={{ color: '#BE123C', fontWeight: 600, display: 'flex', alignItems: 'center', gap: '5px' }}>
-                        <AlertTriangle size={13} />
-                        <span>Needs Intervention: 60% prompt priority locked to Diff 1-2</span>
-                      </div>
-                    ) : (
-                      <div style={{ color: '#065F46', fontWeight: 600, display: 'flex', alignItems: 'center', gap: '5px' }}>
-                        <CheckCircle2 size={13} />
-                        <span>Mastered: 40% prompt challenge locked to Diff 4-5</span>
-                      </div>
-                    )}
-                  </div>
-                );
-              })()}
-            </div>
-          )}
-        </div>
-
-        {/* Right Column: Paper Tweaker with Instant Question Swapping */}
-        <div className="card-clean" style={{ padding: '24px' }}>
-          <div
-            style={{
-              display: 'flex',
-              justifyContent: 'space-between',
-              alignItems: 'center',
-              marginBottom: '16px',
-            }}
-          >
-            <div>
-              <h3 style={{ fontSize: '16px', fontWeight: 800, color: '#0F172A' }}>
-                Paper Tweaker: Zero-Wait Swap
-              </h3>
-              <p style={{ fontSize: '12px', color: '#64748B' }}>
-                Dislike a question? Click Swap to replace it instantly from the local DB.
-              </p>
-            </div>
-
-            <div
-              style={{
-                backgroundColor: '#EFF6FF',
-                border: '1px solid #BFDBFE',
-                padding: '4px 10px',
-                borderRadius: '12px',
-                color: '#1D4ED8',
-                fontSize: '11px',
-                fontWeight: 700,
-                display: 'flex',
-                alignItems: 'center',
-                gap: '4px',
-              }}
-            >
-              <Zap size={12} />
-              <span>{alternatePool.length} Pre-fetched Alternates</span>
-            </div>
-          </div>
-
-          {/* Toast Notification when a question is swapped */}
-          {swappedQuestionId && (
-            <div
-              className="animate-slide-up"
-              style={{
-                backgroundColor: '#ECFDF5',
-                border: '1px solid #A7F3D0',
-                borderRadius: '8px',
-                padding: '8px 14px',
-                fontSize: '12px',
-                color: '#065F46',
-                fontWeight: 700,
-                marginBottom: '14px',
-                display: 'flex',
-                alignItems: 'center',
-                gap: '6px',
-              }}
-            >
-              <CheckCircle2 size={15} color="#059669" />
-              <span>Question swapped instantly with pre-fetched alternate! 0ms latency.</span>
-            </div>
-          )}
-
-          {/* Question List */}
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '10px', maxHeight: '540px', overflowY: 'auto' }}>
-            {questions.map((q, idx) => {
-              const isWeakTopic = weakTopics.some(w => w.name === q.topic_name);
-              const isRecentlySwapped = swappedQuestionId === q.id;
-
+          {/* Simple Visual Topic List */}
+          <div style={{ marginTop: '16px', display: 'flex', flexDirection: 'column', gap: '8px' }}>
+            {topics.map(t => {
+              const isWeak = t.mastery_percentage < 60;
               return (
                 <div
-                  key={q.id}
+                  key={t.id}
+                  onClick={() => setSelectedTopic(t)}
                   style={{
-                    backgroundColor: isRecentlySwapped ? '#ECFDF5' : '#FFFFFF',
-                    border: isRecentlySwapped ? '1px solid #A7F3D0' : '1px solid #E2E8F0',
-                    borderRadius: '10px',
-                    padding: '14px',
-                    boxShadow: '0 1px 2px 0 rgba(0, 0, 0, 0.04)',
-                    transition: 'all 0.2s ease',
+                    padding: '8px 12px',
+                    borderRadius: '12px',
+                    backgroundColor: selectedTopic?.id === t.id ? '#F0F9FF' : '#F9FAFB',
+                    border: selectedTopic?.id === t.id ? '2px solid #BAE6FD' : '1px solid #E5E7EB',
+                    cursor: 'pointer',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'space-between',
                   }}
                 >
-                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '8px' }}>
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                      <span
-                        style={{
-                          backgroundColor: '#0F172A',
-                          color: '#FFFFFF',
-                          fontSize: '11px',
-                          fontWeight: 800,
-                          padding: '2px 7px',
-                          borderRadius: '4px',
-                        }}
-                      >
-                        Q{idx + 1}
-                      </span>
-
-                      <span
-                        style={{
-                          fontSize: '11px',
-                          fontWeight: 700,
-                          color: isWeakTopic ? '#E11D48' : '#2563EB',
-                          backgroundColor: isWeakTopic ? '#FFF1F2' : '#EFF6FF',
-                          border: `1px solid ${isWeakTopic ? '#FECDD3' : '#BFDBFE'}`,
-                          padding: '2px 7px',
-                          borderRadius: '4px',
-                        }}
-                      >
-                        {q.topic_name}
-                      </span>
-
-                      <span style={{ fontSize: '11px', color: '#64748B', fontWeight: 500 }}>
-                        Diff {q.difficulty}/5
-                      </span>
-                    </div>
-
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                      <span style={{ fontSize: '12px', fontWeight: 800, color: '#059669' }}>
-                        {q.max_marks}m
-                      </span>
-
-                      <button
-                        onClick={() => handleSwapQuestion(q.id)}
-                        disabled={alternatePool.length === 0}
-                        style={{
-                          display: 'flex',
-                          alignItems: 'center',
-                          gap: '4px',
-                          backgroundColor: '#EFF6FF',
-                          border: '1px solid #BFDBFE',
-                          color: '#1D4ED8',
-                          borderRadius: '6px',
-                          padding: '4px 8px',
-                          fontSize: '11px',
-                          fontWeight: 700,
-                          cursor: alternatePool.length > 0 ? 'pointer' : 'not-allowed',
-                          opacity: alternatePool.length > 0 ? 1 : 0.4,
-                        }}
-                        title="Click to swap with pre-fetched alternate question"
-                      >
-                        <RefreshCw size={11} />
-                        <span>Swap</span>
-                      </button>
-                    </div>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                    {isWeak ? (
+                      <AlertCircle size={15} color="#FF4B4B" />
+                    ) : (
+                      <CheckCircle2 size={15} color="#58CC02" />
+                    )}
+                    <span style={{ fontSize: '13px', fontWeight: 700, color: '#23272E' }}>
+                      {t.name}
+                    </span>
                   </div>
 
-                  <p style={{ fontSize: '14px', color: '#0F172A', lineHeight: 1.5, marginBottom: '6px' }}>
-                    {q.question_text}
-                  </p>
-
-                  <div style={{ fontSize: '12px', color: '#64748B' }}>
-                    Answer Key: <strong style={{ color: '#059669' }}>{q.answer_key}</strong>
-                  </div>
+                  <span
+                    style={{
+                      fontSize: '13px',
+                      fontWeight: 800,
+                      color: isWeak ? '#FF4B4B' : '#58CC02',
+                    }}
+                  >
+                    {t.mastery_percentage}% {isWeak ? '(Needs Help)' : '(Good)'}
+                  </span>
                 </div>
               );
             })}
+          </div>
+        </div>
+
+        {/* Right Column: Practice Paper & Simple Swap */}
+        <div className="duo-card" style={{ padding: '22px' }}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '14px' }}>
+            <div>
+              <h3 style={{ fontSize: '16px', fontWeight: 800, color: '#23272E', margin: 0 }}>
+                Practice Paper Questions
+              </h3>
+              <p style={{ fontSize: '12px', color: '#6B7280', margin: 0 }}>
+                Don't like a question? Tap Swap to change it.
+              </p>
+            </div>
+
+            <span
+              style={{
+                backgroundColor: '#EFF6FF',
+                color: '#1CB0F6',
+                fontSize: '11px',
+                fontWeight: 800,
+                padding: '4px 8px',
+                borderRadius: '8px',
+              }}
+            >
+              {alternatePool.length} Alternates Ready
+            </span>
+          </div>
+
+          {/* Toast when swapped */}
+          {swappedQuestionId && (
+            <div
+              className="animate-pop-in duo-card"
+              style={{
+                backgroundColor: '#F0FDF4',
+                borderColor: '#BBF7D0',
+                padding: '10px 14px',
+                marginBottom: '12px',
+                color: '#16A34A',
+                fontWeight: 700,
+                fontSize: '13px',
+                display: 'flex',
+                alignItems: 'center',
+                gap: '8px',
+              }}
+            >
+              <CheckCircle2 size={16} />
+              <span>Question swapped with a fresh one!</span>
+            </div>
+          )}
+
+          {/* Questions List */}
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '10px', maxHeight: '520px', overflowY: 'auto' }}>
+            {questions.map((q, idx) => (
+              <div
+                key={q.id}
+                className="duo-card"
+                style={{
+                  padding: '14px',
+                  backgroundColor: '#FFFFFF',
+                }}
+              >
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px' }}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+                    <span
+                      style={{
+                        backgroundColor: '#23272E',
+                        color: '#FFFFFF',
+                        fontSize: '11px',
+                        fontWeight: 800,
+                        padding: '2px 7px',
+                        borderRadius: '6px',
+                      }}
+                    >
+                      #{idx + 1}
+                    </span>
+
+                    <span style={{ fontSize: '12px', fontWeight: 700, color: '#4B5563' }}>
+                      {q.topic_name}
+                    </span>
+                  </div>
+
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+                    <span style={{ fontSize: '12px', fontWeight: 800, color: '#58CC02' }}>
+                      {q.max_marks} pts
+                    </span>
+
+                    {/* Simple Swap Button */}
+                    <button
+                      onClick={() => handleSwapQuestion(q.id)}
+                      disabled={alternatePool.length === 0}
+                      className="btn-duo btn-duo-white"
+                      style={{
+                        padding: '4px 10px',
+                        fontSize: '11px',
+                        borderRadius: '10px',
+                        color: '#1CB0F6',
+                        borderColor: '#BAE6FD',
+                      }}
+                    >
+                      <RefreshCw size={11} />
+                      <span>Swap</span>
+                    </button>
+                  </div>
+                </div>
+
+                <p style={{ fontSize: '14px', fontWeight: 500, color: '#23272E', lineHeight: 1.5, margin: 0 }}>
+                  {q.question_text}
+                </p>
+
+                <div style={{ fontSize: '12px', color: '#16A34A', fontWeight: 700, marginTop: '8px' }}>
+                  Answer: {q.answer_key}
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </div>

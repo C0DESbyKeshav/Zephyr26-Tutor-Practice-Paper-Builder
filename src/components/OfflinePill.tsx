@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Wifi, WifiOff, RefreshCw, RotateCcw } from 'lucide-react';
+import { Cloud, CloudOff, RefreshCw, RotateCcw } from 'lucide-react';
 import { localDb } from '../database/localDb';
 import type { SyncStatus } from '../types';
 
@@ -18,7 +18,7 @@ export const OfflinePill: React.FC = () => {
   };
 
   const handleResetData = () => {
-    if (window.confirm('Reset all 15 students, practice papers, and analytics to clean initial state?')) {
+    if (window.confirm('Reset all students and practice papers to initial demo state?')) {
       localDb.resetToInitialSeed();
     }
   };
@@ -27,62 +27,45 @@ export const OfflinePill: React.FC = () => {
     <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
       <button
         onClick={handleManualSync}
-        title="Local-first SQLite sync engine. Click to flush mutations to Supabase."
+        title="Everything is automatically saved on this device even without internet."
+        className="btn-duo btn-duo-white"
         style={{
-          display: 'flex',
-          alignItems: 'center',
-          gap: '6px',
-          backgroundColor: '#FFFFFF',
-          border: '1px solid #E2E8F0',
-          padding: '6px 12px',
-          borderRadius: '8px',
+          padding: '8px 14px',
+          fontSize: '13px',
+          borderRadius: '14px',
           color: syncStatus.isOnline ? '#059669' : '#D97706',
-          fontSize: '12px',
-          fontWeight: 600,
-          cursor: 'pointer',
-          boxShadow: '0 1px 2px 0 rgba(0, 0, 0, 0.05)',
-          transition: 'all 0.15s ease',
         }}
       >
         {syncStatus.isSyncing ? (
-          <RefreshCw size={13} style={{ animation: 'spin 1s linear infinite' }} />
+          <RefreshCw size={14} style={{ animation: 'spin 1s linear infinite' }} />
         ) : syncStatus.isOnline ? (
-          <Wifi size={13} />
+          <Cloud size={15} />
         ) : (
-          <WifiOff size={13} />
+          <CloudOff size={15} />
         )}
 
         <span>
           {syncStatus.isSyncing
-            ? 'Syncing to Cloud...'
+            ? 'Saving...'
             : syncStatus.pendingCount > 0
-            ? `${syncStatus.pendingCount} Queued Offline`
-            : syncStatus.isOnline
-            ? 'Local SQLite • Synced'
-            : 'Offline (Local-First)'}
+            ? `${syncStatus.pendingCount} Saved Offline`
+            : 'Saved & Ready'}
         </span>
       </button>
 
       <button
         onClick={handleResetData}
-        title="Reset 15 Students, Papers & Analytics for fresh evaluation"
+        title="Reset demo data"
+        className="btn-duo btn-duo-white"
         style={{
-          display: 'flex',
-          alignItems: 'center',
-          gap: '4px',
-          backgroundColor: '#FFFFFF',
-          border: '1px solid #E2E8F0',
-          padding: '6px 10px',
-          borderRadius: '8px',
-          color: '#64748B',
-          fontSize: '12px',
-          fontWeight: 500,
-          cursor: 'pointer',
-          boxShadow: '0 1px 2px 0 rgba(0, 0, 0, 0.05)',
+          padding: '8px 12px',
+          fontSize: '13px',
+          borderRadius: '14px',
+          color: '#6B7280',
         }}
       >
-        <RotateCcw size={12} />
-        <span>Reset Seed</span>
+        <RotateCcw size={14} />
+        <span>Reset</span>
       </button>
 
       <style>{`

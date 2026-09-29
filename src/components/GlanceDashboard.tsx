@@ -5,10 +5,8 @@ import {
   Zap, 
   ChevronRight, 
   Search, 
-  TrendingUp,
-  AlertCircle,
-  CheckCircle2,
-  Users
+  CheckCircle2, 
+  FileText
 } from 'lucide-react';
 import type { Student, Paper } from '../types';
 import { localDb } from '../database/localDb';
@@ -31,7 +29,7 @@ export const GlanceDashboard: React.FC<GlanceDashboardProps> = ({
   const [isPrepping, setIsPrepping] = useState(false);
   const [prepNotification, setPrepNotification] = useState<string | null>(null);
 
-  // 10-Minute Window live ticker countdown (e.g. 07:42 left in current interval)
+  // 10-Minute Window live ticker countdown
   const [windowSecondsLeft, setWindowSecondsLeft] = useState(468);
 
   const loadData = () => {
@@ -55,10 +53,9 @@ export const GlanceDashboard: React.FC<GlanceDashboardProps> = ({
   const formatCountdown = (totalSeconds: number) => {
     const mins = Math.floor(totalSeconds / 60);
     const secs = totalSeconds % 60;
-    return `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+    return `${mins}m ${secs.toString().padStart(2, '0')}s`;
   };
 
-  // Flow A: "Prep Today's Papers" FAB tap handler
   const handlePrepTodaysPapers = async () => {
     setIsPrepping(true);
     const result = await localDb.prepTodaysPapers();
@@ -69,7 +66,7 @@ export const GlanceDashboard: React.FC<GlanceDashboardProps> = ({
 
     setTimeout(() => {
       setPrepNotification(null);
-    }, 4500);
+    }, 4000);
   };
 
   const getStudentPaper = (studentId: string) => {
@@ -81,18 +78,11 @@ export const GlanceDashboard: React.FC<GlanceDashboardProps> = ({
     );
   };
 
-  const getWeakTopicName = (studentId: string) => {
-    const topics = localDb.getTopicsForStudent(studentId);
-    const weak = topics.find(t => t.mastery_percentage < 60);
-    return weak ? `${weak.name} (${weak.mastery_percentage}%)` : null;
-  };
-
   const filteredStudents = students.filter(student => {
     const paper = getStudentPaper(student.id);
     const matchesSearch =
       student.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      student.syllabus_board.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      student.grade.toLowerCase().includes(searchQuery.toLowerCase());
+      student.syllabus_board.toLowerCase().includes(searchQuery.toLowerCase());
 
     if (!matchesSearch) return false;
 
@@ -108,78 +98,66 @@ export const GlanceDashboard: React.FC<GlanceDashboardProps> = ({
   const needsGradingCount = papers.filter(p => p.status === 'needs_grading').length;
   const readyForClassCount = papers.filter(p => p.status === 'ready_for_class').length;
 
+  // Cheerful avatar colors for students
+  const avatarColors = [
+    '#1CB0F6', '#58CC02', '#FF9600', '#CE82FF', '#FF4B4B', 
+    '#2B70C9', '#00CD9C', '#FF86D0', '#E5A500', '#10B981'
+  ];
+
   return (
-    <div style={{ maxWidth: '980px', margin: '0 auto', padding: '28px 20px 120px' }}>
-      {/* Top Header Bar */}
+    <div style={{ maxWidth: '820px', margin: '0 auto', padding: '24px 16px 120px' }}>
+      {/* Friendly Top Header */}
       <header
         style={{
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'space-between',
           flexWrap: 'wrap',
-          gap: '16px',
-          paddingBottom: '24px',
-          borderBottom: '1px solid #E2E8F0',
+          gap: '12px',
           marginBottom: '24px',
         }}
       >
-        <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
           <div
             style={{
-              width: '40px',
-              height: '40px',
-              borderRadius: '10px',
-              backgroundColor: '#2563EB',
+              width: '42px',
+              height: '42px',
+              borderRadius: '16px',
+              backgroundColor: '#58CC02',
+              boxShadow: '0 4px 0 #46A302',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
               color: '#FFFFFF',
-              boxShadow: '0 4px 10px rgba(37, 99, 235, 0.25)',
             }}
           >
-            <Zap size={22} strokeWidth={2.5} />
+            <Zap size={24} strokeWidth={2.5} />
           </div>
           <div>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-              <h1 style={{ fontSize: '20px', fontWeight: 800, color: '#0F172A', letterSpacing: '-0.3px' }}>
-                Antigravity Tutor
-              </h1>
-              <span
-                style={{
-                  backgroundColor: '#EFF6FF',
-                  color: '#2563EB',
-                  fontSize: '11px',
-                  fontWeight: 700,
-                  padding: '2px 8px',
-                  borderRadius: '12px',
-                  border: '1px solid #BFDBFE',
-                }}
-              >
-                Zero-Wait Engine
-              </span>
-            </div>
-            <p style={{ color: '#64748B', fontSize: '13px', marginTop: '2px' }}>
-              Adaptive Practice Paper Generator • 10-Minute Classroom Window
+            <h1 style={{ fontSize: '22px', fontWeight: 900, color: '#23272E', margin: 0 }}>
+              Tutor Practice
+            </h1>
+            <p style={{ fontSize: '13px', color: '#6B7280', margin: 0, fontWeight: 500 }}>
+              Today's Classes & Papers
             </p>
           </div>
         </div>
 
-        {/* Sync Status & Reset Pill */}
         <OfflinePill />
       </header>
 
-      {/* 4 Stat Overview Cards */}
-      <section
+      {/* 2 Big Friendly Goal Cards */}
+      <div
         style={{
           display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(210px, 1fr))',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))',
           gap: '16px',
-          marginBottom: '28px',
+          marginBottom: '24px',
         }}
       >
-        {/* 1. 10-Minute Window Urgency Card */}
+        {/* Next Class Timer */}
         <div
-          className="card-clean"
+          className="duo-card"
           style={{
             padding: '18px 20px',
             backgroundColor: '#FFFBEB',
@@ -191,37 +169,37 @@ export const GlanceDashboard: React.FC<GlanceDashboardProps> = ({
         >
           <div
             style={{
-              width: '44px',
-              height: '44px',
-              borderRadius: '10px',
+              width: '50px',
+              height: '50px',
+              borderRadius: '16px',
               backgroundColor: '#FEF3C7',
+              color: '#D97706',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
-              color: '#D97706',
               flexShrink: 0,
             }}
           >
-            <Clock size={22} />
+            <Clock size={26} strokeWidth={2.5} />
           </div>
           <div>
-            <div style={{ fontSize: '11px', fontWeight: 700, color: '#92400E', textTransform: 'uppercase', letterSpacing: '0.5px' }}>
-              10-Min Class Window
+            <div style={{ fontSize: '12px', fontWeight: 700, color: '#92400E', textTransform: 'uppercase' }}>
+              Next Class In
             </div>
-            <div style={{ fontSize: '22px', fontWeight: 900, color: '#78350F', fontFamily: 'monospace', marginTop: '2px' }}>
+            <div style={{ fontSize: '24px', fontWeight: 900, color: '#78350F' }}>
               {formatCountdown(windowSecondsLeft)}
             </div>
           </div>
         </div>
 
-        {/* 2. Needs Grading Card */}
+        {/* Papers to Grade Summary */}
         <div
-          className="card-clean"
+          className="duo-card duo-card-interactive"
           onClick={() => setFilterMode('needs_grading')}
           style={{
             padding: '18px 20px',
-            backgroundColor: '#FFF1F2',
-            borderColor: '#FECDD3',
+            backgroundColor: needsGradingCount > 0 ? '#FFF1F2' : '#F0FDF4',
+            borderColor: needsGradingCount > 0 ? '#FECDD3' : '#BBF7D0',
             display: 'flex',
             alignItems: 'center',
             gap: '14px',
@@ -230,131 +208,57 @@ export const GlanceDashboard: React.FC<GlanceDashboardProps> = ({
         >
           <div
             style={{
-              width: '44px',
-              height: '44px',
-              borderRadius: '10px',
-              backgroundColor: '#FFE4E6',
+              width: '50px',
+              height: '50px',
+              borderRadius: '16px',
+              backgroundColor: needsGradingCount > 0 ? '#FFE4E6' : '#DCFCE7',
+              color: needsGradingCount > 0 ? '#E11D48' : '#16A34A',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
-              color: '#E11D48',
               flexShrink: 0,
             }}
           >
-            <AlertCircle size={22} />
+            {needsGradingCount > 0 ? (
+              <FileText size={26} strokeWidth={2.5} />
+            ) : (
+              <CheckCircle2 size={26} strokeWidth={2.5} />
+            )}
           </div>
           <div>
-            <div style={{ fontSize: '11px', fontWeight: 700, color: '#9F1239', textTransform: 'uppercase', letterSpacing: '0.5px' }}>
-              Needs Grading (🔴)
+            <div style={{ fontSize: '12px', fontWeight: 700, color: needsGradingCount > 0 ? '#9F1239' : '#166534', textTransform: 'uppercase' }}>
+              {needsGradingCount > 0 ? 'Papers to Grade' : 'All Graded!'}
             </div>
-            <div style={{ fontSize: '22px', fontWeight: 900, color: '#881337', marginTop: '2px' }}>
-              {needsGradingCount} Papers
+            <div style={{ fontSize: '24px', fontWeight: 900, color: needsGradingCount > 0 ? '#881337' : '#14532D' }}>
+              {needsGradingCount > 0 ? `${needsGradingCount} Waiting` : 'All Done 🎉'}
             </div>
           </div>
         </div>
+      </div>
 
-        {/* 3. Ready for Class Card */}
-        <div
-          className="card-clean"
-          onClick={() => setFilterMode('ready')}
-          style={{
-            padding: '18px 20px',
-            backgroundColor: '#ECFDF5',
-            borderColor: '#A7F3D0',
-            display: 'flex',
-            alignItems: 'center',
-            gap: '14px',
-            cursor: 'pointer',
-          }}
-        >
-          <div
-            style={{
-              width: '44px',
-              height: '44px',
-              borderRadius: '10px',
-              backgroundColor: '#D1FAE5',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              color: '#059669',
-              flexShrink: 0,
-            }}
-          >
-            <CheckCircle2 size={22} />
-          </div>
-          <div>
-            <div style={{ fontSize: '11px', fontWeight: 700, color: '#065F46', textTransform: 'uppercase', letterSpacing: '0.5px' }}>
-              Ready for Class (🟢)
-            </div>
-            <div style={{ fontSize: '22px', fontWeight: 900, color: '#064E3B', marginTop: '2px' }}>
-              {readyForClassCount} Ready
-            </div>
-          </div>
-        </div>
-
-        {/* 4. Active Students Card */}
-        <div
-          className="card-clean"
-          onClick={() => setFilterMode('all')}
-          style={{
-            padding: '18px 20px',
-            backgroundColor: '#FFFFFF',
-            display: 'flex',
-            alignItems: 'center',
-            gap: '14px',
-            cursor: 'pointer',
-          }}
-        >
-          <div
-            style={{
-              width: '44px',
-              height: '44px',
-              borderRadius: '10px',
-              backgroundColor: '#F1F5F9',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              color: '#3B82F6',
-              flexShrink: 0,
-            }}
-          >
-            <Users size={22} />
-          </div>
-          <div>
-            <div style={{ fontSize: '11px', fontWeight: 700, color: '#64748B', textTransform: 'uppercase', letterSpacing: '0.5px' }}>
-              Total Students
-            </div>
-            <div style={{ fontSize: '22px', fontWeight: 900, color: '#0F172A', marginTop: '2px' }}>
-              {students.length} Enrolled
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Toast Notification when FAB is triggered */}
+      {/* Cheerful Alert Toast when FAB triggered */}
       {prepNotification && (
         <div
-          className="animate-slide-up"
+          className="animate-pop-in duo-card"
           style={{
-            backgroundColor: '#EFF6FF',
-            border: '1px solid #BFDBFE',
-            borderRadius: '10px',
+            backgroundColor: '#F0F9FF',
+            borderColor: '#BAE6FD',
             padding: '12px 18px',
             marginBottom: '20px',
-            color: '#1E40AF',
-            fontWeight: 600,
-            fontSize: '13px',
             display: 'flex',
             alignItems: 'center',
-            gap: '8px',
+            gap: '10px',
+            color: '#0369A1',
+            fontWeight: 700,
+            fontSize: '14px',
           }}
         >
-          <Sparkles size={16} color="#2563EB" />
+          <Sparkles size={18} color="#0284C7" />
           <span>{prepNotification}</span>
         </div>
       )}
 
-      {/* Filter Tabs & Search Bar */}
+      {/* Filter Tabs & Search */}
       <div
         style={{
           display: 'flex',
@@ -365,263 +269,199 @@ export const GlanceDashboard: React.FC<GlanceDashboardProps> = ({
           marginBottom: '20px',
         }}
       >
-        <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+        {/* Simple Chunky Tabs */}
+        <div style={{ display: 'flex', gap: '8px' }}>
           <button
             onClick={() => setFilterMode('all')}
-            style={{
-              backgroundColor: filterMode === 'all' ? '#0F172A' : '#FFFFFF',
-              color: filterMode === 'all' ? '#FFFFFF' : '#475569',
-              border: '1px solid ' + (filterMode === 'all' ? '#0F172A' : '#E2E8F0'),
-              padding: '7px 16px',
-              borderRadius: '20px',
-              fontSize: '13px',
-              fontWeight: 600,
-              cursor: 'pointer',
-              transition: 'all 0.15s ease',
-            }}
+            className={`btn-duo ${filterMode === 'all' ? 'btn-duo-blue' : 'btn-duo-white'}`}
+            style={{ padding: '8px 16px', fontSize: '14px', borderRadius: '14px' }}
           >
-            All Students ({students.length})
+            All ({students.length})
           </button>
 
           <button
             onClick={() => setFilterMode('needs_grading')}
-            style={{
-              backgroundColor: filterMode === 'needs_grading' ? '#E11D48' : '#FFFFFF',
-              color: filterMode === 'needs_grading' ? '#FFFFFF' : '#475569',
-              border: '1px solid ' + (filterMode === 'needs_grading' ? '#E11D48' : '#E2E8F0'),
-              padding: '7px 16px',
-              borderRadius: '20px',
-              fontSize: '13px',
-              fontWeight: 600,
-              cursor: 'pointer',
-              display: 'flex',
-              alignItems: 'center',
-              gap: '6px',
-              transition: 'all 0.15s ease',
-            }}
+            className={`btn-duo ${filterMode === 'needs_grading' ? 'btn-duo-red' : 'btn-duo-white'}`}
+            style={{ padding: '8px 16px', fontSize: '14px', borderRadius: '14px' }}
           >
-            <span
-              style={{
-                width: '8px',
-                height: '8px',
-                borderRadius: '50%',
-                backgroundColor: filterMode === 'needs_grading' ? '#FFFFFF' : '#E11D48',
-              }}
-            />
-            <span>Needs Grading ({needsGradingCount})</span>
+            To Grade ({needsGradingCount})
           </button>
 
           <button
             onClick={() => setFilterMode('ready')}
-            style={{
-              backgroundColor: filterMode === 'ready' ? '#059669' : '#FFFFFF',
-              color: filterMode === 'ready' ? '#FFFFFF' : '#475569',
-              border: '1px solid ' + (filterMode === 'ready' ? '#059669' : '#E2E8F0'),
-              padding: '7px 16px',
-              borderRadius: '20px',
-              fontSize: '13px',
-              fontWeight: 600,
-              cursor: 'pointer',
-              display: 'flex',
-              alignItems: 'center',
-              gap: '6px',
-              transition: 'all 0.15s ease',
-            }}
+            className={`btn-duo ${filterMode === 'ready' ? 'btn-duo-green' : 'btn-duo-white'}`}
+            style={{ padding: '8px 16px', fontSize: '14px', borderRadius: '14px' }}
           >
-            <span
-              style={{
-                width: '8px',
-                height: '8px',
-                borderRadius: '50%',
-                backgroundColor: filterMode === 'ready' ? '#FFFFFF' : '#059669',
-              }}
-            />
-            <span>Ready for Class ({readyForClassCount})</span>
+            Ready ({readyForClassCount})
           </button>
         </div>
 
-        {/* Search Input */}
+        {/* Clean Friendly Search */}
         <div
           style={{
             display: 'flex',
             alignItems: 'center',
             backgroundColor: '#FFFFFF',
-            border: '1px solid #CBD5E1',
-            borderRadius: '20px',
-            padding: '6px 14px',
+            border: '2px solid #E5E7EB',
+            borderRadius: '16px',
+            padding: '8px 14px',
             gap: '8px',
-            boxShadow: '0 1px 2px 0 rgba(0, 0, 0, 0.04)',
           }}
         >
-          <Search size={15} color="#94A3B8" />
+          <Search size={16} color="#9CA3AF" />
           <input
             type="text"
-            placeholder="Search student or board..."
+            placeholder="Search student..."
             value={searchQuery}
             onChange={e => setSearchQuery(e.target.value)}
             style={{
               backgroundColor: 'transparent',
               border: 'none',
-              color: '#0F172A',
-              fontSize: '13px',
               outline: 'none',
-              width: '180px',
+              fontSize: '14px',
+              fontWeight: 500,
+              color: '#23272E',
+              width: '150px',
             }}
           />
         </div>
       </div>
 
-      {/* Flow A: Chronological Timeline of 15 Students */}
-      <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+      {/* Student List (Clean, Big, Friendly) */}
+      <div style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
         {filteredStudents.map((student, idx) => {
           const paper = getStudentPaper(student.id);
           const isNeedsGrading = paper?.status === 'needs_grading';
-          const isReady = paper?.status === 'ready_for_class';
-          const weakTopicAlert = getWeakTopicName(student.id);
+          const avatarBg = avatarColors[idx % avatarColors.length];
+
+          const initials = student.name
+            .split(' ')
+            .map(n => n[0])
+            .join('')
+            .substring(0, 2);
 
           return (
             <div
               key={student.id}
-              className="card-clean"
+              className="duo-card duo-card-interactive"
               style={{
-                padding: '16px 20px',
+                padding: '18px 20px',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'space-between',
                 flexWrap: 'wrap',
-                gap: '16px',
-                borderLeft: `4px solid ${isNeedsGrading ? '#E11D48' : isReady ? '#059669' : '#CBD5E1'}`,
+                gap: '14px',
+                borderLeft: isNeedsGrading ? '6px solid #FF4B4B' : '6px solid #58CC02',
               }}
             >
-              {/* Left Column: Time Slot + Status Dot + Student Info */}
-              <div style={{ display: 'flex', alignItems: 'center', gap: '14px', flex: '1 1 400px' }}>
-                {/* Time Slot Pill */}
+              {/* Left Column: Avatar + Student Bio */}
+              <div style={{ display: 'flex', alignItems: 'center', gap: '14px', flex: '1 1 300px' }}>
+                {/* Cheerful Avatar */}
                 <div
                   style={{
-                    backgroundColor: '#F1F5F9',
-                    padding: '8px 12px',
-                    borderRadius: '8px',
-                    textAlign: 'center',
-                    minWidth: '82px',
-                    border: '1px solid #E2E8F0',
+                    width: '48px',
+                    height: '48px',
+                    borderRadius: '16px',
+                    backgroundColor: avatarBg,
+                    color: '#FFFFFF',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    fontSize: '17px',
+                    fontWeight: 900,
+                    boxShadow: '0 3px 0 rgba(0, 0, 0, 0.15)',
+                    flexShrink: 0,
                   }}
                 >
-                  <div style={{ fontSize: '13px', fontWeight: 800, color: '#0F172A', fontFamily: 'monospace' }}>
-                    {student.schedule_time}
-                  </div>
-                  <div style={{ fontSize: '10px', color: '#64748B', fontWeight: 600, marginTop: '2px' }}>
-                    Slot #{idx + 1}
-                  </div>
+                  {initials}
                 </div>
 
-                {/* Status Dot */}
+                {/* Details */}
                 <div>
-                  {isNeedsGrading ? (
-                    <span className="status-dot status-dot-red" title="Paper waiting for grading" />
-                  ) : (
-                    <span className="status-dot status-dot-green" title="Paper ready for class" />
-                  )}
-                </div>
-
-                {/* Student Details */}
-                <div>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '8px', flexWrap: 'wrap' }}>
-                    <span style={{ fontSize: '16px', fontWeight: 800, color: '#0F172A' }}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                    <span style={{ fontSize: '17px', fontWeight: 800, color: '#23272E' }}>
                       {student.name}
                     </span>
                     <span
                       style={{
+                        backgroundColor: '#F3F4F6',
+                        color: '#4B5563',
                         fontSize: '11px',
-                        backgroundColor: '#F1F5F9',
-                        color: '#475569',
+                        fontWeight: 700,
                         padding: '2px 8px',
-                        borderRadius: '6px',
-                        fontWeight: 600,
+                        borderRadius: '8px',
                       }}
                     >
                       {student.grade}
                     </span>
-                    <span
-                      style={{
-                        fontSize: '11px',
-                        backgroundColor: '#EFF6FF',
-                        color: '#1D4ED8',
-                        padding: '2px 8px',
-                        borderRadius: '6px',
-                        fontWeight: 600,
-                        border: '1px solid #DBEAFE',
-                      }}
-                    >
-                      {student.syllabus_board}
-                    </span>
                   </div>
 
-                  <div style={{ fontSize: '12px', color: '#64748B', marginTop: '4px', display: 'flex', alignItems: 'center', gap: '8px', flexWrap: 'wrap' }}>
-                    <span>Target: <strong>{student.target_exam}</strong></span>
-                    {weakTopicAlert && (
+                  <div style={{ fontSize: '13px', color: '#6B7280', marginTop: '3px', display: 'flex', alignItems: 'center', gap: '6px' }}>
+                    <span style={{ fontWeight: 700, color: '#1CB0F6' }}>🕒 {student.schedule_time}</span>
+                    <span>•</span>
+                    <span>{student.syllabus_board}</span>
+                  </div>
+
+                  <div style={{ marginTop: '5px' }}>
+                    {isNeedsGrading ? (
                       <span
                         style={{
                           backgroundColor: '#FFF1F2',
-                          color: '#BE123C',
+                          color: '#E11D48',
                           fontSize: '11px',
-                          fontWeight: 600,
-                          padding: '1px 6px',
-                          borderRadius: '4px',
+                          fontWeight: 800,
+                          padding: '3px 8px',
+                          borderRadius: '8px',
                           border: '1px solid #FECDD3',
                         }}
                       >
-                        Needs Intervention: {weakTopicAlert}
+                        🔴 Paper waiting to be graded
+                      </span>
+                    ) : (
+                      <span
+                        style={{
+                          backgroundColor: '#F0FDF4',
+                          color: '#16A34A',
+                          fontSize: '11px',
+                          fontWeight: 800,
+                          padding: '3px 8px',
+                          borderRadius: '8px',
+                          border: '1px solid #BBF7D0',
+                        }}
+                      >
+                        🟢 Practice paper ready for class
                       </span>
                     )}
                   </div>
                 </div>
               </div>
 
-              {/* Right Column: Clear Action Buttons */}
+              {/* Right Column: Clear, High-Contrast Action Buttons */}
               <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
                 {isNeedsGrading && paper && (
                   <button
                     onClick={() => onStartGrading(paper, student)}
+                    className="btn-duo btn-duo-red"
                     style={{
-                      display: 'flex',
-                      alignItems: 'center',
-                      gap: '6px',
-                      backgroundColor: '#E11D48',
-                      color: '#FFFFFF',
-                      border: 'none',
-                      borderRadius: '8px',
-                      padding: '9px 16px',
-                      fontSize: '13px',
-                      fontWeight: 700,
-                      cursor: 'pointer',
-                      boxShadow: '0 2px 6px rgba(225, 29, 72, 0.3)',
+                      padding: '10px 18px',
+                      fontSize: '14px',
                     }}
                   >
-                    <Zap size={14} />
-                    <span>Zen Grade (10 Qs)</span>
+                    <Zap size={16} />
+                    <span>Grade Paper</span>
                   </button>
                 )}
 
                 <button
                   onClick={() => onSelectStudent(student)}
+                  className="btn-duo btn-duo-white"
                   style={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: '6px',
-                    backgroundColor: '#FFFFFF',
-                    border: '1px solid #CBD5E1',
-                    color: '#334155',
-                    borderRadius: '8px',
-                    padding: '8px 14px',
-                    fontSize: '13px',
-                    fontWeight: 600,
-                    cursor: 'pointer',
-                    boxShadow: '0 1px 2px 0 rgba(0, 0, 0, 0.05)',
+                    padding: '10px 16px',
+                    fontSize: '14px',
                   }}
                 >
-                  <TrendingUp size={14} color="#2563EB" />
-                  <span>Radar & Tweaker</span>
-                  <ChevronRight size={14} color="#94A3B8" />
+                  <span>View Student</span>
+                  <ChevronRight size={16} color="#9CA3AF" />
                 </button>
               </div>
             </div>
@@ -629,36 +469,28 @@ export const GlanceDashboard: React.FC<GlanceDashboardProps> = ({
         })}
       </div>
 
-      {/* Floating Action Button (FAB): "Prep Today's Papers" */}
+      {/* Floating Action Button (FAB): "Prepare All Papers" */}
       <div
         style={{
           position: 'fixed',
-          bottom: '28px',
-          right: '28px',
+          bottom: '24px',
+          right: '24px',
           zIndex: 100,
         }}
       >
         <button
           onClick={handlePrepTodaysPapers}
           disabled={isPrepping}
+          className="btn-duo btn-duo-green"
           style={{
-            display: 'flex',
-            alignItems: 'center',
-            gap: '8px',
-            backgroundColor: '#2563EB',
-            color: '#FFFFFF',
-            border: 'none',
-            borderRadius: '28px',
-            padding: '14px 24px',
-            fontSize: '14px',
-            fontWeight: 800,
-            cursor: isPrepping ? 'not-allowed' : 'pointer',
-            boxShadow: '0 10px 25px -3px rgba(37, 99, 235, 0.4)',
-            transition: 'all 0.15s ease',
+            padding: '16px 26px',
+            fontSize: '16px',
+            borderRadius: '24px',
+            boxShadow: '0 8px 20px rgba(88, 204, 2, 0.4), 0 4px 0 #46A302',
           }}
         >
-          <Sparkles size={18} />
-          <span>{isPrepping ? 'Enqueuing 15 Jobs...' : "Prep Today's Papers"}</span>
+          <Sparkles size={20} />
+          <span>{isPrepping ? 'Preparing...' : '✨ Prepare All Papers'}</span>
         </button>
       </div>
     </div>

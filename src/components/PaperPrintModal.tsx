@@ -56,52 +56,41 @@ export const PaperPrintModal: React.FC<PaperPrintModalProps> = ({
             alignItems: 'center',
             justifyContent: 'space-between',
             padding: '16px 24px',
-            backgroundColor: '#0F172A',
-            color: '#FFFFFF',
-            borderBottom: '1px solid #1E293B',
+            backgroundColor: '#FFFFFF',
+            borderBottom: '2px solid #E5E7EB',
           }}
         >
           <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-            <Printer size={18} color="#10B981" />
-            <span style={{ fontWeight: 700, fontSize: '14px' }}>
-              Print Practice Paper Preview
+            <Printer size={18} color="#58CC02" />
+            <span style={{ fontWeight: 800, fontSize: '15px', color: '#23272E' }}>
+              Print Practice Paper
             </span>
           </div>
 
           <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
             <button
               onClick={handlePrint}
+              className="btn-duo btn-duo-green"
               style={{
-                display: 'flex',
-                alignItems: 'center',
-                gap: '6px',
-                backgroundColor: '#059669',
-                color: '#FFFFFF',
-                border: 'none',
-                borderRadius: '8px',
-                padding: '8px 16px',
-                fontSize: '13px',
-                fontWeight: 700,
-                cursor: 'pointer',
+                padding: '10px 18px',
+                fontSize: '14px',
+                borderRadius: '14px',
               }}
             >
-              <Printer size={15} />
-              <span>Print to PDF / Paper</span>
+              <Printer size={16} />
+              <span>Print Paper</span>
             </button>
 
             <button
               onClick={onClose}
+              className="btn-duo btn-duo-white"
               style={{
-                background: 'transparent',
-                border: 'none',
-                color: '#94A3B8',
-                cursor: 'pointer',
-                display: 'flex',
-                alignItems: 'center',
-                padding: '4px',
+                padding: '10px 12px',
+                borderRadius: '14px',
+                color: '#6B7280',
               }}
             >
-              <X size={20} />
+              <X size={18} />
             </button>
           </div>
         </div>
